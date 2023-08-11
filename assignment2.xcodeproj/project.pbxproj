@@ -94,8 +94,8 @@
 		34A73C032A861BC20067FAEF /* assignment2 */ = {
 			isa = PBXGroup;
 			children = (
+				34A73C2E2A861CE80067FAEF /* View */,
 				34A73C042A861BC20067FAEF /* assignment2App.swift */,
-				34A73C062A861BC20067FAEF /* ContentView.swift */,
 				34A73C082A861BC40067FAEF /* Assets.xcassets */,
 				34A73C0A2A861BC40067FAEF /* Preview Content */,
 			);
@@ -125,6 +125,14 @@
 				34A73C212A861BC40067FAEF /* assignment2UITestsLaunchTests.swift */,
 			);
 			path = assignment2UITests;
+			sourceTree = "<group>";
+		};
+		34A73C2E2A861CE80067FAEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				34A73C062A861BC20067FAEF /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
