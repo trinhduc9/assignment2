@@ -5,7 +5,7 @@
 //  Created by Duc Trinh Van Minh on 11/08/2023.
 //
 
-import SwiftUI
+import Foundation
 
 class Card: Identifiable, ObservableObject {
     var id = UUID()
@@ -34,6 +34,5 @@ func createList(bombNo: Int) -> [Card] {
         cardList.append(Card(text: "💰"))
         n += 1
     }
-    
     return cardList
 }
