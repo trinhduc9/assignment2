@@ -15,10 +15,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isWelcomeActive: Bool = true
+    
     var body: some View {
-        MainView()
-        
+        ZStack {
+            if isWelcomeActive { //Default welcome view
+                WelcomeView(active: $isWelcomeActive)
+            } else {
+                TabView() 
+                   
+            }
+        }
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
