@@ -6,7 +6,7 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 11/08/2023
- Last modified:
+ Last modified: 15/08/2023
  Acknowledgement:
  */
 
@@ -35,8 +35,8 @@ func createList(bombNo: Int) -> [Card] {
         cardList.append(Card(text: "💣"))
         n += 1
     }
-    while n < 25{
-        cardList.append(Card(text: "💰"))
+    while n < 16{
+        cardList.append(Card(text: "💎"))
         n += 1
     }
     return cardList
