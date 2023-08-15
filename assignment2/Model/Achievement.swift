@@ -11,3 +11,13 @@
  */
 
 import Foundation
+
+class Achievement: Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var description: String
+    var badge: String
+    var badgeImage: Image{
+        Image(badge)
+    }
+}
