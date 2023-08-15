@@ -41,14 +41,20 @@ struct GameSettingView: View {
                     Text("Mines")
                         .font(.headline)
                         .foregroundColor(.blue)
-                    Picker("", selection: $pickedNumber) {
+                    Picker("",selection: $pickedNumber) {
                         ForEach(1..<16) { number in
                             Text("\(number)")
                                 .tag(number)
                         }
                     }
-                    .pickerStyle(DefaultPickerStyle())
+                    .pickerStyle(MenuPickerStyle())
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .labelsHidden()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.blue, lineWidth: 1) // Border color and width
+                    )
+                 
                 }
                 .frame(maxWidth: .infinity) // Equal width for both VStacks
             }
@@ -74,6 +80,7 @@ struct GameSettingView: View {
         .allowsHitTesting(!disableGameSetting)
     }
 }
+
 
 struct GameSettingView_Previews: PreviewProvider {
     static var previews: some View {
