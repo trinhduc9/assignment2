@@ -19,7 +19,7 @@ struct GameSettingView: View {
     @Binding var pickedNumber: Int
     @Binding var cards: [Card]
     @Binding var disableUserInteraction: Bool
-    
+    @Binding var disableGameSetting: Bool
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 20) {
@@ -60,7 +60,7 @@ struct GameSettingView: View {
             Button("Start game") {
                 cards = createList(bombNo: pickedNumber)
                 disableUserInteraction = false
-                
+                disableGameSetting = true
             }
             .frame(maxWidth: .infinity)
             .padding()
@@ -68,11 +68,10 @@ struct GameSettingView: View {
             .foregroundColor(.white)
             .cornerRadius(10)
         }
-        .frame(width: .infinity, height: 200) // Adjust height for additional space
         .padding() // Add padding to the whole VStack
         .background(Color.gray.opacity(0.1)) // Set background color
         .cornerRadius(15) // Add corner radius
-        .padding() // Add outer padding
+        .allowsHitTesting(!disableGameSetting)
     }
 }
 
@@ -87,7 +86,7 @@ struct GameSettingView_Previews: PreviewProvider {
             let cards: Binding<[Card]>
             
             var body: some View {
-                GameSettingView(pickedNumber: Binding.constant(4), cards: cards, disableUserInteraction: .constant(false))
+                GameSettingView(pickedNumber: Binding.constant(4), cards: cards, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
             }
         }
 }

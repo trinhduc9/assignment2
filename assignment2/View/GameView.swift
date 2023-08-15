@@ -21,6 +21,7 @@ struct GameView: View {
     
     var cards: [Card]
     @Binding var disableUserInteraction: Bool
+    @Binding var disableGameSetting: Bool
     
     
     var body: some View {
@@ -29,7 +30,7 @@ struct GameView: View {
                 ForEach(cards){ card in
                     CardView(card: card,
                              width: Int(geo.size.width/4 - 10),
-                             disableUserInteraction: $disableUserInteraction)
+                             disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
                 }
             }.padding(.horizontal)
             .allowsHitTesting(!disableUserInteraction)
@@ -47,7 +48,7 @@ struct GameView_Previews: PreviewProvider {
             let cards: [Card]
             
             var body: some View {
-                GameView(cards: cards, disableUserInteraction: .constant(false))
+                GameView(cards: cards, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
             }
         }
 }

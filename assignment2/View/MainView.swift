@@ -19,6 +19,7 @@ struct MainView: View {
     @State private var pickedNumber = 1
     @State private var cards: [Card] = []
     @State private var disableUserInteraction = true
+    @State private var disableGameSetting = false
     
     init() {
         _cards = State(initialValue: createList(bombNo: pickedNumber))
@@ -27,8 +28,8 @@ struct MainView: View {
     var body: some View {
         VStack{
             Text("Mines")
-            GameView(cards: cards, disableUserInteraction: $disableUserInteraction)
-            GameSettingView(pickedNumber: $pickedNumber, cards: $cards, disableUserInteraction: $disableUserInteraction)
+            GameView(cards: cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
+            GameSettingView(pickedNumber: $pickedNumber, cards: $cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
         }
         .background((Color(UIColor(named: "diamondblue")!)))
     }

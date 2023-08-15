@@ -15,9 +15,10 @@ import SwiftUI
 
 struct CardView: View {
     
-    @ObservedObject var card:Card = createList(bombNo: 3).first!
+    @ObservedObject var card:Card
     let width: Int
     @Binding var disableUserInteraction: Bool
+    @Binding var disableGameSetting: Bool
     var body: some View {
         if card.isFaceUp{
             Text(card.text)
@@ -57,6 +58,7 @@ struct CardView: View {
     func checkCard(card: Card){
         if card.text == "💣"{
             disableUserInteraction = true
+            disableGameSetting = false
         }
     }
 }
@@ -64,6 +66,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(width: 100, disableUserInteraction: .constant(false))
+        let card = Card(text: "💣")
+        CardView(card: card, width: 100, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
     }
 }
