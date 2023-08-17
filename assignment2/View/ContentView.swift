@@ -21,10 +21,9 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if isWelcomeActive { //Default welcome view
-                WelcomeView(active: $isWelcomeActive)
+                WelcomeView(isWelcomeActive: $isWelcomeActive)
             } else {
-                TabView() 
-                   
+                TabDisplayView() 
             }
         }
     }

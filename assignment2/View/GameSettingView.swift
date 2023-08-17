@@ -33,6 +33,7 @@ struct GameSettingView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         Image(systemName: "dollarsign.circle")
                             .foregroundColor(.green)
+                            .padding([.trailing], 5)
                     }
                 }
                 .frame(maxWidth: .infinity) // Equal width for both VStacks
@@ -45,6 +46,7 @@ struct GameSettingView: View {
                         ForEach(1..<16) { number in
                             Text("\(number)")
                                 .tag(number)
+                                
                         }
                     }
                     .pickerStyle(MenuPickerStyle())

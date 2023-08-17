@@ -13,36 +13,36 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct TabDisplayView: View {
+    
     var body: some View {
         TabView {
             MainView()
-                .tabItem{
-                    Image(systemName: "")
+                .tabItem {
+                    Image(systemName: "house.fill")
                     Text("Game")
                 }
-            InstructionView(){
-                .tabItem{
-                    Image(systemName: "")
+            InstructionView()
+                .tabItem {
+                    Image(systemName: "book.fill")
                     Text("Instruction")
                 }
-            }
             LeaderboardView()
-                .tabItem{
-                    Image(systemName: "")
+                .tabItem {
+                    Image(systemName: "trophy.fill")
                     Text("Leaderboard")
                 }
             SettingView()
-                .tabItem{
-                    Image(systemName: "")
+                .tabItem {
+                    Image(systemName: "gamecontroller.fill")
                     Text("Settings")
                 }
         }
     }
 }
 
-struct TabView_Previews: PreviewProvider {
+struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        TabDisplayView()
     }
 }
