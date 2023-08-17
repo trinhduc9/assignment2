@@ -15,9 +15,11 @@ import SwiftUI
 
 @main
 struct assignment2App: App {
+    @StateObject private var userData = UserData()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(UserData.shared)
         }
     }
 }

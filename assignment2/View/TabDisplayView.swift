@@ -15,6 +15,8 @@ import SwiftUI
 
 struct TabDisplayView: View {
     
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
         TabView {
             MainView()
@@ -31,6 +33,11 @@ struct TabDisplayView: View {
                 .tabItem {
                     Image(systemName: "trophy.fill")
                     Text("Leaderboard")
+                }
+            StatsView()
+                .tabItem {
+                    Image(systemName: "")
+                    Text("Stats")
                 }
             SettingView()
                 .tabItem {

@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Greenhorn Gambler",
+        "description": "Earn $5,000",
+        "achieved": false,
+        "badge": "greenhorn"
+    },
+    {
+        "name": "Rising Risktaker",
+        "description": "Earn $25,000",
+        "achieved": false,
+        "badge": "risktaker"
+    },
+    {
+        "name": "Master of the Wager",
+        "description": "Earn $100,000",
+        "achieved": false,
+        "badge": "wager"
+    },
+    {
+        "name": "Virgin Victory",
+        "description": "Win 1 game",
+        "achieved": false,
+        "badge": "virgin"
+    },
+    {
+        "name": "Master of Odds",
+        "description": "Win a game with 15 mines",
+        "achieved": false,
+        "badge": "master"
+    }
+]

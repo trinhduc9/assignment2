@@ -9,10 +9,17 @@
  Last modified:
  Acknowledgement:
  */
-import Foundation
 
-class DataManager: Codable {
-    
-    
-    func writeJSON
+import SwiftUI
+
+struct StatsView: View {
+    var body: some View {
+
+    }
+}
+
+struct StatsView_Previews: PreviewProvider {
+    static var previews: some View {
+        StatsView()
+    }
 }

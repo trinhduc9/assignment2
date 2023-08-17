@@ -6,7 +6,7 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 11/08/2023
- Last modified:16/08/2023
+ Last modified:17/08/2023
  Acknowledgement:
  */
 
@@ -17,6 +17,7 @@ class Achievement: Identifiable, Codable {
     var id = UUID()
     var name: String
     var description: String
+    var achieved: Bool
     var badge: String
     var badgeImage: Image {
         Image(badge)

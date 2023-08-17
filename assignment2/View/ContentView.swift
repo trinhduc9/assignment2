@@ -15,7 +15,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @EnvironmentObject var userData: UserData
     @State var isWelcomeActive: Bool = true
     
     var body: some View {
@@ -23,7 +23,8 @@ struct ContentView: View {
             if isWelcomeActive { //Default welcome view
                 WelcomeView(isWelcomeActive: $isWelcomeActive)
             } else {
-                TabDisplayView() 
+                TabDisplayView()
+                    .environmentObject(UserData.shared)
             }
         }
     }
