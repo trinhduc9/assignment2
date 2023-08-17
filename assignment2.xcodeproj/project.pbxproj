@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		340587ED2A8DD1F9006B6521 /* TabDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */; };
+		340587EF2A8DF6A9006B6521 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340587EE2A8DF6A9006B6521 /* DataManager.swift */; };
 		349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AA2A8B2A110093BF80 /* GameSettingView.swift */; };
 		349577AD2A8B395F0093BF80 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AC2A8B395F0093BF80 /* CardView.swift */; };
 		349577AF2A8B56080093BF80 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AE2A8B56080093BF80 /* MainView.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDisplayView.swift; sourceTree = "<group>"; };
+		340587EE2A8DF6A9006B6521 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		349577AA2A8B2A110093BF80 /* GameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingView.swift; sourceTree = "<group>"; };
 		349577AC2A8B395F0093BF80 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		349577AE2A8B56080093BF80 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				34A73C322A862B4E0067FAEF /* Card.swift */,
 				34B207202A863CA800D3D689 /* Achievement.swift */,
+				340587EE2A8DF6A9006B6521 /* DataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				34B207232A863CC000D3D689 /* WelcomeView.swift in Sources */,
 				349577AF2A8B56080093BF80 /* MainView.swift in Sources */,
 				349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */,
+				340587EF2A8DF6A9006B6521 /* DataManager.swift in Sources */,
 				34A73C072A861BC20067FAEF /* ContentView.swift in Sources */,
 				34B207212A863CA800D3D689 /* Achievement.swift in Sources */,
 				34A73C332A862B4E0067FAEF /* Card.swift in Sources */,
