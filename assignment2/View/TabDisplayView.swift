@@ -15,6 +15,7 @@ import SwiftUI
 
 struct TabDisplayView: View {
     
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userData: UserData
     
     var body: some View {
@@ -24,6 +25,7 @@ struct TabDisplayView: View {
                     Image(systemName: "house.fill")
                     Text("Game")
                 }
+                .environmentObject(UserData.shared)
             InstructionView()
                 .tabItem {
                     Image(systemName: "book.fill")

@@ -14,6 +14,7 @@ import SwiftUI
 
 struct GameView: View {
     
+    @EnvironmentObject var userData: UserData
     var fourColumnGrid = [GridItem(.flexible()),
                                   GridItem(.flexible()),
                                   GridItem(.flexible()),

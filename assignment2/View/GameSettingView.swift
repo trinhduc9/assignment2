@@ -15,11 +15,13 @@ import SwiftUI
 
 struct GameSettingView: View {
     
+    @EnvironmentObject var userData: UserData
     @State var inputText: String = ""
     @Binding var pickedNumber: Int
     @Binding var cards: [Card]
     @Binding var disableUserInteraction: Bool
     @Binding var disableGameSetting: Bool
+    
     var body: some View {
         VStack(spacing: 20) {
             HStack(spacing: 20) {

@@ -15,6 +15,8 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userData: UserData
     @State var isWelcomeActive: Bool = true
     
@@ -25,6 +27,7 @@ struct ContentView: View {
             } else {
                 TabDisplayView()
                     .environmentObject(UserData.shared)
+                    .environmentObject(\.colorScheme, selectedColorScheme)
             }
         }
     }
