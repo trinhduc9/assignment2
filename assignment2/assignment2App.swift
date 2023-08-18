@@ -23,7 +23,7 @@ struct assignment2App: App {
         WindowGroup {
             ContentView()
                 .environmentObject(UserData.shared)
-                .environmentObject(\.colorScheme, selectedColorScheme)
+                .environment(\.colorScheme, selectedColorScheme)
         }
     }
 }

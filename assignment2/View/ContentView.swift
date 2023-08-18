@@ -27,7 +27,6 @@ struct ContentView: View {
             } else {
                 TabDisplayView()
                     .environmentObject(UserData.shared)
-                    .environmentObject(\.colorScheme, selectedColorScheme)
             }
         }
     }
