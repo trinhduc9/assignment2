@@ -1,3 +1,15 @@
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 2
+ Author: Trinh Van Minh Duc
+ ID: s3915177
+ Created  date: 11/08/2023
+ Last modified: 15/08/2023
+ Acknowledgement:
+ */
+
 import SwiftUI
 
 class UserData: ObservableObject {
@@ -61,8 +73,7 @@ class UserData: ObservableObject {
         if UserDefaults.standard.object(forKey: "FirstLaunch") == nil {
             self.balance = 100000.00
             UserDefaults.standard.set(true, forKey: "FirstLaunch")
-        } else {
-            self.balance = UserDefaults.standard.double(forKey: "Balance")
+            UserDefaults.standard.set(100000.00, forKey: "Balance")
         }
         self.totalBet = UserDefaults.standard.double(forKey: "TotalBet")
         self.totalWinning = UserDefaults.standard.double(forKey: "TotalWinning")

@@ -16,18 +16,13 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userData: UserData
-    @State var isWelcomeActive: Bool = true
+  
     
     var body: some View {
         ZStack {
-            if isWelcomeActive { //Default welcome view
-                WelcomeView(isWelcomeActive: $isWelcomeActive)
-            } else {
-                TabDisplayView()
-                    .environmentObject(UserData.shared)
-            }
+            TabDisplayView()
+                .environmentObject(UserData.shared)
         }
     }
 
@@ -36,5 +31,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserData.shared)
     }
 }

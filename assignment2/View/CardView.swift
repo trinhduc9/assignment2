@@ -19,6 +19,9 @@ struct CardView: View {
     let width: Int
     @Binding var disableUserInteraction: Bool
     @Binding var disableGameSetting: Bool
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+
+    
     var body: some View {
         if card.isFaceUp{
             Text(card.text)
@@ -46,7 +49,7 @@ struct CardView: View {
                 .transition(.opacity)
                 .onTapGesture {
                     withAnimation(.linear(duration: 0.3)){
-                        card.turnCard
+                        card.turnCard()
                         checkCard(card: card)
                     }
                     

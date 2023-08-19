@@ -15,25 +15,31 @@ import SwiftUI
 
 struct MainView: View {
     
+    
     @EnvironmentObject var userData: UserData
     @State private var pickedNumber = 1
     @State private var cards: [Card] = []
     @State private var disableUserInteraction = true
     @State private var disableGameSetting = false
+    @AppStorage("DarkMode") private var isDark : Bool = false
     
     init() {
         _cards = State(initialValue: createList(bombNo: pickedNumber))
     }
+   
 
     var body: some View {
         VStack{
-            Text("Mines")
+            HStack{
+                
+                Text("Mines")
+            }
             GameView(cards: cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
                 .environmentObject(UserData.shared)
             GameSettingView(pickedNumber: $pickedNumber, cards: $cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
                 .environmentObject(UserData.shared)
         }
-        .background((Color(UIColor(named: "diamondblue")!)))
+        
     }
 }
 

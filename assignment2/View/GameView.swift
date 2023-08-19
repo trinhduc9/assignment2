@@ -24,7 +24,6 @@ struct GameView: View {
     @Binding var disableUserInteraction: Bool
     @Binding var disableGameSetting: Bool
     
-    
     var body: some View {
         GeometryReader{geo in
             LazyVGrid(columns: fourColumnGrid, spacing: 10){

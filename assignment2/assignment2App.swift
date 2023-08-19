@@ -16,14 +16,12 @@ import SwiftUI
 @main
 struct assignment2App: App {
     
-    @State private var selectedColorScheme: ColorScheme = .light
     @StateObject private var userData = UserData()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(UserData.shared)
-                .environment(\.colorScheme, selectedColorScheme)
         }
     }
 }

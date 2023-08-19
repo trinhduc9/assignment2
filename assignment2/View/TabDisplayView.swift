@@ -15,8 +15,9 @@ import SwiftUI
 
 struct TabDisplayView: View {
     
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var userData: UserData
+    @AppStorage("DarkMode") private var isDark : Bool = false
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     
     var body: some View {
         TabView {
@@ -37,7 +38,7 @@ struct TabDisplayView: View {
                 }
             StatsView()
                 .tabItem {
-                    Image(systemName: "")
+                    Image(systemName: "person.fill")
                     Text("Stats")
                 }
             SettingView()
@@ -46,11 +47,13 @@ struct TabDisplayView: View {
                     Text("Settings")
                 }
         }.environmentObject(UserData.shared)
+        .environment(\.colorScheme, isDark ? .dark : .light)
     }
 }
 
 struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
         TabDisplayView()
+            .environmentObject(UserData.shared)
     }
 }

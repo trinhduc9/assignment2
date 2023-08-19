@@ -13,8 +13,24 @@
 import SwiftUI
 
 struct SettingView: View {
+    
+    @AppStorage("DarkMode") private var isDark: Bool = false
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Button(action: {
+                isDark.toggle()
+            }) {
+                Image(systemName: isDark ? "moon.fill" : "sun.max")
+                    .foregroundColor(isDark ? .white : .black)
+            }
+            Button(action: {
+                soundEnable.toggle()
+            }) {
+                Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.splash.fill")
+                    .foregroundColor(isDark ? .white : .black)
+            }
+        }
     }
 }
 

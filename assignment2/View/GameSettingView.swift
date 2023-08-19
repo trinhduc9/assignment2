@@ -17,18 +17,21 @@ struct GameSettingView: View {
     
     @EnvironmentObject var userData: UserData
     @State var inputText: String = ""
+    @State private var isButtonHidden = true
     @Binding var pickedNumber: Int
     @Binding var cards: [Card]
     @Binding var disableUserInteraction: Bool
     @Binding var disableGameSetting: Bool
+    @AppStorage("DarkMode") private var isDark:Bool = false
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     
     var body: some View {
         VStack(spacing: 20) {
-            HStack(spacing: 20) {
+            HStack(alignment: .top, spacing: 20) {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Bet Amount")
                         .font(.headline)
-                        .foregroundColor(.blue)
+                        .foregroundColor(isDark ? .white : .black)
                     ZStack(alignment: .trailing) {
                         TextField("Amount", text: $inputText)
                             .keyboardType(.numberPad)
@@ -43,20 +46,36 @@ struct GameSettingView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Mines")
                         .font(.headline)
-                        .foregroundColor(.blue)
-                    Picker("",selection: $pickedNumber) {
+                        .foregroundColor(isDark ? .white : .black)
+                    Menu {
                         ForEach(1..<16) { number in
-                            Text("\(number)")
-                                .tag(number)
-                                
+                            Button(action: {
+                                pickedNumber = number
+                            }) {
+                                Text("\(number)")
+                                    .foregroundColor(isDark ? .white : .black)
+                                    .frame(maxWidth: .infinity, alignment: .leading) // Match the Picker's width
+                                    .padding(.horizontal, 16) // Adjust horizontal padding
+                            }
                         }
+                    } label: {
+                        HStack {
+                                Text("\(pickedNumber)")
+                                    .foregroundColor(isDark ? .white : .black)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 16)
+                                    .frame(height: 31)
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .foregroundColor(isDark ? .white : .black)
+                                Spacer()
+                            }
+
                     }
-                    .pickerStyle(MenuPickerStyle())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .labelsHidden()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.blue, lineWidth: 1) // Border color and width
+                            .stroke(Color.black, lineWidth: 1) // Border color and width
                     )
                  
                 }
@@ -66,22 +85,42 @@ struct GameSettingView: View {
             .padding(.horizontal)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(15)
-            
-            Button("Start game") {
-                cards = createList(bombNo: pickedNumber)
-                disableUserInteraction = false
-                disableGameSetting = true
+            .allowsHitTesting(!disableGameSetting)
+            HStack{
+                Button("Start game") {
+                    isButtonHidden = false
+                    cards = createList(bombNo: pickedNumber)
+                    disableUserInteraction = false
+                    disableGameSetting = true
+                    userData.balance -= 1000.00
+                    UserDefaults.standard.set(userData.balance - 1000.00, forKey: "Balance")
+                    userData.gamePlayed += 1
+                    UserDefaults.standard.set(userData.gamePlayed, forKey: "GamePlayed")
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(isDark ? .white : .black)
+                .foregroundColor(isDark ? .black : .white)
+                .cornerRadius(10)
+                .allowsHitTesting(!disableGameSetting)
+                if !isButtonHidden{
+                    Button("Cash Out"){
+                        disableUserInteraction = true
+                        disableGameSetting = false
+                        isButtonHidden = true
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(isDark ? .white : .black)
+                    .foregroundColor(isDark ? .black : .white)
+                    .cornerRadius(10)
+                }
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
         }
         .padding() // Add padding to the whole VStack
         .background(Color.gray.opacity(0.1)) // Set background color
         .cornerRadius(15) // Add corner radius
-        .allowsHitTesting(!disableGameSetting)
+    
     }
 }
 

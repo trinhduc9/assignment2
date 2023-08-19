@@ -13,13 +13,39 @@
 import SwiftUI
 
 struct StatsView: View {
+
+    @EnvironmentObject var userData: UserData
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading){
+            HStack{
+                Text("Balance:")
+                Text("$\(String(format: "%.2f", userData.balance))")
+            }
+            HStack{
+                Text("Game Played:")
+                Text("\(userData.gamePlayed)")
+            }
+            HStack{
+                Text("Total Bet:")
+                Text("$\(String(format: "%.2f", (userData.totalBet)))")
+            }
+            HStack{
+                Text("Total Winning:")
+                Text("$\(String(format: "%.2f", (userData.totalWinning)))")
+            }
+            HStack{
+                Text("Profit/Loss:")
+                Text("$\(String(format: "%.2f", (userData.profitLoss)))")
+            }
+        }
     }
 }
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView()
+            .environmentObject(UserData.shared)
     }
 }

@@ -26,6 +26,7 @@
 		34B207292A863CE900D3D689 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B207282A863CE900D3D689 /* SettingView.swift */; };
 		34B2072F2A86419B00D3D689 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34B207312A86419B00D3D689 /* Localizable.strings */; };
 		34B207342A8642F200D3D689 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B207332A8642F200D3D689 /* InstructionView.swift */; };
+		34D24A562A9093DC00903D7A /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D24A552A9093DC00903D7A /* ColorScheme.swift */; };
 		34D947652A9077E90031775E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D947642A9077E90031775E /* StatsView.swift */; };
 		34D947682A9078030031775E /* achievement.json in Resources */ = {isa = PBXBuildFile; fileRef = 34D947662A9078030031775E /* achievement.json */; };
 		34D947692A9078030031775E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D947672A9078030031775E /* UserData.swift */; };
@@ -74,6 +75,7 @@
 		34B207302A86419B00D3D689 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34B207322A8641A800D3D689 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34B207332A8642F200D3D689 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		34D24A552A9093DC00903D7A /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		34D947642A9077E90031775E /* StatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		34D947662A9078030031775E /* achievement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = achievement.json; sourceTree = "<group>"; };
 		34D947672A9078030031775E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				34D947672A9078030031775E /* UserData.swift */,
 				34A73C322A862B4E0067FAEF /* Card.swift */,
 				34B207202A863CA800D3D689 /* Achievement.swift */,
+				34D24A552A9093DC00903D7A /* ColorScheme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				34A73C332A862B4E0067FAEF /* Card.swift in Sources */,
 				34B207252A863CCD00D3D689 /* LeaderboardView.swift in Sources */,
 				34B207342A8642F200D3D689 /* InstructionView.swift in Sources */,
+				34D24A562A9093DC00903D7A /* ColorScheme.swift in Sources */,
 				340587ED2A8DD1F9006B6521 /* TabDisplayView.swift in Sources */,
 				34B207292A863CE900D3D689 /* SettingView.swift in Sources */,
 				34D947652A9077E90031775E /* StatsView.swift in Sources */,
