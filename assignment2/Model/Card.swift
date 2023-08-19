@@ -12,18 +12,13 @@
 
 import Foundation
 
-class Card: Identifiable, ObservableObject {
+class Card: Identifiable, ObservableObject{
     var id = UUID()
     @Published var isFaceUp = false
-    @Published var isBomb = false
     var text: String
     
-    init(text:String){
-        self.text =  text
-    }
-    
-    func turnCard(){
-        self.isFaceUp.toggle()
+    init(text: String) {
+        self.text = text
     }
 }
 

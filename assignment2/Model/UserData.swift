@@ -45,14 +45,14 @@ class UserData: ObservableObject {
         }
     }
     
-    @Published var currentGame: [Card] {
+    /*@Published var currentGame: [Card] {
         didSet {
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(currentGame) {
                 UserDefaults.standard.set(encoded, forKey: "CurrentGame")
             }
         }
-    }
+    }*/
     
     init() {
         self.username = UserDefaults.standard.string(forKey: "Username") ?? ""
@@ -65,14 +65,15 @@ class UserData: ObservableObject {
             self.balance = UserDefaults.standard.double(forKey: "Balance")
         }
         self.totalBet = UserDefaults.standard.double(forKey: "TotalBet")
+        self.totalWinning = UserDefaults.standard.double(forKey: "TotalWinning")
         self.profitLoss = UserDefaults.standard.double(forKey: "ProfitLoss")
         self.achievements = UserDefaults.standard.array(forKey: "Achievements") as? [Bool] ?? [false, false, false, false, false]
-        if let savedCardsData = UserDefaults.standard.data(forKey: "CurrentGame"),
+        /*if let savedCardsData = UserDefaults.standard.data(forKey: "CurrentGame"),
            let savedCards = try? JSONDecoder().decode([Card].self, from: savedCardsData) {
             self.currentGame = savedCards
         } else {
             self.currentGame = []
-        }
+        }*/
     }
 }
 
