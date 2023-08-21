@@ -15,14 +15,14 @@ import SwiftUI
 struct GameView: View {
     
     @EnvironmentObject var userData: UserData
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     var fourColumnGrid = [GridItem(.flexible()),
                                   GridItem(.flexible()),
                                   GridItem(.flexible()),
                                   GridItem(.flexible())]
     
     var cards: [Card]
-    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
-    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     
     var body: some View {
         GeometryReader{geo in

@@ -16,14 +16,15 @@ import SwiftUI
 struct GameSettingView: View {
     
     @EnvironmentObject var userData: UserData
-    @State var inputText: String = ""
     @State private var isButtonHidden = true
-    @Binding var pickedNumber: Int
     @Binding var cards: [Card]
+    @AppStorage("CurrentBet") var inputText: String = ""
+    @AppStorage("CurrentMines") private var pickedNumber: Int = 1
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    
     
     var body: some View {
         VStack(spacing: 20) {
@@ -114,6 +115,8 @@ struct GameSettingView: View {
                         disableUserInteraction = true
                         disableGameSetting = false
                         isButtonHidden = true
+                        pickedNumber = 1
+                        inputText = ""
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -142,7 +145,7 @@ struct GameSettingView_Previews: PreviewProvider {
         let cards: Binding<[Card]>
         
         var body: some View {
-            GameSettingView(pickedNumber: Binding.constant(4), cards: cards)
+            GameSettingView( cards: cards)
         }
     }
 }

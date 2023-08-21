@@ -18,18 +18,21 @@ struct SettingView: View {
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     var body: some View {
         VStack{
+            Spacer()
             Button(action: {
                 isDark.toggle()
             }) {
                 Image(systemName: isDark ? "moon.fill" : "sun.max")
                     .foregroundColor(isDark ? .white : .black)
             }
+            Spacer()
             Button(action: {
                 soundEnable.toggle()
             }) {
-                Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.splash.fill")
+                Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
                     .foregroundColor(isDark ? .white : .black)
             }
+            Spacer()
         }
     }
 }

@@ -17,8 +17,8 @@ struct MainView: View {
     
     
     @EnvironmentObject var userData: UserData
-    @State private var pickedNumber = 1
     @State private var cards: [Card] = createList(bombNo: 1)
+    @AppStorage("CurrentMines") private var pickedNumber: Int = 1
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
@@ -30,18 +30,18 @@ struct MainView: View {
             }
             GameView(cards: cards)
                 .environmentObject(UserData.shared)
-            GameSettingView(pickedNumber: $pickedNumber, cards: $cards)
+            GameSettingView(cards: $cards)
                 .environmentObject(UserData.shared)
         }
-        /*.onAppear {
+        .onAppear {
             let storedGame = userData.currentGame
             
             if !storedGame.isEmpty {
                 cards = storedGame
             } else {
-                cards = createList(bombNo: pickedNumber)
+                cards = createList(bombNo: 1)
             }
-        }*/
+        }
     }
 }
 

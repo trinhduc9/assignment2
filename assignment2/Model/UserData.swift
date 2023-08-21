@@ -88,13 +88,8 @@ class UserData: ObservableObject {
     }
     
     func updateCard(card: Card) {
-        print("here")
-        print(card.id)
         if let index = self.currentGame.firstIndex(where: { $0.id == card.id }) {
-            print("Card IDs: \(self.currentGame.map { $0.id })")
-            print("Matching Card ID: \(card.id)")
             currentGame[index] = card
-            print(card.isFaceUp)
             saveCurrentGame(game: currentGame)
         }
     }

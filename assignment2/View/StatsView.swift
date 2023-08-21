@@ -16,7 +16,6 @@ struct StatsView: View {
 
     @EnvironmentObject var userData: UserData
     
-    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -42,10 +41,6 @@ struct StatsView: View {
                     Text("$\(String(format: "%.2f", (userData.profitLoss)))")
                 }
             }.padding(.leading)
-            Text("Current Game:")
-            ForEach(userData.currentGame) { card in
-                Text("Text: \(card.text), isFaceUp: \(card.isFaceUp ? "true" : "false")")
-            }
             AchievementView()
         }
     }

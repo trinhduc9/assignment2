@@ -25,7 +25,7 @@ struct TabDisplayView: View {
         TabView {
             MainView()
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "gamecontroller.fill")
                     Text("Game")
                 }
             InstructionView()
@@ -45,7 +45,7 @@ struct TabDisplayView: View {
                 }
             SettingView()
                 .tabItem {
-                    Image(systemName: "gamecontroller.fill")
+                    Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }
         }.environmentObject(UserData.shared)
