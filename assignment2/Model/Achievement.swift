@@ -14,7 +14,7 @@ import Foundation
 import SwiftUI
 
 class Achievement: Identifiable, Codable {
-    var id = UUID()
+    var id: Int
     var name: String
     var description: String
     var achieved: Bool

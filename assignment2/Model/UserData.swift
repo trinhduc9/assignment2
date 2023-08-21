@@ -57,14 +57,14 @@ class UserData: ObservableObject {
         }
     }
     
-    /*@Published var currentGame: [Card] {
+    @Published var currentGame: [Card] {
         didSet {
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(currentGame) {
                 UserDefaults.standard.set(encoded, forKey: "CurrentGame")
             }
         }
-    }*/
+    }
     
     init() {
         self.username = UserDefaults.standard.string(forKey: "Username") ?? ""
@@ -79,12 +79,31 @@ class UserData: ObservableObject {
         self.totalWinning = UserDefaults.standard.double(forKey: "TotalWinning")
         self.profitLoss = UserDefaults.standard.double(forKey: "ProfitLoss")
         self.achievements = UserDefaults.standard.array(forKey: "Achievements") as? [Bool] ?? [false, false, false, false, false]
-        /*if let savedCardsData = UserDefaults.standard.data(forKey: "CurrentGame"),
+        if let savedCardsData = UserDefaults.standard.data(forKey: "CurrentGame"),
            let savedCards = try? JSONDecoder().decode([Card].self, from: savedCardsData) {
             self.currentGame = savedCards
         } else {
             self.currentGame = []
-        }*/
+        }
+    }
+    
+    func updateCard(card: Card) {
+        print("here")
+        print(card.id)
+        if let index = self.currentGame.firstIndex(where: { $0.id == card.id }) {
+            print("Card IDs: \(self.currentGame.map { $0.id })")
+            print("Matching Card ID: \(card.id)")
+            currentGame[index] = card
+            print(card.isFaceUp)
+            saveCurrentGame(game: currentGame)
+        }
+    }
+    
+    func saveCurrentGame(game: [Card]) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(game) {
+            UserDefaults.standard.set(encoded, forKey: "CurrentGame")
+        }
     }
 }
 

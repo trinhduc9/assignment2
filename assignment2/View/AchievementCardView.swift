@@ -8,15 +8,28 @@
 import SwiftUI
 
 struct AchievementCardView: View {
+    
+    var achievement: Achievement
+    
     var body: some View {
-        HStack{
-            
+        HStack(alignment: .top){
+            Image(achievement.badge)
+                .resizable()
+                .frame(width: 50, height: 50)
+            VStack(alignment: .leading, spacing: 10){
+                Text(achievement.name)
+                    .font(.system(size: 20))
+                    .bold()
+                    .alignmentGuide(.leading, computeValue: {
+                        dimension in dimension[.leading]})
+                Text(achievement.description)
+            }
         }
     }
 }
 
 struct AchievementCardView_Previews: PreviewProvider {
     static var previews: some View {
-        AchievementCardView()
+        AchievementCardView(achievement: achievements[0])
     }
 }

@@ -18,27 +18,35 @@ struct StatsView: View {
     
     
     var body: some View {
+        
         VStack(alignment: .leading){
-            HStack{
-                Text("Balance:")
-                Text("$\(String(format: "%.2f", userData.balance))")
+            Group{
+                HStack{
+                    Text("Balance:")
+                    Text("$\(String(format: "%.2f", userData.balance))")
+                }
+                HStack{
+                    Text("Game Played:")
+                    Text("\(userData.gamePlayed)")
+                }
+                HStack{
+                    Text("Total Bet:")
+                    Text("$\(String(format: "%.2f", (userData.totalBet)))")
+                }
+                HStack{
+                    Text("Total Winning:")
+                    Text("$\(String(format: "%.2f", (userData.totalWinning)))")
+                }
+                HStack{
+                    Text("Profit/Loss:")
+                    Text("$\(String(format: "%.2f", (userData.profitLoss)))")
+                }
+            }.padding(.leading)
+            Text("Current Game:")
+            ForEach(userData.currentGame) { card in
+                Text("Text: \(card.text), isFaceUp: \(card.isFaceUp ? "true" : "false")")
             }
-            HStack{
-                Text("Game Played:")
-                Text("\(userData.gamePlayed)")
-            }
-            HStack{
-                Text("Total Bet:")
-                Text("$\(String(format: "%.2f", (userData.totalBet)))")
-            }
-            HStack{
-                Text("Total Winning:")
-                Text("$\(String(format: "%.2f", (userData.totalWinning)))")
-            }
-            HStack{
-                Text("Profit/Loss:")
-                Text("$\(String(format: "%.2f", (userData.profitLoss)))")
-            }
+            AchievementView()
         }
     }
 }

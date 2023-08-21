@@ -14,9 +14,23 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
+    @ObservedObject var userData = UserData.shared
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Balance:")
+            Text("$\(String(format: "%.2f", userData.balance))")
+            Text("Current Game:")
+                .font(.headline)
+            
+            List(userData.currentGame, id: \.id) { card in
+                HStack {
+                    Text("Card ID: \(card.id)")
+                    Spacer()
+                    Text("Face Up: \(card.isFaceUp ? "Yes" : "No")")
+                }
+            }
+        }
     }
 }
 

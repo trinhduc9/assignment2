@@ -18,33 +18,36 @@ struct MainView: View {
     
     @EnvironmentObject var userData: UserData
     @State private var pickedNumber = 1
-    @State private var cards: [Card] = []
-    @State private var disableUserInteraction = true
-    @State private var disableGameSetting = false
+    @State private var cards: [Card] = createList(bombNo: 1)
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
     
-    init() {
-        _cards = State(initialValue: createList(bombNo: pickedNumber))
-    }
-   
-
     var body: some View {
         VStack{
             HStack{
-                
                 Text("Mines")
             }
-            GameView(cards: cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
+            GameView(cards: cards)
                 .environmentObject(UserData.shared)
-            GameSettingView(pickedNumber: $pickedNumber, cards: $cards, disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
+            GameSettingView(pickedNumber: $pickedNumber, cards: $cards)
                 .environmentObject(UserData.shared)
         }
-        
+        /*.onAppear {
+            let storedGame = userData.currentGame
+            
+            if !storedGame.isEmpty {
+                cards = storedGame
+            } else {
+                cards = createList(bombNo: pickedNumber)
+            }
+        }*/
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+/*struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(UserData.shared)
     }
-}
+}*/

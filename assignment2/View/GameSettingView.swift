@@ -20,8 +20,8 @@ struct GameSettingView: View {
     @State private var isButtonHidden = true
     @Binding var pickedNumber: Int
     @Binding var cards: [Card]
-    @Binding var disableUserInteraction: Bool
-    @Binding var disableGameSetting: Bool
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     
@@ -87,15 +87,21 @@ struct GameSettingView: View {
             .cornerRadius(15)
             .allowsHitTesting(!disableGameSetting)
             HStack{
-                Button("Start game") {
-                    isButtonHidden = false
-                    cards = createList(bombNo: pickedNumber)
-                    disableUserInteraction = false
-                    disableGameSetting = true
-                    userData.balance -= 1000.00
-                    UserDefaults.standard.set(userData.balance - 1000.00, forKey: "Balance")
-                    userData.gamePlayed += 1
-                    UserDefaults.standard.set(userData.gamePlayed, forKey: "GamePlayed")
+                Button(action: {
+                    if !inputText.isEmpty && Float(inputText) != nil{
+                        isButtonHidden = false
+                        cards = createList(bombNo: pickedNumber)
+                        userData.currentGame = cards
+                        userData.saveCurrentGame(game: cards)
+                        disableUserInteraction = false
+                        disableGameSetting = true
+                        userData.balance -= Double(inputText)!
+                        UserDefaults.standard.set(userData.balance, forKey: "Balance")
+                        userData.gamePlayed += 1
+                        UserDefaults.standard.set(userData.gamePlayed, forKey: "GamePlayed")
+                    }
+                }) {
+                    Text("Start Game")
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -103,7 +109,7 @@ struct GameSettingView: View {
                 .foregroundColor(isDark ? .black : .white)
                 .cornerRadius(10)
                 .allowsHitTesting(!disableGameSetting)
-                if !isButtonHidden{
+                if disableGameSetting{
                     Button("Cash Out"){
                         disableUserInteraction = true
                         disableGameSetting = false
@@ -133,10 +139,10 @@ struct GameSettingView_Previews: PreviewProvider {
     }
     
     struct PreviewWrapper: View {
-            let cards: Binding<[Card]>
-            
-            var body: some View {
-                GameSettingView(pickedNumber: Binding.constant(4), cards: cards, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
-            }
+        let cards: Binding<[Card]>
+        
+        var body: some View {
+            GameSettingView(pickedNumber: Binding.constant(4), cards: cards)
         }
+    }
 }

@@ -18,6 +18,8 @@ struct TabDisplayView: View {
     @EnvironmentObject var userData: UserData
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     
     var body: some View {
         TabView {

@@ -21,16 +21,16 @@ struct GameView: View {
                                   GridItem(.flexible())]
     
     var cards: [Card]
-    @Binding var disableUserInteraction: Bool
-    @Binding var disableGameSetting: Bool
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     
     var body: some View {
         GeometryReader{geo in
             LazyVGrid(columns: fourColumnGrid, spacing: 10){
                 ForEach(cards){ card in
                     CardView(card: card,
-                             width: Int(geo.size.width/4 - 10),
-                             disableUserInteraction: $disableUserInteraction, disableGameSetting: $disableGameSetting)
+                             width: Int(geo.size.width/4 - 10))
+                        .environmentObject(UserData.shared)
                 }
             }.padding(.horizontal)
             .allowsHitTesting(!disableUserInteraction)
@@ -48,7 +48,7 @@ struct GameView_Previews: PreviewProvider {
             let cards: [Card]
             
             var body: some View {
-                GameView(cards: cards, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
+                GameView(cards: cards)
             }
         }
 }

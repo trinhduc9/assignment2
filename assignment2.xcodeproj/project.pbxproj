@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		340587ED2A8DD1F9006B6521 /* TabDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */; };
 		34140A492A931F61008A9871 /* AchievementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A482A931F61008A9871 /* AchievementCardView.swift */; };
+		34140A4B2A932BD4008A9871 /* AchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A4A2A932BD4008A9871 /* AchievementView.swift */; };
 		349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AA2A8B2A110093BF80 /* GameSettingView.swift */; };
 		349577AD2A8B395F0093BF80 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AC2A8B395F0093BF80 /* CardView.swift */; };
 		349577AF2A8B56080093BF80 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AE2A8B56080093BF80 /* MainView.swift */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabDisplayView.swift; sourceTree = "<group>"; };
 		34140A482A931F61008A9871 /* AchievementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCardView.swift; sourceTree = "<group>"; };
+		34140A4A2A932BD4008A9871 /* AchievementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementView.swift; sourceTree = "<group>"; };
 		349577AA2A8B2A110093BF80 /* GameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingView.swift; sourceTree = "<group>"; };
 		349577AC2A8B395F0093BF80 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		349577AE2A8B56080093BF80 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				349577AE2A8B56080093BF80 /* MainView.swift */,
 				340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */,
 				34140A482A931F61008A9871 /* AchievementCardView.swift */,
+				34140A4A2A932BD4008A9871 /* AchievementView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				34B207342A8642F200D3D689 /* InstructionView.swift in Sources */,
 				34D24A562A9093DC00903D7A /* ColorScheme.swift in Sources */,
 				340587ED2A8DD1F9006B6521 /* TabDisplayView.swift in Sources */,
+				34140A4B2A932BD4008A9871 /* AchievementView.swift in Sources */,
 				34140A492A931F61008A9871 /* AchievementCardView.swift in Sources */,
 				34B207292A863CE900D3D689 /* SettingView.swift in Sources */,
 				34D947652A9077E90031775E /* StatsView.swift in Sources */,

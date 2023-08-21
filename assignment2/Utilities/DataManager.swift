@@ -12,6 +12,25 @@
 
 import Foundation
 
+var achievements = decodeAchievement(jsonFileName: "achievement.json")
+
+func decodeAchievement(jsonFileName: String) -> [Achievement] {
+    if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil){
+        if let data = try? Data(contentsOf: file) {
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode([Achievement].self, from: data)
+                return decoded
+            } catch let error {
+                fatalError("Failed to decode JSON: \(error)")
+            }
+        }
+    } else {
+        fatalError("Couldn't load \(jsonFileName) file")
+    }
+    return [ ] as [Achievement]
+}
+
 class JSONManager {
     func decodeJsonFromJsonFile<T: Decodable>(jsonFileName: String, into type: T.Type) -> T? {
         if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {

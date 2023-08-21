@@ -15,45 +15,49 @@ import SwiftUI
 
 struct CardView: View {
     
+    @EnvironmentObject var userData: UserData
     @ObservedObject var card:Card
     let width: Int
-    @Binding var disableUserInteraction: Bool
-    @Binding var disableGameSetting: Bool
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-
     
     var body: some View {
-        if card.isFaceUp{
-            Text(card.text)
-                .font(.system(size: 50))
-                .padding()
-                .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.black), lineWidth: 3)
-                )
-                .transition(.opacity)
-        } else {
-            Image(systemName: "questionmark.diamond.fill")
-                .font(.system(size: CGFloat(width/2)))
-                .padding()
-                .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.black), lineWidth: 3)
-                )
-                .transition(.opacity)
-                .onTapGesture {
-                    withAnimation(.linear(duration: 0.3)){
-                        card.turnCard()
-                        checkCard(card: card)
+        VStack{
+            if card.isFaceUp{
+                Text(card.text)
+                    .font(.system(size: 50))
+                    .padding()
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .background(Color(.lightGray))
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.black), lineWidth: 3)
+                    )
+                    .transition(.opacity)
+            } else {
+                Image(systemName: "questionmark.diamond.fill")
+                    .font(.system(size: CGFloat(width/2)))
+                    .padding()
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .background(Color(.lightGray))
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.black), lineWidth: 3)
+                    )
+                    .transition(.opacity)
+                    .onTapGesture {
+                        withAnimation(.linear(duration: 0.3)){
+                            card.turnCard()
+                            print(card.isFaceUp)
+                            userData.updateCard(card: card)
+                            checkCard(card: card)
+                        }
                     }
-                    
-                }
+            }
+            Text("isFaceUp: \(card.isFaceUp ? "true" : "false")")
         }
     }
     
@@ -70,6 +74,6 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let card = Card(text: "💣")
-        CardView(card: card, width: 100, disableUserInteraction: .constant(false), disableGameSetting: .constant(false))
+        CardView(card: card, width: 100)
     }
 }
