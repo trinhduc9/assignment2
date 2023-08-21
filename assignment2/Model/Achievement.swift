@@ -19,7 +19,5 @@ class Achievement: Identifiable, Codable {
     var description: String
     var achieved: Bool
     var badge: String
-    var badgeImage: Image {
-        Image(badge)
-    }
+    
 }
