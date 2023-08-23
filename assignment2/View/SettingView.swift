@@ -18,6 +18,7 @@ struct SettingView: View {
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    
     var body: some View {
         VStack{
             Spacer()
@@ -36,9 +37,12 @@ struct SettingView: View {
             }
             Spacer()
             Button(action: {
-                if !disableUserInteraction{
-                    
+                if disableUserInteraction{
+                    userData.currentGame = []
+                    appendToFile(newUserData: userData)
+                    userData.clearUserData()
                 }
+            
             }) {
                 Text("Exit")
                     .padding()

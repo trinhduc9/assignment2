@@ -20,6 +20,10 @@ struct StatsView: View {
         VStack(alignment: .leading){
             Group{
                 HStack{
+                    Text("Username: ")
+                    Text("\(userData.username)")
+                }
+                HStack{
                     Text("Balance:")
                     Text("$\(String(format: "%.2f", userData.balance))")
                 }

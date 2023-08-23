@@ -12,7 +12,8 @@
 
 import Foundation
 
-//var achievements = decodeAchievement(jsonFileName: "achievement.json")
+var achievements = decodeAchievement(jsonFileName: "achievement.json")
+
     
 func decodeAchievement(jsonFileName: String) -> [Achievement] {
     if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil){
@@ -31,50 +32,77 @@ func decodeAchievement(jsonFileName: String) -> [Achievement] {
     return [ ] as [Achievement]
 }
 
-func loadData<T: Decodable>(_ type: T.Type, fileName: String) -> T? {
-    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(fileName)
-    if let data = try? Data(contentsOf: fileURL) {
-        let decoder = JSONDecoder()
-        if let decodedData = try? decoder.decode(type, from: data) {
-            return decodedData
+func saveToFile(userDatas: [String: UserData]) {
+    let encoder = JSONEncoder()
+    if let encodedData = try? encoder.encode(userDatas) {
+        let filePath = "/Users/s3915177/Documents/GitHub/assignment2/assignment2/Utilities/userDatas.json"
+        let fileURL = URL(fileURLWithPath: filePath)
+        do {
+            try encodedData.write(to: fileURL)
+            print("UserDatas saved to file: \(fileURL)")
+        } catch {
+            print("Error saving UserDatas: \(error)")
         }
+    }
+}
+
+func appendToFile(newUserData: UserData) {
+    // Load existing data if it exists, or create an empty dictionary
+    var existingUserDatas = loadFromFile()
+    
+    // Add the new user data using the username as the key
+    existingUserDatas[newUserData.username] = newUserData
+    
+    let encoder = JSONEncoder()
+    if let encodedData = try? encoder.encode(existingUserDatas) {
+        let filePath = "/Users/s3915177/Documents/GitHub/assignment2/assignment2/Utilities/userDatas.json"
+        let fileURL = URL(fileURLWithPath: filePath)
+        do {
+            // Create the file if it doesn't exist
+            if !FileManager.default.fileExists(atPath: filePath) {
+                FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
+            }
+            
+            try encodedData.write(to: fileURL)
+            print("New UserData added and saved to file: \(fileURL)")
+        } catch {
+            print("Error adding new UserData: \(error)")
+        }
+    }
+}
+
+
+func loadSingleFromFile(forUsername username: String) -> UserData? {
+    let filePath = "/Users/s3915177/Documents/GitHub/assignment2/assignment2/Utilities/userDatas.json"
+    let fileURL = URL(fileURLWithPath: filePath)
+    
+    do {
+        let data = try Data(contentsOf: fileURL)
+        let decoder = JSONDecoder()
+        let userDatas = try decoder.decode([String: UserData].self, from: data)
+        
+        if let userData = userDatas[username] {
+            return userData
+        } else {
+            return nil
+        }
+    } catch {
+        print("Error loading UserData for username \(username): \(error)")
     }
     return nil
 }
 
-class JSONManager {
-    func decodeJsonFromJsonFile<T: Decodable>(jsonFileName: String, into type: T.Type) -> T? {
-        if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil) {
-            if let data = try? Data(contentsOf: file) {
-                do {
-                    let decoder = JSONDecoder()
-                    let decoded = try decoder.decode(type, from: data)
-                    return decoded
-                } catch let error {
-                    print("Failed to decode JSON: \(error)")
-                }
-            }
-        } else {
-            print("Couldn't load \(jsonFileName) file")
-        }
-        
-        return nil
+func loadFromFile() -> [String: UserData] {
+    let filePath = "/Users/s3915177/Documents/GitHub/assignment2/assignment2/Utilities/userDatas.json"
+    let fileURL = URL(fileURLWithPath: filePath)
+    
+    do {
+        let data = try Data(contentsOf: fileURL)
+        let decoder = JSONDecoder()
+        let userDatas = try decoder.decode([String: UserData].self, from: data)
+        return userDatas
+    } catch {
+        print("Error loading UserDatas: \(error)")
     }
-
-    func encodeJsonToFile<T: Encodable>(object: T, toFile jsonFileName: String) {
-        do {
-            let encoder = JSONEncoder()
-            let encoded = try encoder.encode(object)
-            if let jsonString = String(data: encoded, encoding: .utf8) {
-                if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                    let fileURL = documentsDirectory.appendingPathComponent(jsonFileName)
-                    try jsonString.write(to: fileURL, atomically: true, encoding: .utf8)
-                    print("Encoded JSON saved to: \(fileURL)")
-                }
-            }
-        } catch let error {
-            print("Failed to encode JSON: \(error)")
-        }
-    }
+    return [:]
 }
-

@@ -12,9 +12,9 @@
 
 import SwiftUI
 
-class UserData: ObservableObject {
+class UserData: ObservableObject, Codable {
     static let shared = UserData()
-
+    
     @Published var username: String {
         didSet {
             UserDefaults.standard.set(username, forKey: "Username")
@@ -38,7 +38,7 @@ class UserData: ObservableObject {
             UserDefaults.standard.set(totalBet, forKey: "TotalBet")
         }
     }
-
+    
     @Published var totalWinning: Double {
         didSet {
             UserDefaults.standard.set(totalWinning, forKey: "TotalWinning")
@@ -59,21 +59,56 @@ class UserData: ObservableObject {
     
     @Published var currentGame: [Card] {
         didSet {
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(currentGame) {
-                UserDefaults.standard.set(encoded, forKey: "CurrentGame")
-            }
+            saveCurrentGame(game: currentGame)
         }
+    }
+    
+    // CodingKeys enum and required init
+    enum CodingKeys: String, CodingKey {
+        case username
+        case gamePlayed
+        case balance
+        case totalBet
+        case totalWinning
+        case profitLoss
+        case achievements
+        case currentGame
+    }
+    
+    // Decoding initializer
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.username = try container.decode(String.self, forKey: .username)
+        self.gamePlayed = try container.decode(Int.self, forKey: .gamePlayed)
+        self.balance = try container.decode(Double.self, forKey: .balance)
+        self.totalBet = try container.decode(Double.self, forKey: .totalBet)
+        self.totalWinning = try container.decode(Double.self, forKey: .totalWinning)
+        self.profitLoss = try container.decode(Double.self, forKey: .profitLoss)
+        self.achievements = try container.decode([Bool].self, forKey: .achievements)
+        self.currentGame = try container.decode([Card].self, forKey: .currentGame)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(username, forKey: .username)
+        try container.encode(gamePlayed, forKey: .gamePlayed)
+        try container.encode(balance, forKey: .balance)
+        try container.encode(totalBet, forKey: .totalBet)
+        try container.encode(totalWinning, forKey: .totalWinning)
+        try container.encode(profitLoss, forKey: .profitLoss)
+        try container.encode(achievements, forKey: .achievements)
+        try container.encode(currentGame, forKey: .currentGame)
     }
     
     init() {
         self.username = UserDefaults.standard.string(forKey: "Username") ?? ""
         self.gamePlayed = UserDefaults.standard.integer(forKey: "GamePlayed")
         self.balance = UserDefaults.standard.double(forKey: "Balance")
-        if UserDefaults.standard.object(forKey: "FirstLaunch") == nil {
-            self.balance = 100000.00
-            UserDefaults.standard.set(true, forKey: "FirstLaunch")
-            UserDefaults.standard.set(100000.00, forKey: "Balance")
+        let storedUsername = UserDefaults.standard.string(forKey: "Username") ?? ""
+        if storedUsername.isEmpty {
+            self.balance = 1000000.00
+        } else {
+            self.balance = UserDefaults.standard.double(forKey: "Balance")
         }
         self.totalBet = UserDefaults.standard.double(forKey: "TotalBet")
         self.totalWinning = UserDefaults.standard.double(forKey: "TotalWinning")
@@ -100,6 +135,16 @@ class UserData: ObservableObject {
             UserDefaults.standard.set(encoded, forKey: "CurrentGame")
         }
     }
+    func clearUserData() {
+        // Set properties to their initial or reset values
+        self.username = ""
+        self.gamePlayed = 0
+        self.balance = 100000.00 // Reset to default balance
+        self.totalBet = 0.0
+        self.totalWinning = 0.0
+        self.profitLoss = 0.0
+        self.achievements = [false, false, false, false, false]
+        self.currentGame = []
+    }
 }
-
 

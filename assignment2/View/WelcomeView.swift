@@ -24,8 +24,16 @@ struct WelcomeView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Button(action: {
-                if !username.isEmpty{
-                    UserDefaults.standard.set(username, forKey: "Username")
+                if let loadedUserData = loadSingleFromFile(forUsername: username) {
+                    userData.username = loadedUserData.username
+                    userData.gamePlayed = loadedUserData.gamePlayed
+                    userData.balance = loadedUserData.balance
+                    userData.totalBet = loadedUserData.totalBet
+                    userData.totalWinning = loadedUserData.totalWinning
+                    userData.profitLoss = loadedUserData.profitLoss
+                    userData.achievements = loadedUserData.achievements
+                    userData.currentGame = loadedUserData.currentGame
+                } else {
                     userData.username = username
                 }
             }) {
