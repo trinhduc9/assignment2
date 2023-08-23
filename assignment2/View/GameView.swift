@@ -15,6 +15,8 @@ import SwiftUI
 struct GameView: View {
     
     @EnvironmentObject var userData: UserData
+    @AppStorage("DarkMode") private var isDark : Bool = false
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     var fourColumnGrid = [GridItem(.flexible()),
@@ -32,7 +34,10 @@ struct GameView: View {
                              width: Int(geo.size.width/4 - 10))
                         .environmentObject(UserData.shared)
                 }
-            }.padding(.horizontal)
+            }
+            .padding(10)
+            .border(isDark ? .white : .black, width: 2)
+            .padding(.horizontal, -2)
             .allowsHitTesting(!disableUserInteraction)
         }
     }

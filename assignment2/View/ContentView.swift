@@ -18,11 +18,15 @@ struct ContentView: View {
 
     @EnvironmentObject var userData: UserData
   
-    
     var body: some View {
         ZStack {
-            TabDisplayView()
-                .environmentObject(UserData.shared)
+            if userData.username == "" {
+                WelcomeView()
+                    .environmentObject(UserData.shared)
+            }else{
+                TabDisplayView()
+                    .environmentObject(UserData.shared)
+            }
         }
     }
 

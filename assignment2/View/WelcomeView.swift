@@ -14,15 +14,35 @@ import SwiftUI
 
 struct WelcomeView: View {
 
-    @Binding var isWelcomeActive: Bool
+    @EnvironmentObject var userData: UserData
+    @State private var username: String = ""
+    
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            TextField("Username", text: $username)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Button(action: {
+                if !username.isEmpty{
+                    UserDefaults.standard.set(username, forKey: "Username")
+                    userData.username = username
+                }
+            }) {
+                Text("Continue")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .cornerRadius(10)
+            }
+        }
     }
 }
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView(isWelcomeActive: .constant(false))
+        WelcomeView()
+            .environmentObject(UserData.shared)
     }
 }

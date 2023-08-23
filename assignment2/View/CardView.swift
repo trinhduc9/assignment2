@@ -49,7 +49,7 @@ struct CardView: View {
                 )
                 .transition(.opacity)
                 .onTapGesture {
-                    withAnimation(.linear(duration: 0.3)){
+                    withAnimation(.linear(duration: 1)){
                         card.turnCard()
                         userData.updateCard(card: card)
                         checkCard(card: card)

@@ -19,17 +19,7 @@ struct LeaderboardView: View {
     var body: some View {
         VStack {
             Text("Balance:")
-            Text("$\(String(format: "%.2f", userData.balance))")
-            Text("Current Game:")
-                .font(.headline)
-            
-            List(userData.currentGame, id: \.id) { card in
-                HStack {
-                    Text("Card ID: \(card.id)")
-                    Spacer()
-                    Text("Face Up: \(card.isFaceUp ? "Yes" : "No")")
-                }
-            }
+
         }
     }
 }

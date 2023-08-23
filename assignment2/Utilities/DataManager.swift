@@ -12,8 +12,8 @@
 
 import Foundation
 
-var achievements = decodeAchievement(jsonFileName: "achievement.json")
-
+//var achievements = decodeAchievement(jsonFileName: "achievement.json")
+    
 func decodeAchievement(jsonFileName: String) -> [Achievement] {
     if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil){
         if let data = try? Data(contentsOf: file) {
@@ -29,6 +29,17 @@ func decodeAchievement(jsonFileName: String) -> [Achievement] {
         fatalError("Couldn't load \(jsonFileName) file")
     }
     return [ ] as [Achievement]
+}
+
+func loadData<T: Decodable>(_ type: T.Type, fileName: String) -> T? {
+    let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(fileName)
+    if let data = try? Data(contentsOf: fileURL) {
+        let decoder = JSONDecoder()
+        if let decodedData = try? decoder.decode(type, from: data) {
+            return decodedData
+        }
+    }
+    return nil
 }
 
 class JSONManager {

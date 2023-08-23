@@ -26,10 +26,19 @@ struct MainView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Mines")
+                Text("$\(String(format: "%.2f", userData.balance))")
+                Image(systemName: "dollarsign.circle")
+                    .foregroundColor(.yellow)
+                    .padding([.trailing], 5)
             }
+            .padding(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(isDark ? Color.white : Color.black, lineWidth: 2)
+            )
             GameView(cards: cards)
                 .environmentObject(UserData.shared)
+        
             GameSettingView(cards: $cards)
                 .environmentObject(UserData.shared)
         }
@@ -45,9 +54,9 @@ struct MainView: View {
     }
 }
 
-/*struct MainView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(UserData.shared)
     }
-}*/
+}

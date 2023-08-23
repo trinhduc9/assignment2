@@ -14,8 +14,10 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @EnvironmentObject var userData: UserData
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     var body: some View {
         VStack{
             Spacer()
@@ -33,6 +35,18 @@ struct SettingView: View {
                     .foregroundColor(isDark ? .white : .black)
             }
             Spacer()
+            Button(action: {
+                if !disableUserInteraction{
+                    
+                }
+            }) {
+                Text("Exit")
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .cornerRadius(10)
+            }
         }
     }
 }
