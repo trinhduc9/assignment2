@@ -25,37 +25,41 @@ struct CardView: View {
     let width: Int
     
     var body: some View {
-        if card.isFaceUp{
-            Text(card.text)
-                .font(.system(size: 50))
-                .padding()
-                .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.black), lineWidth: 3)
-                )
-                .transition(.opacity)
-        } else {
-            Image(systemName: "questionmark.diamond.fill")
-                .font(.system(size: CGFloat(width/2)))
-                .padding()
-                .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.black), lineWidth: 3)
-                )
-                .transition(.opacity)
-                .onTapGesture {
-                    withAnimation(.linear(duration: 1)){
-                        card.turnCard()
-                        userData.updateCard(card: card)
-                        checkCard(card: card)
+        ZStack{
+            if card.isFaceUp{
+                Text(card.text)
+                    .font(.system(size: 50))
+                    .padding()
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .background(Color(.lightGray))
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.black), lineWidth: 3)
+                    )
+                    .transition(.opacity)
+                    .rotation3DEffect(.degrees(card.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
+            } else {
+                Image(systemName: "questionmark.diamond.fill")
+                    .font(.system(size: CGFloat(width/2)))
+                    .padding()
+                    .frame(width: CGFloat(width), height: CGFloat(width))
+                    .background(Color(.lightGray))
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.black), lineWidth: 3)
+                    )
+                    .transition(.opacity)
+                    .rotation3DEffect(.degrees(card.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
+                    .onTapGesture {
+                        withAnimation(.linear(duration: 1)){
+                            card.turnCard()
+                            userData.updateCard(card: card)
+                            checkCard(card: card)
+                        }
                     }
-                }
+            }
         }
     }
     
