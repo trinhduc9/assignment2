@@ -6,8 +6,9 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 15/08/2023
- Last modified:
+ Last modified: 23/08/2023
  Acknowledgement:
+ https://replit.com/@playful/Stakecom-Mines-Multiplier-calculator#main.py
  */
 
 
