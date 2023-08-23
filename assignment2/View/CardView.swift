@@ -15,6 +15,7 @@ import SwiftUI
 
 struct CardView: View {
     
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
     @ObservedObject var card:Card
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
@@ -63,7 +64,9 @@ struct CardView: View {
             disableUserInteraction = true
             disableGameSetting = false
             count = 0
+            audioManager.playSound(fileName: bomb-explode, loops: false)
         }else{
+            audioManager.playSound(fileName: bet, loops: false)
             count += 1
         }
     }

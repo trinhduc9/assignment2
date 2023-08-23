@@ -13,15 +13,24 @@
 import Foundation
 import AVFoundation
 
-var audioPlayer: AVAudioPlayer?
+class AudioManager: ObservableObject {
+    var audioPlayer: AVAudioPlayer?
 
-func playSound(sound: String) {
-    if let path = Bundle.main.path(forResource: sound, ofType: "mp3") {
-        do{
-            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-            audioPlayer?.play()
-        }catch {
-            print("Error: No such file")
+    func playSound(fileName: String, loops: Bool) {
+        if let path = Bundle.main.path(forResource: fileName, ofType: "mp3") {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                if loops {
+                    audioPlayer?.numberOfLoops = -1
+                }
+                audioPlayer?.play()
+            } catch {
+                print("Error: \(error)")
+            }
         }
+    }
+
+    func stopSound() {
+        audioPlayer?.stop()
     }
 }

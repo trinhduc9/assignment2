@@ -15,7 +15,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
     @State private var cards: [Card] = createList(bombNo: 1)
     @AppStorage("CurrentMines") private var pickedNumber: Int = 1
@@ -38,9 +38,11 @@ struct MainView: View {
             )
             GameView(cards: cards)
                 .environmentObject(UserData.shared)
+                .environmentObject(audioManager)
         
             GameSettingView(cards: $cards)
                 .environmentObject(UserData.shared)
+                .environmentObject(audioManager)
         }
         .onAppear {
             let storedGame = userData.currentGame

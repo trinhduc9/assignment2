@@ -10,6 +10,7 @@ import SwiftUI
 struct AchievementView: View {
     
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var audioManager: AudioManager
     
     var body: some View {
         

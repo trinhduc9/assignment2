@@ -15,6 +15,7 @@ import SwiftUI
 struct WelcomeView: View {
 
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var audioManager: AudioManager
     @State private var username: String = ""
     
 

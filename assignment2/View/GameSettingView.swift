@@ -15,6 +15,7 @@ import SwiftUI
 
 struct GameSettingView: View {
     
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
     @State private var isButtonHidden = true
     @Binding var cards: [Card]
@@ -117,6 +118,7 @@ struct GameSettingView: View {
                         isButtonHidden = true
                         pickedNumber = 1
                         inputText = ""
+                        audioManager.playSound(fileName: cashout, loops: false)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()

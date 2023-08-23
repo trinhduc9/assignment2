@@ -14,6 +14,7 @@ import SwiftUI
 
 struct GameView: View {
     
+    @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
@@ -33,6 +34,7 @@ struct GameView: View {
                     CardView(card: card,
                              width: Int(geo.size.width/4 - 10))
                         .environmentObject(UserData.shared)
+                        .environmentObject(audioManager)
                 }
             }
             .padding(10)

@@ -17,15 +17,19 @@ import SwiftUI
 struct ContentView: View {
 
     @EnvironmentObject var userData: UserData
-  
+    @EnvironmentObject var audioManager: AudioManager
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+
     var body: some View {
         ZStack {
             if userData.username == "" {
                 WelcomeView()
                     .environmentObject(UserData.shared)
+                    .environmentObject(audioManager)
             }else{
                 TabDisplayView()
                     .environmentObject(UserData.shared)
+                    .environmentObject(audioManager)
             }
         }
     }

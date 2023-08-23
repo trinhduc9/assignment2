@@ -16,6 +16,7 @@ import SwiftUI
 struct TabDisplayView: View {
     
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
@@ -50,6 +51,7 @@ struct TabDisplayView: View {
                     Text("Settings")
                 }
         }.environmentObject(UserData.shared)
+        .environmentObject(audioManager)
         .environment(\.colorScheme, isDark ? .dark : .light)
     }
 }

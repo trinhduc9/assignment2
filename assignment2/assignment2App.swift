@@ -17,11 +17,13 @@ import SwiftUI
 struct assignment2App: App {
     
     @StateObject private var userData = UserData()
+    @StateObject private var audioManager = AudioManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(UserData.shared)
+                .environmentObject(audioManager)
         }
     }
 }
