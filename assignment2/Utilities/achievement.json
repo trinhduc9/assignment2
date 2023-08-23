@@ -18,20 +18,20 @@
         "name": "Master of the Wager",
         "description": "Earn $100,000",
         "achieved": false,
-        "badge": "greenhorn"
+        "badge": "wager"
     },
     {
         "id": 4,
         "name": "Virgin Victory",
         "description": "Win 1 game",
         "achieved": false,
-        "badge": "greenhorn"
+        "badge": "victory"
     },
     {
         "id": 5,
         "name": "Master of Odds",
         "description": "Win a game with 15 mines",
         "achieved": false,
-        "badge": "greenhorn"
+        "badge": "odd"
     }
 ]

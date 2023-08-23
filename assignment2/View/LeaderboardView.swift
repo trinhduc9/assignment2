@@ -19,7 +19,6 @@ struct LeaderboardView: View {
     var body: some View {
         VStack {
             Text("Balance:")
-
         }
     }
 }
