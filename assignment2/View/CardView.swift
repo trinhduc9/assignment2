@@ -63,9 +63,10 @@ struct CardView: View {
             disableUserInteraction = true
             disableGameSetting = false
             count = 0
-            audioManager.playSound(fileName: bomb-explode, loops: false)
+            audioManager.playSound(fileName: "bombExplode", loops: false)
         }else{
-            audioManager.playSound(fileName: bet, loops: false)
+            audioManager.playSound(fileName: "placeBet", loops: false)
+           
             count += 1
         }
     }

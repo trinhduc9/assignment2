@@ -11,6 +11,10 @@
 		34140A492A931F61008A9871 /* AchievementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A482A931F61008A9871 /* AchievementCardView.swift */; };
 		34140A4B2A932BD4008A9871 /* AchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A4A2A932BD4008A9871 /* AchievementView.swift */; };
 		341CA6A02A95F6BD0059320A /* userDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = 341CA69F2A95F6BD0059320A /* userDatas.json */; };
+		347A538F2A97129C00EE3CE1 /* bombExplode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */; };
+		347A53902A97129C00EE3CE1 /* placeBet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538C2A97129C00EE3CE1 /* placeBet.mp3 */; };
+		347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */; };
+		347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538E2A97129C00EE3CE1 /* cashout.mp3 */; };
 		349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AA2A8B2A110093BF80 /* GameSettingView.swift */; };
 		349577AD2A8B395F0093BF80 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AC2A8B395F0093BF80 /* CardView.swift */; };
 		349577AF2A8B56080093BF80 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AE2A8B56080093BF80 /* MainView.swift */; };
@@ -59,6 +63,10 @@
 		34140A482A931F61008A9871 /* AchievementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCardView.swift; sourceTree = "<group>"; };
 		34140A4A2A932BD4008A9871 /* AchievementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementView.swift; sourceTree = "<group>"; };
 		341CA69F2A95F6BD0059320A /* userDatas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userDatas.json; sourceTree = "<group>"; };
+		347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombExplode.mp3; sourceTree = "<group>"; };
+		347A538C2A97129C00EE3CE1 /* placeBet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = placeBet.mp3; sourceTree = "<group>"; };
+		347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		347A538E2A97129C00EE3CE1 /* cashout.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cashout.mp3; sourceTree = "<group>"; };
 		349577AA2A8B2A110093BF80 /* GameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingView.swift; sourceTree = "<group>"; };
 		349577AC2A8B395F0093BF80 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		349577AE2A8B56080093BF80 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -219,6 +227,10 @@
 		34B2072B2A86410E00D3D689 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */,
+				347A538C2A97129C00EE3CE1 /* placeBet.mp3 */,
+				347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */,
+				347A538E2A97129C00EE3CE1 /* cashout.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -336,9 +348,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				347A538F2A97129C00EE3CE1 /* bombExplode.mp3 in Resources */,
 				34A73C0C2A861BC40067FAEF /* Preview Assets.xcassets in Resources */,
+				347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */,
+				347A53902A97129C00EE3CE1 /* placeBet.mp3 in Resources */,
 				34D947682A9078030031775E /* achievement.json in Resources */,
 				34B2072F2A86419B00D3D689 /* Localizable.strings in Resources */,
+				347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */,
 				341CA6A02A95F6BD0059320A /* userDatas.json in Resources */,
 				34A73C092A861BC40067FAEF /* Assets.xcassets in Resources */,
 			);

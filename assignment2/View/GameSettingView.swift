@@ -118,7 +118,7 @@ struct GameSettingView: View {
                         isButtonHidden = true
                         pickedNumber = 1
                         inputText = ""
-                        audioManager.playSound(fileName: cashout, loops: false)
+                        audioManager.playSound(fileName: "cashout", loops: false)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
