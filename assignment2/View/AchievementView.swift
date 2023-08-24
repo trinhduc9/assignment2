@@ -46,7 +46,9 @@ struct AchievementView: View {
 
 struct AchievementView_Previews: PreviewProvider {
     static var previews: some View {
+        let audioManager = AudioManager()
         AchievementView()
             .environmentObject(UserData.shared)
+            .environmentObject(audioManager)
     }
 }

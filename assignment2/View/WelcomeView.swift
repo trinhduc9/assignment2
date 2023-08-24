@@ -53,5 +53,6 @@ struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()
             .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
     }
 }

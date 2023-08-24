@@ -60,5 +60,6 @@ struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
         TabDisplayView()
             .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
     }
 }

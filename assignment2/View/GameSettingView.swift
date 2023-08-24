@@ -118,7 +118,7 @@ struct GameSettingView: View {
                         isButtonHidden = true
                         pickedNumber = 1
                         inputText = ""
-                        audioManager.playSound(fileName: cashout, loops: false)
+                        //audioManager.playSound(fileName: cashout, loops: false)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -148,6 +148,7 @@ struct GameSettingView_Previews: PreviewProvider {
         
         var body: some View {
             GameSettingView( cards: cards)
+                .environmentObject(AudioManager())
         }
     }
 }

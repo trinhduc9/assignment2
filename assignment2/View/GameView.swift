@@ -56,6 +56,7 @@ struct GameView_Previews: PreviewProvider {
             
             var body: some View {
                 GameView(cards: cards)
+                    .environmentObject(AudioManager())
             }
         }
 }
