@@ -15,27 +15,32 @@ import SwiftUI
 struct SettingView: View {
     
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     
     var body: some View {
         VStack{
-            Spacer()
-            Button(action: {
-                isDark.toggle()
-            }) {
-                Image(systemName: isDark ? "moon.fill" : "sun.max")
-                    .foregroundColor(isDark ? .white : .black)
+            HStack{
+                Button(action: {
+                    isDark.toggle()
+                }) {
+                    Image(systemName: isDark ? "moon.fill" : "sun.max")
+                        .foregroundColor(isDark ? .white : .black)
+                }
+                Button(action: {
+                    soundEnable.toggle()
+                    if soundEnable{
+                        audioManager.playSound(fileName: "backgroundMusic", loops: true)
+                    }else{
+                        audioManager.stopSound()
+                    }
+                }) {
+                    Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                        .foregroundColor(isDark ? .white : .black)
+                }
             }
-            Spacer()
-            Button(action: {
-                soundEnable.toggle()
-            }) {
-                Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
-                    .foregroundColor(isDark ? .white : .black)
-            }
-            Spacer()
             Button(action: {
                 if disableUserInteraction{
                     userData.currentGame = []
@@ -58,5 +63,6 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+            .environmentObject(AudioManager())
     }
 }

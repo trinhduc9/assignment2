@@ -50,7 +50,16 @@ struct TabDisplayView: View {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
                 }
-        }.environmentObject(UserData.shared)
+        }
+        .onAppear{
+            if soundEnable{
+                audioManager.playSound(fileName: "backgroundMusic", loops: true)
+            }
+        }
+        .onDisappear{
+            audioManager.stopSound()
+        }
+        .environmentObject(UserData.shared)
         .environmentObject(audioManager)
         .environment(\.colorScheme, isDark ? .dark : .light)
     }

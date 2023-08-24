@@ -122,6 +122,39 @@ class UserData: ObservableObject, Codable {
         }
     }
     
+    func updategamePlayed(){
+        self.gamePlayed += 1
+        UserDefaults.standard.set(self.gamePlayed, forKey: "GamePlayed")
+    }
+    
+    func updateBalance(balance: Double){
+        let formatted = String(format: "%.2f", balance)
+        self.balance += Double(formatted)!
+        UserDefaults.standard.set(self.balance, forKey: "Balance")
+    }
+
+    func updateTotalBet(bet: Double){
+        let formatted = String(format: "%.2f", bet)
+        self.totalBet += Double(formatted)!
+        UserDefaults.standard.set(self.totalBet, forKey: "TotalBet")
+    }
+    func updateProfitLoss(profitLoss: Double){
+        let formatted = String(format: "%.2f", profitLoss)
+        self.profitLoss += Double(formatted)!
+        UserDefaults.standard.set(self.profitLoss, forKey: "ProfitLoss")
+    }
+    
+    func updateTotalWinning(winning: Double){
+        let formatted = String(format: "%.2f", winning)
+        self.totalWinning += Double(formatted)!
+        UserDefaults.standard.set(self.totalWinning, forKey: "TotalWinning")
+    }
+                                  
+    func updateAchievement(index: Int){
+        self.achievements[index] = true
+        UserDefaults.standard.set(self.achievements, forKey: "Achievements")
+    }
+    
     func updateCard(card: Card) {
         if let index = self.currentGame.firstIndex(where: { $0.id == card.id }) {
             currentGame[index] = card

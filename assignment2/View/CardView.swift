@@ -20,7 +20,11 @@ struct CardView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("CurrentGemCount") private var count: Int = 0
+    @AppStorage("CurrentBet") var inputText: String = ""
+    @AppStorage("CurrentMines") var pickedNumber: Int = 1
+    @AppStorage("Multiplier") var multiplier: Double = 0.0
+    @AppStorage("DiamondCount") var count: Int = 0
+    @AppStorage("Winning") var winning: Double = 0.0
     @State private var rotation: Double = 0
     @State private var animating = true
     let width: Int
@@ -64,11 +68,22 @@ struct CardView: View {
             disableUserInteraction = true
             disableGameSetting = false
             count = 0
+            multiplier = 0.0
             audioManager.playSound(fileName: "bombExplode", loops: false)
         }else{
-            audioManager.playSound(fileName: "placeBet", loops: false)
-           
             count += 1
+            multiplier = calculateMultiplier(mines: pickedNumber, diamonds: count)
+            winning = Double(inputText)! * multiplier
+            audioManager.playSound(fileName: "gemFound", loops: false)
+            if count == 16 - pickedNumber{
+                disableUserInteraction = true
+                disableGameSetting = false
+                pickedNumber = 1
+                inputText = ""
+                userData.updateBalance(balance: Double(inputText)! * multiplier)
+                userData.updateTotalWinning(winning: Double(inputText)! * multiplier)
+                userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier)
+            }
         }
     }
     func rotating(){

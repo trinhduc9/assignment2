@@ -16,6 +16,7 @@ struct WelcomeView: View {
 
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @State private var username: String = ""
     
 
@@ -45,6 +46,14 @@ struct WelcomeView: View {
                     .font(.headline)
                     .cornerRadius(10)
             }
+        }
+        .onAppear{
+            if soundEnable{
+                audioManager.playSound(fileName: "backgroundMusic", loops: true)
+            }
+        }
+        .onDisappear{
+            audioManager.stopSound()
         }
     }
 }

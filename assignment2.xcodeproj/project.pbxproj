@@ -11,8 +11,9 @@
 		34140A492A931F61008A9871 /* AchievementCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A482A931F61008A9871 /* AchievementCardView.swift */; };
 		34140A4B2A932BD4008A9871 /* AchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34140A4A2A932BD4008A9871 /* AchievementView.swift */; };
 		341CA6A02A95F6BD0059320A /* userDatas.json in Resources */ = {isa = PBXBuildFile; fileRef = 341CA69F2A95F6BD0059320A /* userDatas.json */; };
+		3458A2DB2A97322400324D15 /* Calculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3458A2DA2A97322400324D15 /* Calculation.swift */; };
 		347A538F2A97129C00EE3CE1 /* bombExplode.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */; };
-		347A53902A97129C00EE3CE1 /* placeBet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538C2A97129C00EE3CE1 /* placeBet.mp3 */; };
+		347A53902A97129C00EE3CE1 /* gemFound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538C2A97129C00EE3CE1 /* gemFound.mp3 */; };
 		347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */; };
 		347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538E2A97129C00EE3CE1 /* cashout.mp3 */; };
 		349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AA2A8B2A110093BF80 /* GameSettingView.swift */; };
@@ -63,8 +64,9 @@
 		34140A482A931F61008A9871 /* AchievementCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCardView.swift; sourceTree = "<group>"; };
 		34140A4A2A932BD4008A9871 /* AchievementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementView.swift; sourceTree = "<group>"; };
 		341CA69F2A95F6BD0059320A /* userDatas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userDatas.json; sourceTree = "<group>"; };
+		3458A2DA2A97322400324D15 /* Calculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculation.swift; sourceTree = "<group>"; };
 		347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombExplode.mp3; sourceTree = "<group>"; };
-		347A538C2A97129C00EE3CE1 /* placeBet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = placeBet.mp3; sourceTree = "<group>"; };
+		347A538C2A97129C00EE3CE1 /* gemFound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gemFound.mp3; sourceTree = "<group>"; };
 		347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		347A538E2A97129C00EE3CE1 /* cashout.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cashout.mp3; sourceTree = "<group>"; };
 		349577AA2A8B2A110093BF80 /* GameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		34B2072A2A86410000D3D689 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3458A2DA2A97322400324D15 /* Calculation.swift */,
 				341CA69F2A95F6BD0059320A /* userDatas.json */,
 				34D947662A9078030031775E /* achievement.json */,
 				34D9476C2A90789E0031775E /* DataManager.swift */,
@@ -228,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */,
-				347A538C2A97129C00EE3CE1 /* placeBet.mp3 */,
+				347A538C2A97129C00EE3CE1 /* gemFound.mp3 */,
 				347A538B2A97129C00EE3CE1 /* bombExplode.mp3 */,
 				347A538E2A97129C00EE3CE1 /* cashout.mp3 */,
 			);
@@ -351,7 +354,7 @@
 				347A538F2A97129C00EE3CE1 /* bombExplode.mp3 in Resources */,
 				34A73C0C2A861BC40067FAEF /* Preview Assets.xcassets in Resources */,
 				347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */,
-				347A53902A97129C00EE3CE1 /* placeBet.mp3 in Resources */,
+				347A53902A97129C00EE3CE1 /* gemFound.mp3 in Resources */,
 				34D947682A9078030031775E /* achievement.json in Resources */,
 				34B2072F2A86419B00D3D689 /* Localizable.strings in Resources */,
 				347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */,
@@ -388,6 +391,7 @@
 				349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */,
 				34A73C072A861BC20067FAEF /* ContentView.swift in Sources */,
 				34B207212A863CA800D3D689 /* Achievement.swift in Sources */,
+				3458A2DB2A97322400324D15 /* Calculation.swift in Sources */,
 				34A73C332A862B4E0067FAEF /* Card.swift in Sources */,
 				34B207252A863CCD00D3D689 /* LeaderboardView.swift in Sources */,
 				34B207342A8642F200D3D689 /* InstructionView.swift in Sources */,

@@ -13,6 +13,7 @@
 
 
 import SwiftUI
+import UIKit
 
 struct MainView: View {
     
@@ -23,9 +24,10 @@ struct MainView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
-    
+    @State private var keyboardHeight: CGFloat = 0.0
     var body: some View {
         VStack{
+            Spacer()
             HStack{
                 Text("$\(String(format: "%.2f", userData.balance))")
                 Image(systemName: "dollarsign.circle")
@@ -37,13 +39,17 @@ struct MainView: View {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(isDark ? Color.white : Color.black, lineWidth: 2)
             )
+            Spacer()
+            
             GameView(cards: cards)
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
-        
+            Spacer()
+            
             GameSettingView(cards: $cards)
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
+            Spacer()
         }
         .onAppear {
             let storedGame = userData.currentGame
