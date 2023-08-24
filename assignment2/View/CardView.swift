@@ -21,6 +21,8 @@ struct CardView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("CurrentGemCount") private var count: Int = 0
+    @State private var rotation: Double = 0
+    @State private var animating = true
     let width: Int
     
     var body: some View {
@@ -35,7 +37,6 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(.black), lineWidth: 3)
                 )
-                .transition(.opacity)
         } else {
             Image(systemName: "questionmark.diamond.fill")
                 .font(.system(size: CGFloat(width/2)))
@@ -47,10 +48,10 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(.black), lineWidth: 3)
                 )
-                .transition(.opacity)
+                .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {
-                    withAnimation(.linear(duration: 1)){
-                        card.turnCard()
+                    withAnimation(.linear(duration: 0.3)){
+                        rotating()
                         userData.updateCard(card: card)
                         checkCard(card: card)
                     }
@@ -70,6 +71,25 @@ struct CardView: View {
             count += 1
         }
     }
+    func rotating(){
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
+            if self.animating {
+                withAnimation(Animation.linear(duration: 0.1)) {
+                    self.rotation += 3
+                }
+                if self.rotation == 90 || self.rotation == 270  {
+                    card.turnCard()
+                }
+                if self.rotation == 360 || self.rotation == 180 {
+                    self.animating = false
+                }
+                if self.rotation == 180 {
+                    self.rotation = 0
+                }
+            }
+        }
+        self.animating = true
+    }
 }
 
 
@@ -77,5 +97,6 @@ struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let card = Card(text: "💣")
         CardView(card: card, width: 100)
+            .environmentObject(AudioManager())
     }
 }

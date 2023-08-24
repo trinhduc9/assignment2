@@ -148,6 +148,7 @@ struct GameSettingView_Previews: PreviewProvider {
         
         var body: some View {
             GameSettingView( cards: cards)
+                .environmentObject(AudioManager())
         }
     }
 }
