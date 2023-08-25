@@ -50,7 +50,6 @@ struct GameSettingView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.black, lineWidth: 1)
                             ).background(Color.white)
-                            .foregroundColor(Color("StrokeGray"))
                             .cornerRadius(8)
 
                             /*.onChange(of: inputText) { newValue in
@@ -157,7 +156,7 @@ struct GameSettingView: View {
             }
         }
         .padding() // Add padding to the whole VStack
-        //.background(Color(hue: 1.0, saturation: 0.026, brightness: 0.154))
+
         .background(Color(hue: 1.0, saturation: 0.021, brightness: 0.889))
         .cornerRadius(15) // Add corner radius
     }
