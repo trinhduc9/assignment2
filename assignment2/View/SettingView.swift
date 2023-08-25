@@ -34,7 +34,11 @@ struct SettingView: View {
                         }
                     }) {
                         Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
-                            .foregroundColor(isDark ? .white : .black)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
+                            .background(Color("lightgray"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
                     Spacer()
                         .frame(width: geo.size.width/2)
@@ -42,11 +46,27 @@ struct SettingView: View {
                         isDark.toggle()
                     }) {
                         Image(systemName: isDark ? "moon.fill" : "sun.max")
-                            .foregroundColor(isDark ? .white : .black)
+
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.black)
+                            .background(Color("lightgray"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
                 }
                 Spacer()
-                
+                Group{
+                    Text("Languages")
+                    HStack{
+                        Text("🇻🇳")
+                            .font(.system(size: 30))
+                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                        Text("🇺🇸")
+                            .font(.system(size: 30))
+                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                    }
+                }
+                Spacer()
                 Button(action: {
                     if disableUserInteraction{
                         userData.currentGame = []
@@ -56,10 +76,10 @@ struct SettingView: View {
                     
                 }) {
                     Text("Exit")
+                        .frame(width: geo.size.width/4)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color("lightblack"))
                         .foregroundColor(.white)
-                        .font(.headline)
                         .cornerRadius(10)
                 }
                 Spacer()

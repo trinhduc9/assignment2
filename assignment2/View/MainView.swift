@@ -13,7 +13,6 @@
 
 
 import SwiftUI
-import UIKit
 
 struct MainView: View {
     

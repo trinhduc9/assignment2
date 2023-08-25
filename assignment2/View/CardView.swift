@@ -35,7 +35,7 @@ struct CardView: View {
                 .font(.system(size: 50))
                 .padding()
                 .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
+                .background(Color("lightgray"))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -46,7 +46,8 @@ struct CardView: View {
                 .font(.system(size: CGFloat(width/2)))
                 .padding()
                 .frame(width: CGFloat(width), height: CGFloat(width))
-                .background(Color(.lightGray))
+                .foregroundColor(Color("bluepurp"))
+                .background(Color("lightgray"))
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -67,8 +68,6 @@ struct CardView: View {
         if card.text == "💣"{
             disableUserInteraction = true
             disableGameSetting = false
-            count = 0
-            multiplier = 0.0
             audioManager.playSound(fileName: "bombExplode", loops: false)
         }else{
             count += 1
@@ -76,13 +75,19 @@ struct CardView: View {
             winning = Double(inputText)! * multiplier
             audioManager.playSound(fileName: "gemFound", loops: false)
             if count == 16 - pickedNumber{
+                userData.updateBalance(balance: Double(inputText)! * multiplier)
+                userData.updateTotalWinning(winning: Double(inputText)! * multiplier - Double(inputText)!)
+                userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier)
+                if userData.achievements[3] == false {
+                    userData.updateAchievement(index: 3)
+                }
+                if userData.achievements[4] == false && pickedNumber == 15 {
+                    userData.updateAchievement(index: 4)
+                }
                 disableUserInteraction = true
                 disableGameSetting = false
                 pickedNumber = 1
                 inputText = ""
-                userData.updateBalance(balance: Double(inputText)! * multiplier)
-                userData.updateTotalWinning(winning: Double(inputText)! * multiplier)
-                userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier)
             }
         }
     }

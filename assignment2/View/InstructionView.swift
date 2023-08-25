@@ -19,7 +19,7 @@ struct InstructionView: View {
         GeometryReader{ geo in
             VStack(alignment: .center){
                 Text("Instructions")
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.system(size: 30, weight: .bold))
                 TabView{
                     ForEach(0..<3){ i in
                         VStack{

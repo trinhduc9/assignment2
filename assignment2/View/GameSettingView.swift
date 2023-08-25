@@ -26,14 +26,13 @@ struct GameSettingView: View {
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
-    @AppStorage("Winning") var winning: Double = 0.0
     
     var body: some View {
 
         VStack(spacing: 10) {
             if disableGameSetting{
                 HStack{
-                    Text("Total Profit (\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
+                    Text("Profit (\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
 
                 }
             }
@@ -110,7 +109,7 @@ struct GameSettingView: View {
             .frame(height: 80)
             .padding(.horizontal)
             
-            .background(Color(hue: 1.0, saturation: 0.024, brightness: 0.96))
+            .background(Color("lightgray"))
             .cornerRadius(15)
             .allowsHitTesting(!disableGameSetting)
             HStack{
@@ -124,17 +123,17 @@ struct GameSettingView: View {
                         disableGameSetting = true
                         userData.updateTotalBet(bet: Double(inputText)!)
                         userData.updateBalance(balance: -Double(inputText)!)
+                        userData.updateProfitLoss(profitLoss: -Double(inputText)!)
                         userData.updategamePlayed()
                         multiplier = 1.0
                         count = 0
-                        
                     }
                 }) {
                     Text("Start Game")
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(.black)
+                .background(Color("lightblack"))
                 .foregroundColor(.white)
                 .cornerRadius(10)
                 .allowsHitTesting(!disableGameSetting)
@@ -143,13 +142,11 @@ struct GameSettingView: View {
                         cashOut()
                         disableUserInteraction = true
                         disableGameSetting = false
-                        pickedNumber = 1
-                        count = 0
                         audioManager.playSound(fileName: "cashout", loops: false)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(.black)
+                    .background(Color("lightblack"))
                     .foregroundColor(.white)
                     .cornerRadius(10)
                 }
@@ -157,14 +154,14 @@ struct GameSettingView: View {
         }
         .padding() // Add padding to the whole VStack
 
-        .background(Color(hue: 1.0, saturation: 0.021, brightness: 0.889))
+        .background(Color("bluepurp"))
         .cornerRadius(15) // Add corner radius
     }
     
     func cashOut(){
         userData.updateBalance(balance: Double(inputText)! * multiplier)
         userData.updateTotalWinning(winning: Double(inputText)! * multiplier - Double(inputText)!)
-        userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier)
+        userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier - Double(inputText)!)
         if userData.achievements[0] == false && userData.totalWinning >= 5000.00 {
             userData.updateAchievement(index: 0)
         }
@@ -191,7 +188,6 @@ struct GameSettingView_Previews: PreviewProvider {
         var body: some View {
             GameSettingView( cards: cards)
                 .environmentObject(AudioManager())
-                .preferredColorScheme(.dark)
         }
     }
 }

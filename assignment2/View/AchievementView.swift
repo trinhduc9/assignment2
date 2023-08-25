@@ -28,6 +28,7 @@ struct AchievementView: View {
                         ForEach(userData.achievements.indices, id: \.self) { index in
                             if userData.achievements[index] == true {
                                 AchievementCardView(achievement: achievements[index])
+                                    .listRowBackground(Color("lightgray"))
                             }
                         }
                     }
@@ -39,6 +40,7 @@ struct AchievementView: View {
                         ForEach(userData.achievements.indices, id: \.self) { index in
                             if userData.achievements[index] == false {
                                 AchievementCardView(achievement: achievements[index])
+                                    .listRowBackground(Color("lightgray"))
                             }
                         }
                     }
