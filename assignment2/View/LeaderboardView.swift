@@ -19,7 +19,8 @@ struct LeaderboardView: View {
     var body: some View {
         VStack {
             Text("Balance:")
-        }
+        }.ignoresSafeArea(.all)
+            .background(Color("backgroundcolor"))
     }
 }
 

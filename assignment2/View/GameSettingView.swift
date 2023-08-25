@@ -24,134 +24,143 @@ struct GameSettingView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("Multiplier") var multiplier: Double = 0.0
+    @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
     @AppStorage("Winning") var winning: Double = 0.0
     
     var body: some View {
 
-            VStack(spacing: 20) {
-                if disableGameSetting{
+        VStack(spacing: 10) {
+            if disableGameSetting{
                 HStack{
-                    Text("Multiplier: \(String(format: "%.2f", multiplier))")
+                    Text("Total Profit (\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
 
-                    Text("Profit: \(String(format: "%.2f", winning - Double(inputText)!))")
                 }
-                HStack(alignment: .top, spacing: 20) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Bet Amount")
-                            .font(.headline)
-                            .foregroundColor(isDark ? .white : .black)
-                        ZStack(alignment: .trailing) {
-                            TextField("Amount", text: $inputText)
-                                .keyboardType(.numberPad)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                /*.onChange(of: inputText) { newValue in
-                                    if let value = Double(newValue) {
-                                        let formattedValue = String(format: "%.2f", value)
-                                        if formattedValue != newValue {
-                                            inputText = formattedValue
-                                        }
-                                    } else if !newValue.isEmpty {
-                                        inputText = String(newValue.dropLast())
+            }
+            HStack(alignment: .top, spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Bet Amount")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    ZStack(alignment: .trailing) {
+                        TextField("Amount", text: $inputText)
+                            .keyboardType(.numberPad)
+                            .padding(5)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(.black, lineWidth: 1)
+                            ).background(Color.white)
+                            .foregroundColor(Color("StrokeGray"))
+                            .cornerRadius(8)
+
+                            /*.onChange(of: inputText) { newValue in
+                                if let value = Double(newValue) {
+                                    let formattedValue = String(format: "%.2f", value)
+                                    if formattedValue != newValue {
+                                        inputText = formattedValue
                                     }
-                                }*/
-                            Image(systemName: "dollarsign.circle")
-                                .foregroundColor(.green)
-                                .padding([.trailing], 5)
-                        }
-                    }
-                    .frame(maxWidth: .infinity) // Equal width for both VStacks
-                    
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Mines")
-                            .font(.headline)
-                            .foregroundColor(isDark ? .white : .black)
-                        Menu {
-                            ForEach(1..<16) { number in
-                                Button(action: {
-                                    pickedNumber = number
-                                }) {
-                                    Text("\(number)")
-                                        .foregroundColor(isDark ? .white : .black)
-                                        .frame(maxWidth: .infinity, alignment: .leading) // Match the Picker's width
-                                        .padding(.horizontal, 16) // Adjust horizontal padding
+                                } else if !newValue.isEmpty {
+                                    inputText = String(newValue.dropLast())
                                 }
+                            }*/
+                        Image(systemName: "dollarsign.circle")
+                            .foregroundColor(.green)
+                            .padding([.trailing], 5)
+                    }
+                }
+                .frame(maxWidth: .infinity) // Equal width for both VStacks
+                
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Mines")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    Menu {
+                        ForEach(1..<16) { number in
+                            Button(action: {
+                                pickedNumber = number
+                            }) {
+                                Text("\(number)")
+                                    .foregroundColor(.black)
+                                    .frame(maxWidth: .infinity, alignment: .leading) // Match the Picker's width
+                                    .padding(.horizontal, 16) // Adjust horizontal padding
                             }
-                        } label: {
-                            HStack {
-                                Text("\(pickedNumber)")
-                                    .foregroundColor(isDark ? .white : .black)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.horizontal, 16)
-                                    .frame(height: 31)
-                                Image(systemName: "chevron.up.chevron.down")
-                                    .foregroundColor(isDark ? .white : .black)
-                                Spacer()
-                            }
-                            
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .labelsHidden()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.black, lineWidth: 1) // Border color and width
-                        )
+                    } label: {
+                        HStack {
+                            Text("\(pickedNumber)")
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, 16)
+                                .frame(height: 31)
+                            Image(systemName: "chevron.up.chevron.down")
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
                         
                     }
-                    .frame(maxWidth: .infinity) // Equal width for both VStacks
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .labelsHidden()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black, lineWidth: 1) // Border color and width
+                    )
+                    
                 }
-                .frame(height: 100)
-                .padding(.horizontal)
-                //.background(Color(hue: 1.0, saturation: 0.0, brightness: 0.093))
-                .background(Color(hue: 1.0, saturation: 0.024, brightness: 0.96))
-                .cornerRadius(15)
-                .allowsHitTesting(!disableGameSetting)
-                HStack{
-                    Button(action: {
-                        if !inputText.isEmpty && Float(inputText) != nil{
+                .frame(maxWidth: .infinity) // Equal width for both VStacks
+            }
+            .frame(height: 80)
+            .padding(.horizontal)
+            
+            .background(Color(hue: 1.0, saturation: 0.024, brightness: 0.96))
+            .cornerRadius(15)
+            .allowsHitTesting(!disableGameSetting)
+            HStack{
+                Button(action: {
+                    if !inputText.isEmpty && Float(inputText) != nil{
 
-                            cards = createList(bombNo: pickedNumber)
-                            userData.currentGame = cards
-                            userData.saveCurrentGame(game: cards)
-                            disableUserInteraction = false
-                            disableGameSetting = true
-                            userData.updateTotalBet(bet: Double(inputText)!)
-                            userData.updateBalance(balance: -Double(inputText)!)
-                            userData.updategamePlayed()
-                            
-                        }
-                    }) {
-                        Text("Start Game")
+                        cards = createList(bombNo: pickedNumber)
+                        userData.currentGame = cards
+                        userData.saveCurrentGame(game: cards)
+                        disableUserInteraction = false
+                        disableGameSetting = true
+                        userData.updateTotalBet(bet: Double(inputText)!)
+                        userData.updateBalance(balance: -Double(inputText)!)
+                        userData.updategamePlayed()
+                        multiplier = 1.0
+                        count = 0
+                        
+                    }
+                }) {
+                    Text("Start Game")
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(.black)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .allowsHitTesting(!disableGameSetting)
+                if disableGameSetting{
+                    Button("Cash Out"){
+                        cashOut()
+                        disableUserInteraction = true
+                        disableGameSetting = false
+                        pickedNumber = 1
+                        count = 0
+                        audioManager.playSound(fileName: "cashout", loops: false)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(isDark ? .white : .black)
-                    .foregroundColor(isDark ? .black : .white)
+                    .background(.black)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
-                    .allowsHitTesting(!disableGameSetting)
-                    if disableGameSetting{
-                        Button("Cash Out"){
-                            cashOut()
-                            disableUserInteraction = true
-                            disableGameSetting = false
-                            pickedNumber = 1
-                            count = 0
-                            audioManager.playSound(fileName: "cashout", loops: false)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(isDark ? .white : .black)
-                        .foregroundColor(isDark ? .black : .white)
-                        .cornerRadius(10)
-                    }
                 }
             }
-            .padding() // Add padding to the whole VStack
-            //.background(Color(hue: 1.0, saturation: 0.026, brightness: 0.154))
-            .background(Color(hue: 1.0, saturation: 0.021, brightness: 0.889))
-            .cornerRadius(15) // Add corner radius
         }
+        .padding() // Add padding to the whole VStack
+        //.background(Color(hue: 1.0, saturation: 0.026, brightness: 0.154))
+        .background(Color(hue: 1.0, saturation: 0.021, brightness: 0.889))
+        .cornerRadius(15) // Add corner radius
+    }
     
     func cashOut(){
         userData.updateBalance(balance: Double(inputText)! * multiplier)
@@ -174,6 +183,7 @@ struct GameSettingView_Previews: PreviewProvider {
         var body: some View {
             GameSettingView( cards: cards)
                 .environmentObject(AudioManager())
+                .preferredColorScheme(.dark)
         }
     }
 }

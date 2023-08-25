@@ -8,7 +8,7 @@
  Created  date: 15/08/2023
  Last modified: 23/08/2023
  Acknowledgement:
- https://replit.com/@playful/Stakecom-Mines-Multiplier-calculator#main.py
+
  */
 
 
@@ -37,7 +37,7 @@ struct MainView: View {
             .padding(10)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(isDark ? Color.white : Color.black, lineWidth: 2)
+                    .stroke(Color.black, lineWidth: 2)
             )
             Spacer()
             
@@ -50,7 +50,7 @@ struct MainView: View {
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
             Spacer()
-        }
+        }.background(Color("backgroundcolor"))
         .onAppear {
             let storedGame = userData.currentGame
             

@@ -22,6 +22,7 @@ struct WelcomeView: View {
 
     var body: some View {
         VStack{
+            Image("applogo")
             TextField("Username", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
@@ -62,5 +63,6 @@ struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()
             .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
     }
 }

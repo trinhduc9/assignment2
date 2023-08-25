@@ -38,7 +38,7 @@ struct GameView: View {
                 }
             }
             .padding(10)
-            .border(isDark ? .white : .black, width: 2)
+            .border(.black, width: 2)
             .padding(.horizontal, -2)
             .allowsHitTesting(!disableUserInteraction)
         }

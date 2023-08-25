@@ -12,6 +12,7 @@
 
 
 import SwiftUI
+import UIKit
 
 struct TabDisplayView: View {
     
@@ -55,10 +56,13 @@ struct TabDisplayView: View {
             if soundEnable{
                 audioManager.playSound(fileName: "backgroundMusic", loops: true)
             }
+            UITabBar.appearance().barTintColor = UIColor.red // Set tab bar background color
+            UITabBar.appearance().tintColor = UIColor.blue // Set tab bar tint color
         }
         .onDisappear{
             audioManager.stopSound()
         }
+        .accentColor(Color.black)
         .environmentObject(UserData.shared)
         .environmentObject(audioManager)
         .environment(\.colorScheme, isDark ? .dark : .light)

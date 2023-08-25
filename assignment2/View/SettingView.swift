@@ -21,41 +21,51 @@ struct SettingView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     
     var body: some View {
-        VStack{
-            HStack{
-                Button(action: {
-                    isDark.toggle()
-                }) {
-                    Image(systemName: isDark ? "moon.fill" : "sun.max")
-                        .foregroundColor(isDark ? .white : .black)
-                }
-                Button(action: {
-                    soundEnable.toggle()
-                    if soundEnable{
-                        audioManager.playSound(fileName: "backgroundMusic", loops: true)
-                    }else{
-                        audioManager.stopSound()
+        GeometryReader{geo in
+            VStack(alignment: .center){
+                Spacer()
+                HStack{
+                    Button(action: {
+                        soundEnable.toggle()
+                        if soundEnable{
+                            audioManager.playSound(fileName: "backgroundMusic", loops: true)
+                        }else{
+                            audioManager.stopSound()
+                        }
+                    }) {
+                        Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                            .foregroundColor(isDark ? .white : .black)
                     }
+                    Spacer()
+                        .frame(width: geo.size.width/2)
+                    Button(action: {
+                        isDark.toggle()
+                    }) {
+                        Image(systemName: isDark ? "moon.fill" : "sun.max")
+                            .foregroundColor(isDark ? .white : .black)
+                    }
+                }
+                Spacer()
+                
+                Button(action: {
+                    if disableUserInteraction{
+                        userData.currentGame = []
+                        appendToFile(newUserData: userData)
+                        userData.clearUserData()
+                    }
+                    
                 }) {
-                    Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
-                        .foregroundColor(isDark ? .white : .black)
+                    Text("Exit")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .cornerRadius(10)
                 }
+                Spacer()
             }
-            Button(action: {
-                if disableUserInteraction{
-                    userData.currentGame = []
-                    appendToFile(newUserData: userData)
-                    userData.clearUserData()
-                }
-            
-            }) {
-                Text("Exit")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .font(.headline)
-                    .cornerRadius(10)
-            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("backgroundcolor"))
         }
     }
 }

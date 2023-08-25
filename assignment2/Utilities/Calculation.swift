@@ -20,10 +20,7 @@ func factorial(_ n: Int) -> Int {
 }
 
 func nCr(n: Int, r: Int) -> Int {
-    if r < 0 || r > n {
-        return 0
-    }
-    return factorial(n) / (factorial(r) * factorial(n - r))
+    return factorial(n) / factorial(r) / factorial(n - r)
 }
 
 /*func nCr(n: Int, r: Int) -> Int {

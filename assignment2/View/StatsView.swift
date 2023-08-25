@@ -45,7 +45,7 @@ struct StatsView: View {
                 }
             }.padding(.leading)
             AchievementView()
-        }
+        }.background(Color("backgroundcolor"))
     }
 }
 

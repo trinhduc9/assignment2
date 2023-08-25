@@ -9,6 +9,7 @@
  Last modified: 23/08/2023
  Acknowledgement:
 - https://medium.com/@amitsrivastava115/toggle-between-dark-and-light-mode-in-swiftui-across-whole-app-5ccfc06a8eca
+- https://replit.com/@playful/Stakecom-Mines-Multiplier-calculator#main.py
  */
 
 import SwiftUI
