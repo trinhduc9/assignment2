@@ -46,5 +46,28 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
+            .previewDisplayName("iPhone 14")
+        
+        ContentView(lang: $lang)
+            .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+            .previewDisplayName("iPhone 14 Pro")
+        
+        ContentView(lang: $lang)
+            .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+            .previewDisplayName("iPhone 14 Pro Max")
+        
+        ContentView(lang: $lang)
+            .environmentObject(UserData.shared)
+            .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
+            .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (6th generation) "))
+            .previewDisplayName("iPad Pro 11")
     }
 }

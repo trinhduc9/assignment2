@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "appLogo.png",
+      "filename" : "mineEntranceLogo.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "appLogo@2x.png",
+      "filename" : "mineEntranceLogo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "appLogo@3x.png",
+      "filename" : "mineEntranceLogo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -17,7 +17,8 @@ struct SettingView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
-    @AppStorage("SoundEnable") private var soundEnable: Bool = false
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @Binding var lang: String
     
@@ -42,12 +43,24 @@ struct SettingView: View {
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
                     Spacer()
-                        .frame(width: geo.size.width/2)
+                        .frame(width: geo.size.width/3)
+                    
+                    Button(action: {
+                        soundEffect.toggle()
+                    }){
+                        Image(soundEffect ? "note" : "noteSlash")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .background(Color("lightgray"))
+                            .cornerRadius(8)
+                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                    }
+                    Spacer()
+                        .frame(width: geo.size.width/3)
                     Button(action: {
                         isDark.toggle()
                     }) {
                         Image(systemName: isDark ? "moon.fill" : "sun.max")
-
                             .frame(width: 30, height: 30)
                             .foregroundColor(.black)
                             .background(Color("lightgray"))

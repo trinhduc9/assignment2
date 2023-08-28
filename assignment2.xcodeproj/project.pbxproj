@@ -125,6 +125,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		347ABCAC2A9C7CDB0013FB35 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				34B207332A8642F200D3D689 /* InstructionView.swift */,
+				340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */,
+				34D947642A9077E90031775E /* StatsView.swift */,
+				34B207222A863CC000D3D689 /* WelcomeView.swift */,
+				34B207242A863CCD00D3D689 /* LeaderboardView.swift */,
+				34B207282A863CE900D3D689 /* SettingView.swift */,
+				349577AE2A8B56080093BF80 /* MainView.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
 		34A73BF82A861BC20067FAEF = {
 			isa = PBXGroup;
 			children = (
@@ -186,17 +200,11 @@
 		34A73C2E2A861CE80067FAEF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				34D947642A9077E90031775E /* StatsView.swift */,
+				347ABCAC2A9C7CDB0013FB35 /* Main View */,
 				34A73C062A861BC20067FAEF /* ContentView.swift */,
-				34B207222A863CC000D3D689 /* WelcomeView.swift */,
-				34B207242A863CCD00D3D689 /* LeaderboardView.swift */,
 				34B207262A863CE100D3D689 /* GameView.swift */,
-				34B207282A863CE900D3D689 /* SettingView.swift */,
-				34B207332A8642F200D3D689 /* InstructionView.swift */,
 				349577AA2A8B2A110093BF80 /* GameSettingView.swift */,
 				349577AC2A8B395F0093BF80 /* CardView.swift */,
-				349577AE2A8B56080093BF80 /* MainView.swift */,
-				340587EC2A8DD1F9006B6521 /* TabDisplayView.swift */,
 				34140A482A931F61008A9871 /* AchievementCardView.swift */,
 				34140A4A2A932BD4008A9871 /* AchievementView.swift */,
 			);

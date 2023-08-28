@@ -20,6 +20,7 @@ struct CardView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") var pickedNumber: Int = 1
     @AppStorage("Multiplier") var multiplier: Double = 0.0
@@ -32,7 +33,7 @@ struct CardView: View {
     var body: some View {
         if card.isFaceUp{
             Text(card.text)
-                .font(.system(size: 50))
+                .font(.system(size: CGFloat(width/2)))
                 .padding()
                 .frame(width: CGFloat(width), height: CGFloat(width))
                 .background(Color("lightgray"))

@@ -24,6 +24,7 @@ struct GameSettingView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
     

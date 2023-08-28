@@ -55,5 +55,13 @@ struct AchievementView_Previews: PreviewProvider {
     static var previews: some View {
         AchievementView()
             .environmentObject(UserData.shared)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
+            .previewDisplayName("iPhone 14")
+        
+        AchievementView()
+            .environmentObject(UserData.shared)
+            .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
+            .previewDisplayName("iPhone 14 Pro")
+    
     }
 }

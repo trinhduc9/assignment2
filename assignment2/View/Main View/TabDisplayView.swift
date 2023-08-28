@@ -20,6 +20,7 @@ struct TabDisplayView: View {
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @Binding var lang: String
