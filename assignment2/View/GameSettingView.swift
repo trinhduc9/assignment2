@@ -29,12 +29,13 @@ struct GameSettingView: View {
     @AppStorage("DiamondCount") var count: Int = 0
     
     var body: some View {
-
         VStack(spacing: 10) {
             if disableGameSetting{
                 HStack{
                     Text("Profit")
+                        .foregroundColor(isDark ? .black : .white)
                     Text("(\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
+                        .foregroundColor(isDark ? .black : .white)
 
                 }
             }
@@ -135,6 +136,7 @@ struct GameSettingView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
+                
                 .background(Color("lightblack"))
                 .foregroundColor(.white)
                 .cornerRadius(10)

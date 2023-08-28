@@ -19,32 +19,49 @@ struct StatsView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            Group{
-                HStack{
+            Section(header:
+                Text("User Stats")
+                    .font(.largeTitle)
+                    .padding(.bottom, 10)
+            ){
+                HStack {
                     Text("Username:")
-                    Text("\(userData.username)")
+                        .font(.headline)
+                    Text(userData.username)
+                        .font(.body)
                 }
-                HStack{
+                HStack {
                     Text("Balance:")
+                        .font(.headline)
                     Text("$\(String(format: "%.2f", userData.balance))")
+                        .font(.body)
                 }
-                HStack{
-                    Text("Game Played:")
+                HStack {
+                    Text("Games Played:")
+                        .font(.headline)
                     Text("\(userData.gamePlayed)")
+                        .font(.body)
                 }
-                HStack{
+                HStack {
                     Text("Total Bet:")
-                    Text("$\(String(format: "%.2f", (userData.totalBet)))")
+                        .font(.headline)
+                    Text("$\(String(format: "%.2f", userData.totalBet))")
+                        .font(.body)
                 }
-                HStack{
+                HStack {
                     Text("Total Winning:")
-                    Text("$\(String(format: "%.2f", (userData.totalWinning)))")
+                        .font(.headline)
+                    Text("$\(String(format: "%.2f", userData.totalWinning))")
+                        .font(.body)
                 }
-                HStack{
+                HStack {
                     Text("Profit/Loss:")
-                    Text("$\(String(format: "%.2f", (userData.profitLoss)))")
+                        .font(.headline)
+                    Text("$\(String(format: "%.2f", userData.profitLoss))")
+                        .font(.body)
                 }
-            }.padding(.leading)
+            }
+            .padding(.leading)
             AchievementView()
                 .environment(\.locale, .init(identifier: lang))
         }.background(Color("backgroundcolor"))

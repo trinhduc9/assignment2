@@ -30,23 +30,27 @@ struct TabDisplayView: View {
             MainView()
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
+                        
                     Text("Game")
+                        
                 }
             InstructionView()
                 .tabItem {
                     Image(systemName: "book.fill")
+                        .foregroundColor(isDark ? .white : .black)
                     Text("Instructions")
+                        .foregroundColor(isDark ? .white : .black)
                 }
             LeaderboardView()
                 .tabItem {
                     Image(systemName: "trophy.fill")
                     Text("Leaderboard")
-                }
+                }.foregroundColor(isDark ? .white : .black)
             StatsView(lang: $lang)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Stats")
-                }
+                }.foregroundColor(isDark ? .white : .black)
             SettingView(lang: $lang)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
@@ -61,7 +65,7 @@ struct TabDisplayView: View {
         .onDisappear{
             audioManager.stopSound()
         }
-        .accentColor(Color.black)
+        .accentColor(isDark ? .white : .black)
         .environmentObject(UserData.shared)
         .environmentObject(audioManager)
         .environment(\.colorScheme, isDark ? .dark : .light)

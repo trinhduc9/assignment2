@@ -24,6 +24,9 @@ struct MainView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
     @State private var keyboardHeight: CGFloat = 0.0
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     var body: some View {
         VStack{
             Spacer()
@@ -49,7 +52,11 @@ struct MainView: View {
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
             Spacer()
-        }.background(Color("backgroundcolor"))
+        }
+        .sheet(isPresented: $showAlert) {
+            CustomAlertView(isPresented: $showAlert, title:)
+        }
+        .background(Color("backgroundcolor"))
         .onAppear {
             let storedGame = userData.currentGame
             

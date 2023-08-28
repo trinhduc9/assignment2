@@ -28,7 +28,7 @@ struct AchievementCardView: View {
                     .alignmentGuide(.leading, computeValue: {
                         dimension in dimension[.leading]})
                 Text(achievement.description)
-            }
+            }.foregroundColor(.black)
         }
     }
 }

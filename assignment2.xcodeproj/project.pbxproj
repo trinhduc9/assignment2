@@ -16,6 +16,8 @@
 		347A53902A97129C00EE3CE1 /* gemFound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538C2A97129C00EE3CE1 /* gemFound.mp3 */; };
 		347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */; };
 		347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 347A538E2A97129C00EE3CE1 /* cashout.mp3 */; };
+		347B774A2A9CAA1500A14A31 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B77492A9CAA1500A14A31 /* CustomAlertView.swift */; };
+		347B774C2A9CAD8D00A14A31 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347B774B2A9CAD8D00A14A31 /* AlertModel.swift */; };
 		349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AA2A8B2A110093BF80 /* GameSettingView.swift */; };
 		349577AD2A8B395F0093BF80 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AC2A8B395F0093BF80 /* CardView.swift */; };
 		349577AF2A8B56080093BF80 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349577AE2A8B56080093BF80 /* MainView.swift */; };
@@ -69,6 +71,8 @@
 		347A538C2A97129C00EE3CE1 /* gemFound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gemFound.mp3; sourceTree = "<group>"; };
 		347A538D2A97129C00EE3CE1 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		347A538E2A97129C00EE3CE1 /* cashout.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cashout.mp3; sourceTree = "<group>"; };
+		347B77492A9CAA1500A14A31 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
+		347B774B2A9CAD8D00A14A31 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		349577AA2A8B2A110093BF80 /* GameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingView.swift; sourceTree = "<group>"; };
 		349577AC2A8B395F0093BF80 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		349577AE2A8B56080093BF80 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 				349577AC2A8B395F0093BF80 /* CardView.swift */,
 				34140A482A931F61008A9871 /* AchievementCardView.swift */,
 				34140A4A2A932BD4008A9871 /* AchievementView.swift */,
+				347B77492A9CAA1500A14A31 /* CustomAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				34A73C322A862B4E0067FAEF /* Card.swift */,
 				34B207202A863CA800D3D689 /* Achievement.swift */,
 				34D24A552A9093DC00903D7A /* ColorScheme.swift */,
+				347B774B2A9CAD8D00A14A31 /* AlertModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +402,8 @@
 			files = (
 				34B207232A863CC000D3D689 /* WelcomeView.swift in Sources */,
 				34D9476E2A90789E0031775E /* DataManager.swift in Sources */,
+				347B774A2A9CAA1500A14A31 /* CustomAlertView.swift in Sources */,
+				347B774C2A9CAD8D00A14A31 /* AlertModel.swift in Sources */,
 				349577AF2A8B56080093BF80 /* MainView.swift in Sources */,
 				34D947692A9078030031775E /* UserData.swift in Sources */,
 				349577AB2A8B2A110093BF80 /* GameSettingView.swift in Sources */,

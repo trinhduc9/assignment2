@@ -21,12 +21,19 @@ struct SettingView: View {
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @Binding var lang: String
+    let availableLanguages: [String: String] = [
+        "English": "en",
+        "Español": "es",
+        "Vietnamese": "vi-VN"
+    ]
     
     var body: some View {
         GeometryReader{geo in
-            VStack(alignment: .center){
+            VStack(alignment: .leading, spacing: 10){
                 Spacer()
                 HStack{
+                    Text("Background music:")
+                        .foregroundColor(.black)
                     Button(action: {
                         soundEnable.toggle()
                         if soundEnable{
@@ -42,9 +49,10 @@ struct SettingView: View {
                             .cornerRadius(8)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
-                    Spacer()
-                        .frame(width: geo.size.width/3)
-                    
+                }
+                HStack{
+                    Text("Sound effect:")
+                        .foregroundColor(.black)
                     Button(action: {
                         soundEffect.toggle()
                     }){
@@ -55,8 +63,10 @@ struct SettingView: View {
                             .cornerRadius(8)
                             .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
-                    Spacer()
-                        .frame(width: geo.size.width/3)
+                }
+                HStack{
+                    Text("Theme setting:")
+                        .foregroundColor(.black)
                     Button(action: {
                         isDark.toggle()
                     }) {
@@ -72,35 +82,48 @@ struct SettingView: View {
                 Group{
                     HStack{
                         Text("Languages:")
+                            .foregroundColor(.black)
                         Picker("Select Language", selection: $lang) {
-                            Text("English").tag("en")
-                            Text("Español").tag("es")
-                            Text("Vietnamese").tag("vi-VN")
+                            ForEach(availableLanguages.sorted(by: <), id: \.1) { key, value in
+                                Text(key).tag(value)
+                            }
                         }
+                        .accentColor(.black)
                         .pickerStyle(MenuPickerStyle())
                     }
                 }
                 Spacer()
-                Button(action: {
-                    if disableUserInteraction{
-                        userData.currentGame = []
-                        appendToFile(newUserData: userData)
-                        userData.clearUserData()
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        if disableUserInteraction{
+                            userData.currentGame = []
+                            appendToFile(newUserData: userData)
+                            userData.clearUserData()
+                        }
+                        
+                    }) {
+                        Text("Exit")
+                            .frame(width: geo.size.width/6)
+                            .padding()
+                            .background(Color("lightblack"))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
-                    
-                }) {
-                    Text("Exit")
-                        .frame(width: geo.size.width/4)
-                        .padding()
-                        .background(Color("lightblack"))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    Spacer()
                 }
                 Spacer()
+                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color("backgroundcolor"))
-        }
+            .padding(.horizontal)
+            .background(Color("lightgray"))
+            .frame(
+                maxWidth: geo.size.width * 0.7,
+                maxHeight: geo.size.height * 0.7
+            )
+            .border(isDark ? .white : .black, width: 2)
+            .offset(x: (geo.size.width - geo.size.width * 0.7) / 2, y: (geo.size.height - geo.size.height * 0.7) / 2)
+        }.background(Color("backgroundcolor"))
     }
 }
 
