@@ -22,7 +22,7 @@ struct TabDisplayView: View {
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
-    
+    @Binding var lang: String
     
     var body: some View {
         TabView {
@@ -34,19 +34,19 @@ struct TabDisplayView: View {
             InstructionView()
                 .tabItem {
                     Image(systemName: "book.fill")
-                    Text("Instruction")
+                    Text("Instructions")
                 }
             LeaderboardView()
                 .tabItem {
                     Image(systemName: "trophy.fill")
                     Text("Leaderboard")
                 }
-            StatsView()
+            StatsView(lang: $lang)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Stats")
                 }
-            SettingView()
+            SettingView(lang: $lang)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
@@ -56,8 +56,6 @@ struct TabDisplayView: View {
             if soundEnable{
                 audioManager.playSound(fileName: "backgroundMusic", loops: true)
             }
-            UITabBar.appearance().barTintColor = UIColor.red // Set tab bar background color
-            UITabBar.appearance().tintColor = UIColor.blue // Set tab bar tint color
         }
         .onDisappear{
             audioManager.stopSound()
@@ -66,13 +64,16 @@ struct TabDisplayView: View {
         .environmentObject(UserData.shared)
         .environmentObject(audioManager)
         .environment(\.colorScheme, isDark ? .dark : .light)
+        .environment(\.locale, .init(identifier: lang))
     }
 }
 
 struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        TabDisplayView()
+        @State(initialValue: "es") var lang: String
+        TabDisplayView(lang: $lang)
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
     }
 }

@@ -32,7 +32,8 @@ struct GameSettingView: View {
         VStack(spacing: 10) {
             if disableGameSetting{
                 HStack{
-                    Text("Profit (\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
+                    Text("Profit")
+                    Text("(\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
 
                 }
             }

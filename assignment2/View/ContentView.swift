@@ -19,15 +19,17 @@ struct ContentView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-
+    @Binding var lang: String
     var body: some View {
         ZStack {
             if userData.username == "" {
-                WelcomeView()
+                WelcomeView(lang: $lang)
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
+                    .environment(\.locale, .init(identifier: lang))
             }else{
-                TabDisplayView()
+                TabDisplayView(lang: $lang)
+                    .environment(\.locale, .init(identifier: lang))
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
             }
@@ -37,9 +39,12 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ContentView()
+        @State(initialValue: "es") var lang: String
+        ContentView(lang: $lang)
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
     }
 }

@@ -91,6 +91,7 @@
 		34B207302A86419B00D3D689 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34B207322A8641A800D3D689 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34B207332A8642F200D3D689 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
+		34C6A7FC2A9C5C6B004ED6C6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34D24A552A9093DC00903D7A /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
 		34D947642A9077E90031775E /* StatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		34D947662A9078030031775E /* achievement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = achievement.json; sourceTree = "<group>"; };
@@ -333,6 +334,7 @@
 				en,
 				Base,
 				vi,
+				es,
 			);
 			mainGroup = 34A73BF82A861BC20067FAEF;
 			productRefGroup = 34A73C022A861BC20067FAEF /* Products */;
@@ -446,6 +448,7 @@
 			children = (
 				34B207302A86419B00D3D689 /* en */,
 				34B207322A8641A800D3D689 /* vi */,
+				34C6A7FC2A9C5C6B004ED6C6 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

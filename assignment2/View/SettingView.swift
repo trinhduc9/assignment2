@@ -17,8 +17,9 @@ struct SettingView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
-    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEnable") private var soundEnable: Bool = false
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @Binding var lang: String
     
     var body: some View {
         GeometryReader{geo in
@@ -56,14 +57,14 @@ struct SettingView: View {
                 }
                 Spacer()
                 Group{
-                    Text("Languages")
                     HStack{
-                        Text("🇻🇳")
-                            .font(.system(size: 30))
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
-                        Text("🇺🇸")
-                            .font(.system(size: 30))
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                        Text("Languages:")
+                        Picker("Select Language", selection: $lang) {
+                            Text("English").tag("en")
+                            Text("Español").tag("es")
+                            Text("Vietnamese").tag("vi-VN")
+                        }
+                        .pickerStyle(MenuPickerStyle())
                     }
                 }
                 Spacer()
@@ -92,7 +93,9 @@ struct SettingView: View {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        @State(initialValue: "es") var lang: String
+        SettingView(lang: $lang)
             .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
     }
 }

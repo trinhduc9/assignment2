@@ -3,5 +3,31 @@
   assignment2
 
   Created by Duc Trinh Van Minh on 11/08/2023.
-  https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
 */
+
+"Languages:" = "Ngôn ngữ:";
+"Username" = "Tên người dùng";
+"Continue" = "Tiếp tục";
+"English" = "Tiếng Anh";
+"Español" = "Tiếng Tây Ban Nha";
+"Vietnamese" = "Tiếng Việt";
+"Bet Amount" = "Số tiền cược";
+"Mines" = "Mìn";
+"Amount" = "Tiền cược";
+"Start Game" = "Bắt đầu trò chơi";
+"Game" = "Trò chơi";
+"Instructions" = "Hướng dẫn";
+"Leaderboard" = "Bảng xếp hạng";
+"Stats" = "Thống kê";
+"Settings:" = "Cài đặt";
+"Balance:" = "Số dư:";
+"Username:" = "Tên người dùng:";
+"Game Played:" = "Số lần chơi:";
+"Total Bet:" = "Tổng cược:";
+"Total Winning:" = "Tổng tiền thắng:";
+"Profit/Loss:" = "Lợi nhuận/Thua lỗ:";
+"UNLOCKED ACHIEVEMENTS" = "THÀNH TÍCH ĐÃ MỞ KHÓA";
+"LOCKED ACHIEVEMENTS" = "THÀNH TÍCH ĐANG KHÓA";
+"Cash Out" = "Nhận tiền";
+"Profit" = "Lãi";
+"Exit" = "Thoát";

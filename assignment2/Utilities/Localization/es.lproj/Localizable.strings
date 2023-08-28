@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  assignment2
+
+  Created by Duc Trinh Van Minh on 11/08/2023.
+  
+*/
+
+"Languages:" = "Idiomas:";
+"Username" = "Nombre de usuario";
+"Continue" = "Continuar";
+"English" = "Inglés";
+"Español" = "Español";
+"Vietnamese" = "Vietnamita";
+"Bet Amount" = "Monto de la apuesta";
+"Mines" = "Minas";
+"Amount" = "Cantidad";
+"Start Game" = "Empezar juego";
+"Game" = "Juego";
+"Instructions" = "Instrucciones";
+"Leaderboard" = "Tabla de clasificación";
+"Stats" = "Estadísticas";
+"Settings:" = "Configuraciones";
+"Balance:" = "Saldo:";
+"Username:" = "Nombre de usuario:";
+"Game Played:" = "Partidas jugadas:";
+"Total Bet:" = "Apuesta total:";
+"Total Winning:" = "Ganancia total:";
+"Profit/Loss:" = "Ganancia/Pérdida:";
+"Unlocked Achievements" = "Logros Desbloqueados";
+"Locked Achievements" = "Logros Bloqueados";
+"Cash Out" = "Retirar";
+"Profit" = "Ganancia";
+"Exit" = "Salir";

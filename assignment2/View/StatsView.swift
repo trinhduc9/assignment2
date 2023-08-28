@@ -15,12 +15,13 @@ import SwiftUI
 struct StatsView: View {
 
     @EnvironmentObject var userData: UserData
+    @Binding var lang: String
     var body: some View {
         
         VStack(alignment: .leading){
             Group{
                 HStack{
-                    Text("Username: ")
+                    Text("Username:")
                     Text("\(userData.username)")
                 }
                 HStack{
@@ -45,13 +46,15 @@ struct StatsView: View {
                 }
             }.padding(.leading)
             AchievementView()
+                .environment(\.locale, .init(identifier: lang))
         }.background(Color("backgroundcolor"))
     }
 }
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsView()
+        @State(initialValue: "en") var lang: String
+        StatsView(lang: $lang)
             .environmentObject(UserData.shared)
     }
 }

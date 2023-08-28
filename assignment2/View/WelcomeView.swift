@@ -18,7 +18,7 @@ struct WelcomeView: View {
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @State private var username: String = ""
-    
+    @Binding var lang: String
 
     var body: some View {
         VStack{
@@ -61,8 +61,10 @@ struct WelcomeView: View {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        @State(initialValue: "es") var lang: String
+        WelcomeView(lang: $lang)
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
+            .environment(\.locale, .init(identifier: lang))
     }
 }
