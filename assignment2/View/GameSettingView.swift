@@ -27,7 +27,7 @@ struct GameSettingView: View {
     @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
-    
+    @State private var showAlert = false
     var body: some View {
         VStack(spacing: 10) {
             if disableGameSetting{
@@ -130,6 +130,8 @@ struct GameSettingView: View {
                         userData.updategamePlayed()
                         multiplier = 1.0
                         count = 0
+                    }else{
+                        showAlert.toggle()
                     }
                 }) {
                     Text("Start Game")
@@ -156,8 +158,10 @@ struct GameSettingView: View {
                 }
             }
         }
+        .sheet(isPresented: $showAlert) {
+            CustomAlertView(isPresented: $showAlert, title: "Custom Alert", message: "This is a custom alert in the third view.")
+        }
         .padding() // Add padding to the whole VStack
-
         .background(Color("bluepurp"))
         .cornerRadius(15) // Add corner radius
     }

@@ -53,9 +53,6 @@ struct MainView: View {
                 .environmentObject(audioManager)
             Spacer()
         }
-        .sheet(isPresented: $showAlert) {
-            CustomAlertView(isPresented: $showAlert, title:)
-        }
         .background(Color("backgroundcolor"))
         .onAppear {
             let storedGame = userData.currentGame

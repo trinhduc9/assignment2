@@ -20,6 +20,7 @@ struct SettingView: View {
     @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @State private var showAlert = false
     @Binding var lang: String
     let availableLanguages: [String: String] = [
         "English": "en",
@@ -101,7 +102,9 @@ struct SettingView: View {
                             appendToFile(newUserData: userData)
                             userData.clearUserData()
                         }
-                        
+                        else{
+                            showAlert.toggle()
+                        }
                     }) {
                         Text("Exit")
                             .frame(width: geo.size.width/6)
@@ -113,7 +116,6 @@ struct SettingView: View {
                     Spacer()
                 }
                 Spacer()
-                
             }
             .padding(.horizontal)
             .background(Color("lightgray"))
@@ -123,7 +125,11 @@ struct SettingView: View {
             )
             .border(isDark ? .white : .black, width: 2)
             .offset(x: (geo.size.width - geo.size.width * 0.7) / 2, y: (geo.size.height - geo.size.height * 0.7) / 2)
+            .sheet(isPresented: $showAlert) {
+                CustomAlertView(isPresented: $showAlert, title: "Custom Alert", message: "This is a custom alert in the third view.")
+            }
         }.background(Color("backgroundcolor"))
+        
     }
 }
 
