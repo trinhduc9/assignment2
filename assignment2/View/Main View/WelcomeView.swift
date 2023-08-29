@@ -55,7 +55,7 @@ struct WelcomeView: View {
         }
         .onAppear{
             if soundEnable{
-                //audioManager.playSound(fileName: "backgroundMusic", loops: true)
+                audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
             }
         }
         .onDisappear{

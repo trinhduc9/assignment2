@@ -19,6 +19,7 @@ struct ContentView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @Binding var lang: String
     var body: some View {
         ZStack {

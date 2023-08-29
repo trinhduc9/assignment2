@@ -45,15 +45,20 @@ struct GameSettingView: View {
                         .font(.headline)
                         .foregroundColor(.black)
                     ZStack(alignment: .trailing) {
-                        TextField("Amount", text: $inputText)
+                        TextField("", text: $inputText)
+                            .placeholder(when: inputText.isEmpty) {
+                                Text("Amount").foregroundColor(.gray)
+                            }
                             .keyboardType(.numberPad)
                             .padding(5)
+                            .background(.white)
+                            .foregroundColor(.black)
                             .background(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(.black, lineWidth: 1)
-                            ).background(Color.white)
+                            )
                             .cornerRadius(8)
-
+                            
                             /*.onChange(of: inputText) { newValue in
                                 if let value = Double(newValue) {
                                     let formattedValue = String(format: "%.2f", value)
@@ -149,7 +154,9 @@ struct GameSettingView: View {
                         cashOut()
                         disableUserInteraction = true
                         disableGameSetting = false
-                        audioManager.playSound(fileName: "cashout", loops: false)
+                        if soundEffect {
+                            audioManager.playSoundEffect(fileName: "cashout")
+                        }
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -197,6 +204,7 @@ struct GameSettingView_Previews: PreviewProvider {
         var body: some View {
             GameSettingView( cards: cards)
                 .environmentObject(AudioManager())
+                .preferredColorScheme(.dark)
         }
     }
 }

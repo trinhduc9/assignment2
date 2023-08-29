@@ -17,8 +17,8 @@ struct SettingView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @State private var showAlert = false
     @Binding var lang: String
@@ -37,8 +37,9 @@ struct SettingView: View {
                         .foregroundColor(.black)
                     Button(action: {
                         soundEnable.toggle()
+                        UserDefaults.standard.set(soundEnable, forKey: "SoundEnable")
                         if soundEnable{
-                            audioManager.playSound(fileName: "backgroundMusic", loops: true)
+                            audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
                         }else{
                             audioManager.stopSound()
                         }
@@ -56,6 +57,7 @@ struct SettingView: View {
                         .foregroundColor(.black)
                     Button(action: {
                         soundEffect.toggle()
+                        UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnable")
                     }){
                         Image(soundEffect ? "note" : "noteSlash")
                             .resizable()

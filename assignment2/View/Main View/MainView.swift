@@ -23,6 +23,8 @@ struct MainView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
+    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
     @State private var keyboardHeight: CGFloat = 0.0
     @State private var showAlert = false
     @State private var alertTitle = ""

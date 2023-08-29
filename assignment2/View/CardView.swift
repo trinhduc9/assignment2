@@ -69,12 +69,16 @@ struct CardView: View {
         if card.text == "💣"{
             disableUserInteraction = true
             disableGameSetting = false
-            audioManager.playSound(fileName: "bombExplode", loops: false)
+            if soundEffect {
+                audioManager.playSoundEffect(fileName: "bombExplode")
+            }
         }else{
             count += 1
             multiplier = calculateMultiplier(mines: pickedNumber, diamonds: count)
             winning = Double(inputText)! * multiplier
-            audioManager.playSound(fileName: "gemFound", loops: false)
+            if soundEffect {
+                audioManager.playSoundEffect(fileName: "gemFound")
+            }
             if count == 16 - pickedNumber{
                 userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
                 userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))

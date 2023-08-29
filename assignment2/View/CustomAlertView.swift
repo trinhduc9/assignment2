@@ -42,7 +42,7 @@ struct CustomAlertView: View {
             .shadow(radius: 10)
             .edgesIgnoringSafeArea(.bottom) // Extend the view to the bottom
         }
-        .background(Color.black.opacity(0.5).edgesIgnoringSafeArea(.all))
+        .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
     }
 }
 
