@@ -16,12 +16,14 @@ struct AchievementView: View {
     
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
+    @AppStorage("DarkMode") private var isDark: Bool = false
 
     var body: some View {
         
         VStack {
             List {
                 Section(header: Text("Unlocked Achievements")
+                    .foregroundColor(isDark ? .white : .black)
                     .font(.headline)
                     .padding(.top)){
                         ForEach(userData.achievements.indices, id: \.self) { index in
@@ -33,6 +35,7 @@ struct AchievementView: View {
                     }
                 
                 Section(header: Text("Locked Achievements")
+                    .foregroundColor(isDark ? .white : .black)
                     .font(.headline)
                     .padding(.top)){
                         ForEach(userData.achievements.indices, id: \.self) { index in

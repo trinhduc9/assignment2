@@ -47,7 +47,7 @@ struct GameSettingView: View {
                     ZStack(alignment: .trailing) {
                         TextField("", text: $inputText)
                             .placeholder(when: inputText.isEmpty) {
-                                Text("Amount").foregroundColor(.gray)
+                                Text("Amount").foregroundColor(.black)
                             }
                             .keyboardType(.numberPad)
                             .padding(5)

@@ -131,7 +131,6 @@ struct SettingView: View {
                 CustomAlertView(isPresented: $showAlert, title: "Custom Alert", message: "This is a custom alert in the third view.")
             }
         }.background(Color("backgroundcolor"))
-        
     }
 }
 

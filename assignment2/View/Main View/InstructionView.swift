@@ -26,12 +26,14 @@ struct InstructionView: View {
                             HStack(alignment: .firstTextBaseline){
                                 Image(systemName: "info.circle.fill")
                                     .font(.system(size: 10))
+                                    .foregroundColor(.red)
                                 Text(imageLabels[i]) // Display the corresponding label
                                     .font(.system(size: 10, weight: .bold))
                                     .padding(.top, 8)
-                                
+                                    .foregroundColor(.black)
                             }
                             Image("\(images[i])").resizable()
+                                
                         }.background(.white)
                             .cornerRadius(10)
                     }
