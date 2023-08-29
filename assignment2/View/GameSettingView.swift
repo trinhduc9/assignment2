@@ -145,6 +145,7 @@ struct GameSettingView: View {
                 .allowsHitTesting(!disableGameSetting)
                 if disableGameSetting{
                     Button("Cash Out"){
+                        appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier).rounded(to: 2))
                         cashOut()
                         disableUserInteraction = true
                         disableGameSetting = false
@@ -167,16 +168,16 @@ struct GameSettingView: View {
     }
     
     func cashOut(){
-        userData.updateBalance(balance: Double(inputText)! * multiplier)
-        userData.updateTotalWinning(winning: Double(inputText)! * multiplier - Double(inputText)!)
-        userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier - Double(inputText)!)
-        if userData.achievements[0] == false && userData.totalWinning >= 5000.00 {
+        userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
+        userData.updateTotalWinning(winning: (Double(inputText)! * multiplier).rounded(to: 2))
+        userData.updateProfitLoss(profitLoss: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
+        if userData.achievements[0] == false && userData.totalWinning >= 50000.00 {
             userData.updateAchievement(index: 0)
         }
-        if userData.achievements[1] == false && userData.totalWinning >= 25000.00 {
+        if userData.achievements[1] == false && userData.totalWinning >= 100000.00 {
             userData.updateAchievement(index: 1)
         }
-        if userData.achievements[2] == false && userData.totalWinning >= 100000.00{
+        if userData.achievements[2] == false && userData.totalWinning >= 200000.00{
             userData.updateAchievement(index: 2)
         }
     }

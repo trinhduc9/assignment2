@@ -15,12 +15,46 @@ import SwiftUI
 struct LeaderboardView: View {
     
     @ObservedObject var userData = UserData.shared
+    @State private var selectedUsername: String? = nil
     
     var body: some View {
-        VStack {
-            Text("Balance:")
-        }.ignoresSafeArea(.all)
+        NavigationView {
+            VStack{
+                if selectedUsername != nil {
+                    Button(action:{
+                        selectedUsername = nil
+                    }){
+                        Image(systemName: "arrowshape.backward.fill")
+                    }
+                }
+                List(filteredHighscores) { highscore in
+                    HStack{
+                        Text("\(highscore.name)")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .onTapGesture {
+                                selectedUsername = highscore.name
+                            }
+                        Spacer()
+                        Text("$\(String(format: "%.2f", highscore.winning))")
+                            .foregroundColor(.black)
+                    }.listRowBackground(Color("lightgray"))
+                }.scrollContentBackground(.hidden)
+            }
             .background(Color("backgroundcolor"))
+            .navigationBarTitle("Leaderboard")
+            
+        }
+    }
+    
+    // Function to filter highscores for a specific username
+    var filteredHighscores: [Highscore] {
+        if selectedUsername != nil {
+            return highscores.filter { $0.name == selectedUsername }
+        }else{
+            return highscores
+        }
+        
     }
 }
 

@@ -31,7 +31,7 @@ struct WelcomeView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 Button(action: {
-                    if let loadedUserData = loadSingleFromFile(forUsername: username) {
+                    if let loadedUserData = loadSingleUserData(forUsername: username) {
                         userData.username = loadedUserData.username
                         userData.gamePlayed = loadedUserData.gamePlayed
                         userData.balance = loadedUserData.balance

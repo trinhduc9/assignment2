@@ -2,21 +2,21 @@
     {
         "id": 1,
         "name": "Greenhorn Gambler",
-        "description": "Earn $5,000",
+        "description": "Earn $50,000",
         "achieved": false,
         "badge": "greenhorn"
     },
     {
         "id": 2,
         "name": "Rising Risktaker",
-        "description": "Earn $25,000",
+        "description": "Earn $100,000",
         "achieved": false,
         "badge": "risktaker"
     },
     {
         "id": 3,
         "name": "Master of the Wager",
-        "description": "Earn $100,000",
+        "description": "Earn $200,000",
         "achieved": false,
         "badge": "wager"
     },

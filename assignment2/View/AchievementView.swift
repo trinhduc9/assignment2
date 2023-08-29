@@ -23,7 +23,6 @@ struct AchievementView: View {
             List {
                 Section(header: Text("Unlocked Achievements")
                     .font(.headline)
-                    .foregroundColor(.black)
                     .padding(.top)){
                         ForEach(userData.achievements.indices, id: \.self) { index in
                             if userData.achievements[index] == true {
@@ -35,7 +34,6 @@ struct AchievementView: View {
                 
                 Section(header: Text("Locked Achievements")
                     .font(.headline)
-                    .foregroundColor(.black)
                     .padding(.top)){
                         ForEach(userData.achievements.indices, id: \.self) { index in
                             if userData.achievements[index] == false {

@@ -76,9 +76,18 @@ struct CardView: View {
             winning = Double(inputText)! * multiplier
             audioManager.playSound(fileName: "gemFound", loops: false)
             if count == 16 - pickedNumber{
-                userData.updateBalance(balance: Double(inputText)! * multiplier)
-                userData.updateTotalWinning(winning: Double(inputText)! * multiplier - Double(inputText)!)
-                userData.updateProfitLoss(profitLoss: Double(inputText)! * multiplier)
+                userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
+                userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
+                userData.updateProfitLoss(profitLoss: (Double(inputText)! * multiplier).rounded(to: 2))
+                if userData.achievements[0] == false && userData.totalWinning >= 50000.00 {
+                    userData.updateAchievement(index: 0)
+                }
+                if userData.achievements[1] == false && userData.totalWinning >= 100000.00 {
+                    userData.updateAchievement(index: 1)
+                }
+                if userData.achievements[2] == false && userData.totalWinning >= 200000.00{
+                    userData.updateAchievement(index: 2)
+                }
                 if userData.achievements[3] == false {
                     userData.updateAchievement(index: 3)
                 }
