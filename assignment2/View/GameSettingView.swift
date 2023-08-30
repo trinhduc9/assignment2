@@ -27,8 +27,8 @@ struct GameSettingView: View {
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
     @State private var showAlert = false
-    @Binding var gameEnded: Bool
-    @Binding var isLoss: Bool
+    @AppStorage("GameEnded") private var gameEnded: Bool = false
+    @AppStorage("IsLoss") private var isLoss: Bool = false
     @Binding var cards: [Card]
     var body: some View {
         VStack(spacing: 10) {
@@ -38,7 +38,7 @@ struct GameSettingView: View {
                         .foregroundColor(isDark ? .black : .white)
                     Text("(\(String(format: "%.2f", multiplier))): \(String(format: "%.2f", (Double(inputText)! * multiplier)-Double(inputText)!))")
                         .foregroundColor(isDark ? .black : .white)
-
+                    
                 }
             }
             HStack(alignment: .top, spacing: 20) {
@@ -60,17 +60,17 @@ struct GameSettingView: View {
                                     .stroke(.black, lineWidth: 1)
                             )
                             .cornerRadius(8)
-                            
-                            /*.onChange(of: inputText) { newValue in
-                                if let value = Double(newValue) {
-                                    let formattedValue = String(format: "%.2f", value)
-                                    if formattedValue != newValue {
-                                        inputText = formattedValue
-                                    }
-                                } else if !newValue.isEmpty {
-                                    inputText = String(newValue.dropLast())
-                                }
-                            }*/
+                        
+                        /*.onChange(of: inputText) { newValue in
+                         if let value = Double(newValue) {
+                         let formattedValue = String(format: "%.2f", value)
+                         if formattedValue != newValue {
+                         inputText = formattedValue
+                         }
+                         } else if !newValue.isEmpty {
+                         inputText = String(newValue.dropLast())
+                         }
+                         }*/
                         Image(systemName: "dollarsign.circle")
                             .foregroundColor(.green)
                             .padding([.trailing], 5)
@@ -118,7 +118,6 @@ struct GameSettingView: View {
             }
             .frame(height: 80)
             .padding(.horizontal)
-            
             .background(Color("lightgray"))
             .cornerRadius(15)
             .allowsHitTesting(!disableGameSetting)
@@ -207,7 +206,7 @@ struct GameSettingView_Previews: PreviewProvider {
         let cards: Binding<[Card]>
         
         var body: some View {
-            GameSettingView( gameEnded: .constant(true), isLoss: .constant(false), cards: cards)
+            GameSettingView(cards: cards)
                 .environmentObject(AudioManager())
                 .preferredColorScheme(.dark)
         }

@@ -50,12 +50,8 @@ func appendToFile(newUserData: UserData) {
             if !FileManager.default.fileExists(atPath: filePath) {
                 FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
             }
-            
             try encodedData.write(to: fileURL)
-            print("New UserData added and saved to file: \(fileURL)")
-        } catch {
-            print("Error adding new UserData: \(error)")
-        }
+        } catch {}
     }
 }
 
@@ -74,9 +70,7 @@ func loadSingleUserData(forUsername username: String) -> UserData? {
         } else {
             return nil
         }
-    } catch {
-        print("Error loading UserData for username \(username): \(error)")
-    }
+    } catch {}
     return nil
 }
 
@@ -89,9 +83,7 @@ func loadUserData() -> [String: UserData] {
         let decoder = JSONDecoder()
         let userDatas = try decoder.decode([String: UserData].self, from: data)
         return userDatas
-    } catch {
-        print("Error loading UserDatas: \(error)")
-    }
+    } catch {}
     return [:]
 }
 
@@ -118,12 +110,8 @@ func appendHighscoreJSON(newHighscore: Highscore) {
             if !FileManager.default.fileExists(atPath: filePath) {
                 FileManager.default.createFile(atPath: filePath, contents: nil, attributes: nil)
             }
-            
             try encodedData.write(to: fileURL)
-            print("New Highscore added and saved to file: \(fileURL)")
-        } catch {
-            print("Error adding new Highscore: \(error)")
-        }
+        } catch {}
     }
 }
 

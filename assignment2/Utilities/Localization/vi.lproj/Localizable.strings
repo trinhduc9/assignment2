@@ -19,7 +19,7 @@
 "Instructions" = "Hướng dẫn";
 "Leaderboard" = "Bảng xếp hạng";
 "Stats" = "Thống kê";
-"Settings:" = "Cài đặt";
+"Settings" = "Cài đặt";
 "User Stats" = "Thống kê người chơi";
 "Balance:" = "Số dư:";
 "Username:" = "Tên người chơi:";
@@ -35,3 +35,6 @@
 "Background music:" = "Nhạc nền:";
 "Sound effect:" = "Âm thanh hiệu ứng:";
 "Theme setting:" = "Cài đặt chủ đề:";
+"Select number of mines, input amount of money to bet and start game" = "Chọn số lượng mìn, nhập số tiền cược và bắt đầu trò chơi";
+"Tap on the card to flip\nMore diamond more money" = "Chạm vào thẻ để lật\nCàng nhiều kim cương càng nhiều tiền";
+"Avoid the bomb" = "Tránh bom";

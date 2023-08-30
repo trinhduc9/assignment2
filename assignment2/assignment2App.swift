@@ -20,7 +20,9 @@ struct assignment2App: App {
     
     @StateObject private var userData = UserData()
     @StateObject private var audioManager = AudioManager()
-    @State(initialValue: "es") var lang: String
+    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
+    @State(initialValue: "en") var lang: String
     
     var body: some Scene {
         WindowGroup {

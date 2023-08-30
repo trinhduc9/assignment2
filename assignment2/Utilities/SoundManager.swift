@@ -14,6 +14,7 @@ import Foundation
 import AVFoundation
 
 class AudioManager: ObservableObject {
+    
     var backgroundMusicPlayer: AVAudioPlayer?
     var soundEffectPlayer: AVAudioPlayer?
 
@@ -45,27 +46,4 @@ class AudioManager: ObservableObject {
     func stopSound() {
         backgroundMusicPlayer?.stop()
     }
-
 }
-
-/*class AudioManager: ObservableObject {
-    var audioPlayer: AVAudioPlayer?
-
-    func playSound(fileName: String, loops: Bool) {
-        if let path = Bundle.main.path(forResource: fileName, ofType: "mp3") {
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
-                if loops {
-                    audioPlayer?.numberOfLoops = -1
-                }
-                audioPlayer?.play()
-            } catch {
-                print("Error: \(error)")
-            }
-        }
-    }
-
-    func stopSound() {
-        audioPlayer?.stop()
-    }
-}*/

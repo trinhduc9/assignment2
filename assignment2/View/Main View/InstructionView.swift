@@ -14,7 +14,7 @@ import SwiftUI
 
 struct InstructionView: View {
     let images = ["instruction1", "instruction2", "instruction3"]
-    let imageLabels = ["Select number of mines, input amount of money to bet and start game", "Tap on the card to flip\n More diamond more money", " Avoid the bomb "]
+    let imageLabels = ["Select number of mines, input amount of money to bet and start game", "Tap on the card to flip\nMore diamond more money", "Avoid the bomb"]
     var body: some View {
         GeometryReader{ geo in
             VStack(alignment: .center){

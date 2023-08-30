@@ -17,10 +17,9 @@ struct SettingView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
+    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    
-    @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @State private var showAlert = false
     @Binding var lang: String
     let availableLanguages: [String: String] = [
@@ -33,56 +32,58 @@ struct SettingView: View {
         GeometryReader{geo in
             VStack(alignment: .leading, spacing: 10){
                 Spacer()
-                HStack{
-                    Text("Background music:")
-                        .foregroundColor(.black)
-                    Button(action: {
-                        soundEnable.toggle()
-                        UserDefaults.standard.set(soundEnable, forKey: "SoundEnableUD")
-                        print(soundEnable)
-                        if soundEnable{
-                            audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
-                        }else{
-                            audioManager.stopSound()
+                Text("Settings")
+                    .font(.largeTitle)
+                    .foregroundColor(.black)
+                Group{
+                    HStack{
+                        Text("Background music:")
+                            .foregroundColor(.black)
+                        Button(action: {
+                            soundEnable.toggle()
+                            UserDefaults.standard.set(soundEnable, forKey: "SoundEnableUD")
+                            if soundEnable{
+                                audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
+                            }else{
+                                audioManager.stopSound()
+                            }
+                        }) {
+                            Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .background(Color("lightgray"))
+                                .cornerRadius(8)
+                                .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                         }
-                    }) {
-                        Image(systemName: soundEnable ? "speaker.wave.3.fill" : "speaker.slash.fill")
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(.black)
-                            .background(Color("lightgray"))
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
                     }
-                }
-                HStack{
-                    Text("Sound effect:")
-                        .foregroundColor(.black)
-                    Button(action: {
-                        soundEffect.toggle()
-                        UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnableUD")
-                        print(soundEffect)
-                    }){
-                        Image(soundEffect ? "note" : "noteSlash")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .background(Color("lightgray"))
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
-                    }
-                }
-                HStack{
-                    Text("Theme setting:")
-                        .foregroundColor(.black)
-                    Button(action: {
-                        isDark.toggle()
-                        print(isDark)
-                    }) {
-                        Image(systemName: isDark ? "moon.fill" : "sun.max")
-                            .frame(width: 30, height: 30)
+                    HStack{
+                        Text("Sound effect:")
                             .foregroundColor(.black)
-                            .background(Color("lightgray"))
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                        Button(action: {
+                            soundEffect.toggle()
+                            UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnableUD")
+                        }){
+                            Image(soundEffect ? "note" : "noteSlash")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .background(Color("lightgray"))
+                                .cornerRadius(8)
+                                .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                        }
+                    }
+                    HStack{
+                        Text("Theme setting:")
+                            .foregroundColor(.black)
+                        Button(action: {
+                            isDark.toggle()
+                        }) {
+                            Image(systemName: isDark ? "moon.fill" : "sun.max")
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.black)
+                                .background(Color("lightgray"))
+                                .cornerRadius(8)
+                                .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 2)
+                        }
                     }
                 }
                 Spacer()
@@ -132,7 +133,7 @@ struct SettingView: View {
             .border(isDark ? .white : .black, width: 2)
             .offset(x: (geo.size.width - geo.size.width * 0.7) / 2, y: (geo.size.height - geo.size.height * 0.7) / 2)
             .sheet(isPresented: $showAlert) {
-                CustomAlertView(isPresented: $showAlert, title: "Custom Alert", message: "This is a custom alert in the third view.")
+                CustomAlertView(isPresented: $showAlert, title: "Exit Alert", message: "Can't exit, there's an onging game")
             }
         }.background(Color("backgroundcolor"))
     }

@@ -20,7 +20,7 @@
 "Instructions" = "Instrucciones";
 "Leaderboard" = "Tabla de clasificación";
 "Stats" = "Estadísticas";
-"Settings:" = "Configuraciones";
+"Settings" = "Configuraciones";
 "User Stats" = "Estadísticas del usuario";
 "Balance:" = "Saldo:";
 "Username:" = "Nombre de usuario:";
@@ -36,3 +36,6 @@
 "Background music:" = "Música de fondo:";
 "Sound effect:" = "Efecto de sonido:";
 "Theme setting:" = "Configuración de tema:";
+"Select number of mines, input amount of money to bet and start game" = "Selecciona el número de minas, ingresa la cantidad de dinero a apostar y comienza el juego";
+"Tap on the card to flip\nMore diamond more money" = "Toca la carta para voltearla\nCuantos más diamantes, más dinero";
+"Avoid the bomb" = "Evita la bomba";

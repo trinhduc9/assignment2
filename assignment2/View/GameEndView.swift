@@ -10,6 +10,7 @@ import SwiftUI
 struct GameEndView: View {
     
     @Binding var isLoss: Bool
+    @State private var isAppeared = false
     
     var body: some View {
         GeometryReader{ geo in
@@ -18,19 +19,25 @@ struct GameEndView: View {
                     ZStack{
                         Image("explosion")
                             .resizable()
-                        Text("YOU LOSS")
-                            .font(.system(size: 30))
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .padding(.top, 50)
-                            .padding(.trailing)
+                            .opacity(isAppeared ? 1 : 0) // Apply opacity based on appearance state
+                            .scaleEffect(isAppeared ? 1 : 0.5)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) { // Apply fade-in animation
+                                    isAppeared = true
+                                }
+                            }
                     }
                 }else {
-                    ZStack{
-                        Text("YOU WIN")
-                            .font(.largeTitle)
-                            .foregroundColor(.green)
-                            .fontWeight(.bold)
+                    VStack{
+                        Image("applogo")
+                            .resizable()
+                            .opacity(isAppeared ? 1 : 0) // Apply opacity based on appearance state
+                            .scaleEffect(isAppeared ? 1 : 0.5)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) { // Apply fade-in animation
+                                    isAppeared = true
+                                }
+                            }
                     }
                 }
             }

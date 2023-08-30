@@ -27,9 +27,12 @@ struct WelcomeView: View {
                 .resizable()
                 .ignoresSafeArea()
             VStack{
+                Spacer()
                 TextField("Username", text: $username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .frame(width: 250)  
+                Spacer()
                 Button(action: {
                     if let loadedUserData = loadSingleUserData(forUsername: username) {
                         userData.username = loadedUserData.username
@@ -46,7 +49,7 @@ struct WelcomeView: View {
                 }) {
                     Text("Start Mining")
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.black)
                         .foregroundColor(.white)
                         .font(.headline)
                         .cornerRadius(10)
