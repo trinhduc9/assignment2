@@ -131,11 +131,11 @@ struct SettingView: View {
             .padding(.horizontal)
             .background(Color("lightgray"))
             .frame(
-                maxWidth: geo.size.width * 0.7,
-                maxHeight: geo.size.height * 0.7
+                maxWidth: 300,
+                maxHeight: 500
             )
             .border(isDark ? .white : .black, width: 2)
-            .offset(x: (geo.size.width - geo.size.width * 0.7) / 2, y: (geo.size.height - geo.size.height * 0.7) / 2)
+            .offset(x: (geo.size.width - 300) / 2, y: (geo.size.height - 500) / 2)
             .sheet(isPresented: $showAlert) {
                 CustomAlertView(isPresented: $showAlert, title: "Exit Alert", message: "Can't exit, there's an onging game")
             }

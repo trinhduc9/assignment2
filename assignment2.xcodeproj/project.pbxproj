@@ -55,11 +55,11 @@
 		34D49D6C2A9F55E50084770C /* ToggleDarkMode.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D5C2A9F55E50084770C /* ToggleDarkMode.png */; };
 		34D49D6D2A9F55E50084770C /* Localization.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D5D2A9F55E50084770C /* Localization.png */; };
 		34D49D732A9F565E0084770C /* ipadStats-Achievement.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D702A9F565E0084770C /* ipadStats-Achievement.png */; };
-		34D49D742A9F565E0084770C /* ipadSetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D712A9F565E0084770C /* ipadSetting.png */; };
 		34D49D762A9F56BD0084770C /* gameplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D752A9F56BD0084770C /* gameplay.png */; };
 		34D49D792A9F58130084770C /* leaderboardView.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D772A9F58130084770C /* leaderboardView.png */; };
 		34D49D7A2A9F58130084770C /* leaderboardView-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D782A9F58130084770C /* leaderboardView-user.png */; };
 		34D49D7C2A9F584E0084770C /* ipadLeadaerboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D7B2A9F584E0084770C /* ipadLeadaerboard.png */; };
+		34D49D7E2A9F59740084770C /* ipadSettingView.png in Resources */ = {isa = PBXBuildFile; fileRef = 34D49D7D2A9F59740084770C /* ipadSettingView.png */; };
 		34D947652A9077E90031775E /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D947642A9077E90031775E /* StatsView.swift */; };
 		34D947682A9078030031775E /* achievement.json in Resources */ = {isa = PBXBuildFile; fileRef = 34D947662A9078030031775E /* achievement.json */; };
 		34D947692A9078030031775E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D947672A9078030031775E /* UserData.swift */; };
@@ -138,11 +138,11 @@
 		34D49D5C2A9F55E50084770C /* ToggleDarkMode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleDarkMode.png; sourceTree = "<group>"; };
 		34D49D5D2A9F55E50084770C /* Localization.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Localization.png; sourceTree = "<group>"; };
 		34D49D702A9F565E0084770C /* ipadStats-Achievement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ipadStats-Achievement.png"; sourceTree = "<group>"; };
-		34D49D712A9F565E0084770C /* ipadSetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSetting.png; sourceTree = "<group>"; };
 		34D49D752A9F56BD0084770C /* gameplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameplay.png; sourceTree = "<group>"; };
 		34D49D772A9F58130084770C /* leaderboardView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaderboardView.png; sourceTree = "<group>"; };
 		34D49D782A9F58130084770C /* leaderboardView-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leaderboardView-user.png"; sourceTree = "<group>"; };
 		34D49D7B2A9F584E0084770C /* ipadLeadaerboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadLeadaerboard.png; sourceTree = "<group>"; };
+		34D49D7D2A9F59740084770C /* ipadSettingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadSettingView.png; sourceTree = "<group>"; };
 		34D947642A9077E90031775E /* StatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		34D947662A9078030031775E /* achievement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = achievement.json; sourceTree = "<group>"; };
 		34D947672A9078030031775E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -318,7 +318,6 @@
 				34D49D782A9F58130084770C /* leaderboardView-user.png */,
 				34D49D752A9F56BD0084770C /* gameplay.png */,
 				34D49D702A9F565E0084770C /* ipadStats-Achievement.png */,
-				34D49D712A9F565E0084770C /* ipadSetting.png */,
 				34D49D542A9F55E50084770C /* difficultyLvl.png */,
 				34D49D5A2A9F55E50084770C /* instructionview.png */,
 				34D49D5D2A9F55E50084770C /* Localization.png */,
@@ -331,6 +330,7 @@
 				34D49D572A9F55E50084770C /* ipadInstructionView.png */,
 				34D49D512A9F55E50084770C /* Stats-Achievement.png */,
 				34D49D5C2A9F55E50084770C /* ToggleDarkMode.png */,
+				34D49D7D2A9F59740084770C /* ipadSettingView.png */,
 				34D49D562A9F55E50084770C /* ToggleSoundEffect-Music.png */,
 				34D49D4F2A9F55E50084770C /* welcomeView.png */,
 				34D49D592A9F55E50084770C /* wingameScreen.png */,
@@ -452,13 +452,13 @@
 				34A73C0C2A861BC40067FAEF /* Preview Assets.xcassets in Resources */,
 				34D49D692A9F55E50084770C /* wingameScreen.png in Resources */,
 				34D49D662A9F55E50084770C /* ToggleSoundEffect-Music.png in Resources */,
+				34D49D7E2A9F59740084770C /* ipadSettingView.png in Resources */,
 				34D49D7A2A9F58130084770C /* leaderboardView-user.png in Resources */,
 				347A53912A97129C00EE3CE1 /* backgroundMusic.mp3 in Resources */,
 				347A53902A97129C00EE3CE1 /* gemFound.mp3 in Resources */,
 				34D947682A9078030031775E /* achievement.json in Resources */,
 				34D49D622A9F55E50084770C /* ipadWelcomeView.png in Resources */,
 				34D49D642A9F55E50084770C /* difficultyLvl.png in Resources */,
-				34D49D742A9F565E0084770C /* ipadSetting.png in Resources */,
 				34B2072F2A86419B00D3D689 /* Localizable.strings in Resources */,
 				34D49D652A9F55E50084770C /* localizationSpanish.png in Resources */,
 				347A53922A97129C00EE3CE1 /* cashout.mp3 in Resources */,
