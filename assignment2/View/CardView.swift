@@ -20,12 +20,14 @@ struct CardView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") var pickedNumber: Int = 1
     @AppStorage("Multiplier") var multiplier: Double = 0.0
     @AppStorage("DiamondCount") var count: Int = 0
     @AppStorage("Winning") var winning: Double = 0.0
+    @AppStorage("GameEnded") private var gameEnded: Bool = false
+    @AppStorage("IsLoss") private var isLoss: Bool = false
     @State private var rotation: Double = 0
     @State private var animating = true
     let width: Int
@@ -67,6 +69,8 @@ struct CardView: View {
     
     func checkCard(card: Card){
         if card.text == "💣"{
+            gameEnded = true
+            isLoss = true
             disableUserInteraction = true
             disableGameSetting = false
             if soundEffect {
@@ -130,7 +134,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let card = Card(text: "💣")
-        CardView(card: card, width: 100)
+        CardView(card: card, width: 100 )
             .environmentObject(AudioManager())
     }
 }

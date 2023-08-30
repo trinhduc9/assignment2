@@ -24,7 +24,9 @@ struct MainView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
+    @AppStorage("GameEnded") private var gameEnded: Bool = false
+    @AppStorage("IsLoss") private var isLoss: Bool = false
     @State private var keyboardHeight: CGFloat = 0.0
     @State private var showAlert = false
     @State private var alertTitle = ""
@@ -44,13 +46,16 @@ struct MainView: View {
                     .stroke(Color.black, lineWidth: 2)
             )
             Spacer()
-            
-            GameView(cards: cards)
-                .environmentObject(UserData.shared)
-                .environmentObject(audioManager)
-            Spacer()
-            
-            GameSettingView(cards: $cards)
+            ZStack{
+                GameView(cards: cards)
+                    .environmentObject(UserData.shared)
+                    .environmentObject(audioManager)
+                Spacer()
+                if gameEnded {
+                    GameEndView(isLoss: $isLoss)
+                }
+            }
+            GameSettingView(gameEnded: $gameEnded, isLoss: $isLoss, cards: $cards)
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
             Spacer()

@@ -17,8 +17,9 @@ struct SettingView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
-    @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
+    
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @State private var showAlert = false
     @Binding var lang: String
@@ -37,7 +38,8 @@ struct SettingView: View {
                         .foregroundColor(.black)
                     Button(action: {
                         soundEnable.toggle()
-                        UserDefaults.standard.set(soundEnable, forKey: "SoundEnable")
+                        UserDefaults.standard.set(soundEnable, forKey: "SoundEnableUD")
+                        print(soundEnable)
                         if soundEnable{
                             audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
                         }else{
@@ -57,7 +59,8 @@ struct SettingView: View {
                         .foregroundColor(.black)
                     Button(action: {
                         soundEffect.toggle()
-                        UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnable")
+                        UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnableUD")
+                        print(soundEffect)
                     }){
                         Image(soundEffect ? "note" : "noteSlash")
                             .resizable()
@@ -72,6 +75,7 @@ struct SettingView: View {
                         .foregroundColor(.black)
                     Button(action: {
                         isDark.toggle()
+                        print(isDark)
                     }) {
                         Image(systemName: isDark ? "moon.fill" : "sun.max")
                             .frame(width: 30, height: 30)

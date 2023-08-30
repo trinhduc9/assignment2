@@ -17,17 +17,19 @@ struct GameSettingView: View {
     
     @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
-    @Binding var cards: [Card]
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") private var pickedNumber: Int = 1
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("DiamondCount") var count: Int = 0
     @State private var showAlert = false
+    @Binding var gameEnded: Bool
+    @Binding var isLoss: Bool
+    @Binding var cards: [Card]
     var body: some View {
         VStack(spacing: 10) {
             if disableGameSetting{
@@ -123,7 +125,8 @@ struct GameSettingView: View {
             HStack{
                 Button(action: {
                     if !inputText.isEmpty && Float(inputText) != nil{
-
+                        gameEnded = false
+                        isLoss = false
                         cards = createList(bombNo: pickedNumber)
                         userData.currentGame = cards
                         userData.saveCurrentGame(game: cards)
@@ -150,6 +153,8 @@ struct GameSettingView: View {
                 .allowsHitTesting(!disableGameSetting)
                 if disableGameSetting{
                     Button("Cash Out"){
+                        gameEnded = true
+                        isLoss = false
                         appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier).rounded(to: 2))
                         cashOut()
                         disableUserInteraction = true
@@ -167,7 +172,7 @@ struct GameSettingView: View {
             }
         }
         .sheet(isPresented: $showAlert) {
-            CustomAlertView(isPresented: $showAlert, title: "Custom Alert", message: "This is a custom alert in the third view.")
+            CustomAlertView(isPresented: $showAlert, title: "ERROR", message: "Invalid amount of money")
         }
         .padding() // Add padding to the whole VStack
         .background(Color("bluepurp"))
@@ -202,7 +207,7 @@ struct GameSettingView_Previews: PreviewProvider {
         let cards: Binding<[Card]>
         
         var body: some View {
-            GameSettingView( cards: cards)
+            GameSettingView( gameEnded: .constant(true), isLoss: .constant(false), cards: cards)
                 .environmentObject(AudioManager())
                 .preferredColorScheme(.dark)
         }

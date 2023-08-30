@@ -18,9 +18,11 @@ struct GameView: View {
     @EnvironmentObject var userData: UserData
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("SoundEnable") private var soundEnable: Bool = true
-    @AppStorage("SoundEffectEnable") private var soundEffect: Bool = true
+    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
+    @AppStorage("GameEnded") private var gameEnded: Bool = false
+    @AppStorage("IsLoss") private var isLoss: Bool = false
     var fourColumnGrid = [GridItem(.flexible()),
                                   GridItem(.flexible()),
                                   GridItem(.flexible()),
