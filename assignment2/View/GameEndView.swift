@@ -12,21 +12,27 @@ struct GameEndView: View {
     @Binding var isLoss: Bool
     
     var body: some View {
-        ZStack{
-            if isLoss {
-                ZStack{
-                    Text("💣")
-                        .font(.system(size: 250))
-                    Text("YOU LOSS")
-                        .font(.largeTitle)
-                        .foregroundColor(.red)
-                        .fontWeight(.bold)
+        GeometryReader{ geo in
+            ZStack{
+                if isLoss {
+                    ZStack{
+                        Image("explosion")
+                            .resizable()
+                        Text("YOU LOSS")
+                            .font(.system(size: 30))
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.top, 50)
+                            .padding(.trailing)
+                    }
+                }else {
+                    ZStack{
+                        Text("YOU WIN")
+                            .font(.largeTitle)
+                            .foregroundColor(.green)
+                            .fontWeight(.bold)
+                    }
                 }
-            }else {
-                Text("YOU WIN")
-                    .font(.largeTitle)
-                    .foregroundColor(.green)
-                    .fontWeight(.bold)
             }
         }
     }

@@ -16,7 +16,7 @@ struct WelcomeView: View {
 
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
-    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @State private var username: String = ""
     @Binding var lang: String

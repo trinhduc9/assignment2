@@ -18,7 +18,7 @@ struct ContentView: View {
 
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
-    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @Binding var lang: String
     var body: some View {

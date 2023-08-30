@@ -19,7 +19,7 @@ struct CardView: View {
     @ObservedObject var card:Card
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
-    @AppStorage("SoundEnable") private var soundEnable: Bool = true
+    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") var pickedNumber: Int = 1
