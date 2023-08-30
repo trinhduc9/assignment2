@@ -25,7 +25,7 @@ struct TabDisplayView: View {
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
-    @Binding var lang: String
+    @AppStorage("Language") var lang: String = "en"
     var body: some View {
         TabView {
             MainView()
@@ -43,12 +43,12 @@ struct TabDisplayView: View {
                     Image(systemName: "trophy.fill")
                     Text("Leaderboard")
                 }
-            StatsView(lang: $lang)
+            StatsView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Stats")
                 }
-            SettingView(lang: $lang)
+            SettingView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
@@ -73,7 +73,7 @@ struct TabDisplayView: View {
 struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        TabDisplayView(lang: $lang)
+        TabDisplayView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))

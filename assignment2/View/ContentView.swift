@@ -20,16 +20,16 @@ struct ContentView: View {
     @EnvironmentObject var audioManager: AudioManager
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    @Binding var lang: String
+    @AppStorage("Language") var lang: String = "en"
     var body: some View {
         ZStack {
             if userData.username == "" {
-                WelcomeView(lang: $lang)
+                WelcomeView()
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
                     .environment(\.locale, .init(identifier: lang))
             }else{
-                TabDisplayView(lang: $lang)
+                TabDisplayView()
                     .environment(\.locale, .init(identifier: lang))
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
@@ -43,28 +43,28 @@ struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        ContentView(lang: $lang)
+        ContentView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
             .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
             .previewDisplayName("iPhone 14")
         
-        ContentView(lang: $lang)
+        ContentView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
             .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro"))
             .previewDisplayName("iPhone 14 Pro")
         
-        ContentView(lang: $lang)
+        ContentView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
             .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
             .previewDisplayName("iPhone 14 Pro Max")
         
-        ContentView(lang: $lang)
+        ContentView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))

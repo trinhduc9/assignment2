@@ -18,33 +18,35 @@ struct LeaderboardView: View {
     @State private var selectedUsername: String? = nil
     
     var body: some View {
-        NavigationView {
-            VStack{
-                if selectedUsername != nil {
-                    Button(action:{
-                        selectedUsername = nil
-                    }){
-                        Image(systemName: "arrowshape.backward.fill")
-                    }
+        VStack{
+            Text("Leaderboard")
+                .font(.largeTitle)
+            Spacer()
+            if selectedUsername != nil {
+                Spacer()
+                Button(action:{
+                    selectedUsername = nil
+                }){
+                    Image(systemName: "arrowshape.backward.fill")
                 }
-                List(filteredHighscores) { highscore in
-                    HStack{
-                        Text("\(highscore.name)")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                selectedUsername = highscore.name
-                            }
-                        Spacer()
-                        Text("$\(String(format: "%.2f", highscore.winning))")
-                            .foregroundColor(.black)
-                    }.listRowBackground(Color("lightgray"))
-                }.scrollContentBackground(.hidden)
             }
-            .background(Color("backgroundcolor"))
-            .navigationBarTitle("Leaderboard")
-            
+            List(filteredHighscores.prefix(10)) { highscore in
+                HStack{
+                    Text("\(highscore.name)")
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .underline()
+                        .onTapGesture {
+                            selectedUsername = highscore.name
+                        }
+                    Spacer()
+                    Text("$\(String(format: "%.2f", highscore.winning))")
+                        .foregroundColor(.black)
+                }.listRowBackground(Color("lightgray"))
+            }.scrollContentBackground(.hidden)
         }
+        .background(Color("backgroundcolor"))
+            
     }
     
     // Function to filter highscores for a specific username

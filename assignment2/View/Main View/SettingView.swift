@@ -18,14 +18,16 @@ struct SettingView: View {
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
+    @AppStorage("GameEnded") private var gameEnded: Bool = false
+    @AppStorage("IsLoss") private var isLoss: Bool = false
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @State private var showAlert = false
-    @Binding var lang: String
+    @AppStorage("Language") var lang: String = "en"
     let availableLanguages: [String: String] = [
         "English": "en",
         "Español": "es",
-        "Vietnamese": "vi-VN"
+        "Vietnamese": "vi_VN"
     ]
     
     var body: some View {
@@ -108,6 +110,8 @@ struct SettingView: View {
                             userData.currentGame = []
                             appendToFile(newUserData: userData)
                             userData.clearUserData()
+                            isLoss = false;
+                            gameEnded = false;
                         }
                         else{
                             showAlert.toggle()
@@ -142,7 +146,7 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        SettingView(lang: $lang)
+        SettingView()
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
     }

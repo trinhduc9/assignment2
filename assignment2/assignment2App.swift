@@ -22,11 +22,12 @@ struct assignment2App: App {
     @StateObject private var audioManager = AudioManager()
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    @State(initialValue: "en") var lang: String
+    @AppStorage("Language") var lang: String = "en"
+
     
     var body: some Scene {
         WindowGroup {
-            ContentView(lang: $lang)
+            ContentView()
                 .environmentObject(UserData.shared)
                 .environmentObject(audioManager)
                 .environment(\.locale, .init(identifier: lang))

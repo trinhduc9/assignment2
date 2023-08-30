@@ -31,6 +31,7 @@ struct MainView: View {
     @State private var showAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
+    @State private var timer: Timer? = nil
     var body: some View {
         GeometryReader{ geo in
             VStack{
@@ -53,11 +54,14 @@ struct MainView: View {
                         .environmentObject(audioManager)
                     Spacer()
                     if gameEnded {
-                        withAnimation(.spring()) {
-                            GameEndView(isLoss: $isLoss)
-                                .frame(width: geo.size.width * 0.7, height: geo.size.width * 0.7)
-                                .transition(.scale)
-                        }
+                        GameEndView(isLoss: $isLoss)
+                            .frame(width: geo.size.width * 0.7, height: geo.size.width * 0.7)
+                            .onAppear{
+                                timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+                                    gameEnded = false
+                                    
+                                }
+                            }
                     }
                 }
                 GameSettingView( cards: $cards)

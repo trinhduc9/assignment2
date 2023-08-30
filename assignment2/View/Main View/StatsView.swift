@@ -15,7 +15,7 @@ import SwiftUI
 struct StatsView: View {
 
     @EnvironmentObject var userData: UserData
-    @Binding var lang: String
+    @AppStorage("Language") var lang: String = "en"
     var body: some View {
         
         VStack(alignment: .leading){
@@ -70,8 +70,7 @@ struct StatsView: View {
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {
-        @State(initialValue: "en") var lang: String
-        StatsView(lang: $lang)
+        StatsView()
             .environmentObject(UserData.shared)
     }
 }

@@ -19,7 +19,7 @@ struct WelcomeView: View {
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @State private var username: String = ""
-    @Binding var lang: String
+    @AppStorage("Language") var lang: String = "en"
 
     var body: some View {
         ZStack{
@@ -70,7 +70,7 @@ struct WelcomeView: View {
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        WelcomeView(lang: $lang)
+        WelcomeView()
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
