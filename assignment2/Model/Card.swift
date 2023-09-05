@@ -16,7 +16,6 @@ import Foundation
 class Card: Identifiable, ObservableObject, Codable {
     var id = UUID()
     @Published var isFaceUp = false
-    @Published var isBomb = false
     var text: String
     
     init(text: String){
@@ -34,7 +33,6 @@ class Card: Identifiable, ObservableObject, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         isFaceUp = try container.decode(Bool.self, forKey: .isFaceUp)
-        isBomb = try container.decode(Bool.self, forKey: .isBomb)
         text = try container.decode(String.self, forKey: .text)
     }
     
@@ -42,7 +40,6 @@ class Card: Identifiable, ObservableObject, Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(isFaceUp, forKey: .isFaceUp)
-        try container.encode(isBomb, forKey: .isBomb)
         try container.encode(text, forKey: .text)
     }
     

@@ -16,6 +16,7 @@ struct GameView: View {
     
     @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
+    @AppStorage("Language") var lang: String = "en"
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false

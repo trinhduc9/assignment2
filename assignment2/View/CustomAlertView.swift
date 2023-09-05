@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomAlertView: View {
     
+    @AppStorage("Language") var lang: String = "en"
     @Binding var isPresented: Bool
     let title: String
     let message: String
@@ -16,11 +17,11 @@ struct CustomAlertView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.headline)
                     .padding()
                 
-                Text(message)
+                Text(LocalizedStringKey(message))
                     .font(.subheadline)
                     .padding()
                 

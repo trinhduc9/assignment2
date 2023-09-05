@@ -21,6 +21,7 @@ struct ContentView: View {
     @AppStorage("Language") var lang: String = "en"
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
+    
     var body: some View {
         ZStack {
             if userData.username == "" {
@@ -34,6 +35,9 @@ struct ContentView: View {
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
             }
+        }
+        .onAppear {
+            soundEnable = true
         }
     }
 

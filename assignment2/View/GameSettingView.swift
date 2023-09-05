@@ -18,6 +18,7 @@ struct GameSettingView: View {
     
     @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
+    @AppStorage("Language") var lang: String = "en"
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") private var pickedNumber: Int = 1
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
@@ -164,7 +165,7 @@ struct GameSettingView: View {
                 if disableGameSetting{
                     Button("Cash Out"){
                         gameEnded = true
-                        appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier).rounded(to: 2))
+                        appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
                         cashOut()
                         disableUserInteraction = true
                         disableGameSetting = false
@@ -181,7 +182,8 @@ struct GameSettingView: View {
             }
         }
         .sheet(isPresented: $showAlert) {
-            CustomAlertView(isPresented: $showAlert, title: "ERROR", message: "Invalid amount of money")
+            CustomAlertView(isPresented: $showAlert, title: "Error", message: "Invalid amount of money")
+                .environment(\.locale, .init(identifier: lang))
         }
         .padding() // Add padding to the whole VStack
         .background(Color("bluepurp"))
@@ -190,7 +192,7 @@ struct GameSettingView: View {
     
     func cashOut(){
         userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
-        userData.updateTotalWinning(winning: (Double(inputText)! * multiplier).rounded(to: 2))
+        userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
         userData.updateProfitLoss(profitLoss: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
         if userData.achievements[0] == false && userData.totalWinning >= 50000.00 {
             userData.updateAchievement(index: 0)

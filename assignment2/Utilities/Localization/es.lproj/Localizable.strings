@@ -24,7 +24,7 @@
 "User Stats" = "Estadísticas del usuario";
 "Balance:" = "Saldo:";
 "Username:" = "Nombre de usuario:";
-"Game Played:" = "Partidas jugadas:";
+"Games Played:" = "Partidas jugadas:";
 "Total Bet:" = "Apuesta total:";
 "Total Winning:" = "Ganancia total:";
 "Profit/Loss:" = "Ganancia/Pérdida:";
@@ -39,3 +39,6 @@
 "Select number of mines, input amount of money to bet and start game" = "Selecciona el número de minas, ingresa la cantidad de dinero a apostar y comienza el juego";
 "Tap on the card to flip\nMore diamond more money" = "Toca la carta para voltearla\nCuantos más diamantes, más dinero";
 "Avoid the bomb" = "Evita la bomba";
+"Can't exit, there's an ongoing game" = "No se puede salir, hay un juego en curso";
+"Error" = "Error";
+"Invalid amount of money" = "Cantidad de dinero no válida";

@@ -95,7 +95,7 @@ struct SettingView: View {
                             .foregroundColor(.black)
                         Picker("Select Language", selection: $lang) {
                             ForEach(availableLanguages.sorted(by: <), id: \.1) { key, value in
-                                Text(key).tag(value)
+                                Text(LocalizedStringKey(key)).tag(value)
                             }
                         }
                         .accentColor(.black)
@@ -137,7 +137,8 @@ struct SettingView: View {
             .border(isDark ? .white : .black, width: 2)
             .offset(x: (geo.size.width - 300) / 2, y: (geo.size.height - 500) / 2)
             .sheet(isPresented: $showAlert) {
-                CustomAlertView(isPresented: $showAlert, title: "Exit Alert", message: "Can't exit, there's an onging game")
+                CustomAlertView(isPresented: $showAlert, title: "Error", message: "Can't exit, there's an ongoing game")
+                    .environment(\.locale, .init(identifier: lang))
             }
         }.background(Color("backgroundcolor"))
     }

@@ -24,7 +24,7 @@
 "User Stats" = "User Stats";
 "Balance:" = "Balance:";
 "Username:" = "Username:";
-"Game Played:" = "Game Played:";
+"Games Played:" = "Games Played:";
 "Total Bet:" = "Total Bet:";
 "Total Winning:" = "Total Winning:";
 "Profit/Loss:" = "Profit/Loss:";
@@ -39,3 +39,6 @@
 "Select number of mines, input amount of money to bet and start game" = "Select number of mines, input amount of money to bet and start game";
 "Tap on the card to flip\nMore diamond more money" = "Tap on the card to flip\nMore diamond more money";
 "Avoid the bomb" = "Avoid the bomb";
+"Can't exit, there's an ongoing game" = "Can't exit, there's an ongoing game";
+"Invalid amount of money" = "Invalid amount of money";
+"Error" = "Error";

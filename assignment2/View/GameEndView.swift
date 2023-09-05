@@ -11,6 +11,7 @@ struct GameEndView: View {
     
     @AppStorage("Multiplier") var multiplier: Double = 1.0
     @AppStorage("CurrentBet") var inputText: String = ""
+    
     @State private var isAppeared = false
     @Binding var isLoss: Bool
     var body: some View {
@@ -30,7 +31,7 @@ struct GameEndView: View {
                     }
                 }else {
                     VStack {
-                        Text("$\(String(format: "%.2f", multiplier))")
+                        Text("x\(String(format: "%.2f", multiplier))")
                             .font(.system(size: 30, weight: .bold))
                             .foregroundColor(.green)
                         Rectangle()

@@ -59,9 +59,8 @@ struct CardView: View {
                 .rotation3DEffect(.degrees(rotation), axis: (x: 0, y: 1, z: 0))
                 .onTapGesture {
                     withAnimation(.linear(duration: 0.3)){
-                        rotating()
-                        userData.updateCard(card: card)
                         checkCard(card: card)
+                        rotating()
                     }
                 }
         }
@@ -108,6 +107,7 @@ struct CardView: View {
                 inputText = ""
             }
         }
+        userData.updateCard(card: card)
     }
     func rotating(){
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in

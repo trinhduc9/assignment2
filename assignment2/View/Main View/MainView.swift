@@ -18,13 +18,14 @@ struct MainView: View {
     
     @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
+    @AppStorage("Language") var lang: String = "en"
     @AppStorage("CurrentMines") private var pickedNumber: Int = 1
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
-    @State private var cards: [Card] = createList(bombNo: 1)
+    @State private var cards: [Card] = []
     @State private var keyboardHeight: CGFloat = 0.0
     @State private var showAlert = false
     @State private var alertTitle = ""
@@ -73,7 +74,6 @@ struct MainView: View {
             .background(Color("backgroundcolor"))
             .onAppear {
                 let storedGame = userData.currentGame
-                
                 if !storedGame.isEmpty {
                     cards = storedGame
                 } else {
@@ -84,10 +84,10 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+/*struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(soundEnable: .constant(true), soundEffect: .constant(true))
+        MainView(soundEnable: .constant(true), soundEffect: .constant(true), cards: createList(bombNo: <#T##Int#>))
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
     }
-}
+}*/
