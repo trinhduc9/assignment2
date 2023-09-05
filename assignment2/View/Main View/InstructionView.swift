@@ -13,8 +13,10 @@
 import SwiftUI
 
 struct InstructionView: View {
+    
     let images = ["instruction1", "instruction2", "instruction3"]
     let imageLabels = ["Select number of mines, input amount of money to bet and start game", "Tap on the card to flip\nMore diamond more money", "Avoid the bomb"]
+    
     var body: some View {
         GeometryReader{ geo in
             VStack(alignment: .center){
@@ -27,7 +29,7 @@ struct InstructionView: View {
                                 Image(systemName: "info.circle.fill")
                                     .font(.system(size: 10))
                                     .foregroundColor(.red)
-                                Text(imageLabels[i]) // Display the corresponding label
+                                Text(LocalizedStringKey(imageLabels[i])) // Display the corresponding label
                                     .font(.system(size: 10, weight: .bold))
                                     .padding(.top, 8)
                                     .foregroundColor(.black)

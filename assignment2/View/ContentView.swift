@@ -18,18 +18,18 @@ struct ContentView: View {
 
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
+    @AppStorage("Language") var lang: String = "en"
     @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
     @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    @AppStorage("Language") var lang: String = "en"
     var body: some View {
         ZStack {
             if userData.username == "" {
-                WelcomeView()
+                WelcomeView(soundEnable: $soundEnable, soundEffect: $soundEffect)
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
                     .environment(\.locale, .init(identifier: lang))
             }else{
-                TabDisplayView()
+                TabDisplayView(soundEnable: $soundEnable, soundEffect: $soundEffect)
                     .environment(\.locale, .init(identifier: lang))
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)

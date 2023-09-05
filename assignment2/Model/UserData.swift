@@ -106,7 +106,7 @@ class UserData: ObservableObject, Codable {
         self.balance = UserDefaults.standard.double(forKey: "Balance")
         let storedUsername = UserDefaults.standard.string(forKey: "Username") ?? ""
         if storedUsername.isEmpty {
-            self.balance = 1000000.00
+            self.balance = 100000.00
         } else {
             self.balance = UserDefaults.standard.double(forKey: "Balance")
         }

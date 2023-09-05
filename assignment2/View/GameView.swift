@@ -17,12 +17,12 @@ struct GameView: View {
     @EnvironmentObject var audioManager: AudioManager
     @EnvironmentObject var userData: UserData
     @AppStorage("DarkMode") private var isDark : Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
     var fourColumnGrid = [GridItem(.flexible()),
                                   GridItem(.flexible()),
                                   GridItem(.flexible()),
@@ -34,7 +34,7 @@ struct GameView: View {
         GeometryReader{geo in
             LazyVGrid(columns: fourColumnGrid, spacing: 10){
                 ForEach(cards){ card in
-                    CardView(card: card,
+                    CardView(card: card, soundEnable: $soundEnable, soundEffect: $soundEffect, 
                              width: Int(geo.size.width/4 - 10))
                         .environmentObject(UserData.shared)
                         .environmentObject(audioManager)
@@ -58,7 +58,7 @@ struct GameView_Previews: PreviewProvider {
             let cards: [Card]
             
             var body: some View {
-                GameView(cards: cards)
+                GameView(soundEnable: .constant(true), soundEffect: .constant(true), cards: cards)
             }
         }
 }

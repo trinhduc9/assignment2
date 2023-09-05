@@ -24,14 +24,15 @@ struct MainView: View {
     @AppStorage("DarkMode") private var isDark : Bool = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @State private var cards: [Card] = createList(bombNo: 1)
     @State private var keyboardHeight: CGFloat = 0.0
     @State private var showAlert = false
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var timer: Timer? = nil
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
+    
     var body: some View {
         GeometryReader{ geo in
             VStack{
@@ -49,7 +50,7 @@ struct MainView: View {
                 )
                 Spacer()
                 ZStack{
-                    GameView(cards: cards)
+                    GameView(soundEnable: $soundEnable, soundEffect: $soundEffect, cards: cards)
                         .environmentObject(UserData.shared)
                         .environmentObject(audioManager)
                     Spacer()
@@ -64,7 +65,7 @@ struct MainView: View {
                             }
                     }
                 }
-                GameSettingView( cards: $cards)
+                GameSettingView(soundEnable: $soundEnable, soundEffect: $soundEffect, cards: $cards)
                     .environmentObject(UserData.shared)
                     .environmentObject(audioManager)
                 Spacer()
@@ -85,7 +86,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(soundEnable: .constant(true), soundEffect: .constant(true))
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
     }

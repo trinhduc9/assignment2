@@ -12,6 +12,7 @@
 
 
 import SwiftUI
+import UIKit
 
 struct GameSettingView: View {
     
@@ -22,14 +23,21 @@ struct GameSettingView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("DarkMode") private var isDark:Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("Multiplier") var multiplier: Double = 1.0
-    @AppStorage("DiamondCount") var count: Int = 0
-    @State private var showAlert = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
+    @AppStorage("DiamondCount") var count: Int = 0
+    @State private var showAlert = false
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
     @Binding var cards: [Card]
+    let decimalFormatter: NumberFormatter = {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.minimumFractionDigits = 2
+            formatter.maximumFractionDigits = 2
+            return formatter
+        }()
     var body: some View {
         VStack(spacing: 10) {
             if disableGameSetting{
@@ -49,9 +57,11 @@ struct GameSettingView: View {
                     ZStack(alignment: .trailing) {
                         TextField("", text: $inputText)
                             .placeholder(when: inputText.isEmpty) {
-                                Text("Amount").foregroundColor(.black)
+                                Text("Amount")
+                                    .foregroundColor(.black)
+                                    .opacity(0.5)
                             }
-                            .keyboardType(.numberPad)
+                            .keyboardType(.decimalPad)
                             .padding(5)
                             .background(.white)
                             .foregroundColor(.black)
@@ -60,17 +70,18 @@ struct GameSettingView: View {
                                     .stroke(.black, lineWidth: 1)
                             )
                             .cornerRadius(8)
-                        
-                        /*.onChange(of: inputText) { newValue in
-                         if let value = Double(newValue) {
-                         let formattedValue = String(format: "%.2f", value)
-                         if formattedValue != newValue {
-                         inputText = formattedValue
-                         }
-                         } else if !newValue.isEmpty {
-                         inputText = String(newValue.dropLast())
-                         }
-                         }*/
+                            .onChange(of: inputText) { newValue in
+                                // Ensure that the input has at most two decimal places
+                                if let decimalIndex = newValue.firstIndex(of: ".") {
+                                    let decimalCount = newValue.distance(from: decimalIndex, to: newValue.endIndex)
+                                    if decimalCount > 3 {
+                                        // Truncate input to two decimal places
+                                        if let range = newValue.range(of: #"^\d+\.\d{0,2}"#, options: .regularExpression) {
+                                            inputText = String(newValue[range])
+                                        }
+                                    }
+                                }
+                            }
                         Image(systemName: "dollarsign.circle")
                             .foregroundColor(.green)
                             .padding([.trailing], 5)
@@ -145,15 +156,14 @@ struct GameSettingView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                
                 .background(Color("lightblack"))
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .opacity(disableGameSetting ? 0.3 : 1)
                 .allowsHitTesting(!disableGameSetting)
                 if disableGameSetting{
                     Button("Cash Out"){
                         gameEnded = true
-                        isLoss = false
                         appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier).rounded(to: 2))
                         cashOut()
                         disableUserInteraction = true
@@ -206,7 +216,7 @@ struct GameSettingView_Previews: PreviewProvider {
         let cards: Binding<[Card]>
         
         var body: some View {
-            GameSettingView(cards: cards)
+            GameSettingView(soundEnable: .constant(true), soundEffect: .constant(true), cards: cards)
                 .environmentObject(AudioManager())
                 .preferredColorScheme(.dark)
         }

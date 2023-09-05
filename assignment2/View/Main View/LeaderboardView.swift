@@ -14,7 +14,7 @@ import SwiftUI
 
 struct LeaderboardView: View {
     
-    @ObservedObject var userData = UserData.shared
+    @EnvironmentObject var userData: UserData
     @State private var selectedUsername: String? = nil
     
     var body: some View {

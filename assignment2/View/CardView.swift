@@ -19,8 +19,6 @@ struct CardView: View {
     @ObservedObject var card:Card
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("CurrentBet") var inputText: String = ""
     @AppStorage("CurrentMines") var pickedNumber: Int = 1
     @AppStorage("Multiplier") var multiplier: Double = 0.0
@@ -30,6 +28,8 @@ struct CardView: View {
     @AppStorage("IsLoss") private var isLoss: Bool = false
     @State private var rotation: Double = 0
     @State private var animating = true
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
     let width: Int
     
     var body: some View {
@@ -79,7 +79,6 @@ struct CardView: View {
         }else{
             count += 1
             multiplier = calculateMultiplier(mines: pickedNumber, diamonds: count)
-            winning = Double(inputText)! * multiplier
             if soundEffect {
                 audioManager.playSoundEffect(fileName: "gemFound")
             }
@@ -102,6 +101,7 @@ struct CardView: View {
                 if userData.achievements[4] == false && pickedNumber == 15 {
                     userData.updateAchievement(index: 4)
                 }
+                gameEnded = true
                 disableUserInteraction = true
                 disableGameSetting = false
                 pickedNumber = 1
@@ -134,7 +134,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let card = Card(text: "💣")
-        CardView(card: card, width: 100 )
+        CardView(card: card,soundEnable: .constant(true), soundEffect: .constant(true), width: 100)
             .environmentObject(AudioManager())
     }
 }

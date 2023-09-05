@@ -20,8 +20,6 @@ struct assignment2App: App {
     
     @StateObject private var userData = UserData()
     @StateObject private var audioManager = AudioManager()
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("Language") var lang: String = "en"
 
     

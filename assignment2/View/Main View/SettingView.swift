@@ -20,10 +20,10 @@ struct SettingView: View {
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    @State private var showAlert = false
     @AppStorage("Language") var lang: String = "en"
+    @State private var showAlert = false
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
     let availableLanguages: [String: String] = [
         "English": "en",
         "Español": "es",
@@ -146,7 +146,7 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        SettingView()
+        SettingView(soundEnable: .constant(true), soundEffect: .constant(true))
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
     }

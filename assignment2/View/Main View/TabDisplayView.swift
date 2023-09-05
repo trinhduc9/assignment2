@@ -19,16 +19,17 @@ struct TabDisplayView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
     @AppStorage("DarkMode") private var isDark: Bool = false
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD") 
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
     @AppStorage("DisableUI") private var disableUserInteraction: Bool = true
     @AppStorage("DisableGS") private var disableGameSetting: Bool = false
     @AppStorage("GameEnded") private var gameEnded: Bool = false
     @AppStorage("IsLoss") private var isLoss: Bool = false
     @AppStorage("Language") var lang: String = "en"
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
+    
     var body: some View {
         TabView {
-            MainView()
+            MainView(soundEnable: $soundEnable, soundEffect: $soundEffect)
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
                     Text("Game")
@@ -48,7 +49,7 @@ struct TabDisplayView: View {
                     Image(systemName: "person.fill")
                     Text("Stats")
                 }
-            SettingView()
+            SettingView(soundEnable: $soundEnable, soundEffect: $soundEffect)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Settings")
@@ -73,7 +74,7 @@ struct TabDisplayView: View {
 struct TabDisplayView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        TabDisplayView()
+        TabDisplayView(soundEnable: .constant(true), soundEffect: .constant(true))
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))

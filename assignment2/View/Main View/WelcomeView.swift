@@ -16,11 +16,11 @@ struct WelcomeView: View {
 
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var audioManager: AudioManager
-    @State var soundEnable = UserDefaults.standard.bool(forKey: "SoundEnableUD")
-    @State var soundEffect = UserDefaults.standard.bool(forKey: "SoundEffectEnableUD")
-    @State private var username: String = ""
     @AppStorage("Language") var lang: String = "en"
-
+    @State private var username: String = ""
+    @Binding var soundEnable: Bool
+    @Binding var soundEffect: Bool
+    
     var body: some View {
         ZStack{
             Image("mineEntranceLogo")
@@ -70,7 +70,7 @@ struct WelcomeView: View {
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         @State(initialValue: "es") var lang: String
-        WelcomeView()
+        WelcomeView(soundEnable: .constant(true), soundEffect: .constant(true))
             .environmentObject(UserData.shared)
             .environmentObject(AudioManager())
             .environment(\.locale, .init(identifier: lang))
