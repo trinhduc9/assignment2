@@ -61,7 +61,6 @@ struct MainView: View {
                             .onAppear{
                                 timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
                                     gameEnded = false
-                                    
                                 }
                             }
                     }
