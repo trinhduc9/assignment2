@@ -21,14 +21,6 @@ func appendHighscoreLocal(name: String, winning: Double){
     appendHighscoreJSON(newHighscore: newHighscore)
 }
 
-/*func appendHighscoreLocal(username: String, inputText: String, multiplier: Double) {
-    if let inputValue = Double(inputText) {
-        let roundedWinning = (inputValue * multiplier).rounded(to: 2)
-        let newHighscore = Highscore(name: username, winning: roundedWinning)
-        // Add the new highscore to your data storage and save it to file
-    } else {
-        // Handle invalid input
-    }
-}*/
+
 
 

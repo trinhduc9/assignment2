@@ -82,6 +82,7 @@ struct CardView: View {
                 audioManager.playSoundEffect(fileName: "gemFound")
             }
             if count == 16 - pickedNumber{
+                appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
                 userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
                 userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
                 userData.updateProfitLoss(profitLoss: (Double(inputText)! * multiplier).rounded(to: 2))
