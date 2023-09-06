@@ -22,47 +22,50 @@ struct WelcomeView: View {
     @Binding var soundEffect: Bool
     
     var body: some View {
-        ZStack{
-            Image("mineEntranceLogo")
-                .resizable()
-                .ignoresSafeArea()
-            VStack{
-                Spacer()
-                TextField("Username", text: $username)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .frame(width: 250)  
-                Spacer()
-                Button(action: {
-                    if let loadedUserData = loadSingleUserData(forUsername: username) {
-                        userData.username = loadedUserData.username
-                        userData.gamePlayed = loadedUserData.gamePlayed
-                        userData.balance = loadedUserData.balance
-                        userData.totalBet = loadedUserData.totalBet
-                        userData.totalWinning = loadedUserData.totalWinning
-                        userData.profitLoss = loadedUserData.profitLoss
-                        userData.achievements = loadedUserData.achievements
-                        userData.currentGame = loadedUserData.currentGame
-                    } else {
-                        userData.username = username
-                    }
-                }) {
-                    Text("Start Mining")
+        GeometryReader { geo in
+            ZStack{
+                Image("mineEntranceLogo")
+                    .resizable()
+                    .ignoresSafeArea()
+                VStack{
+                    Spacer()
+                    TextField("Username", text: $username)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .cornerRadius(10)
+                        .frame(width: 250)
+    
+                    Spacer()
+                    Button(action: {
+                        if let loadedUserData = loadSingleUserData(forUsername: username) {
+                            userData.username = loadedUserData.username
+                            userData.gamePlayed = loadedUserData.gamePlayed
+                            userData.balance = loadedUserData.balance
+                            userData.totalBet = loadedUserData.totalBet
+                            userData.totalWinning = loadedUserData.totalWinning
+                            userData.profitLoss = loadedUserData.profitLoss
+                            userData.achievements = loadedUserData.achievements
+                            userData.currentGame = loadedUserData.currentGame
+                        } else {
+                            userData.username = username
+                        }
+                    }) {
+                        Text("Start Mining")
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                            .cornerRadius(10)
+                    }
                 }
             }
-        }
-        .onAppear{
-            if soundEnable{
-                audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
+            .onAppear{
+                if soundEnable{
+                    audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
+                }
             }
-        }
-        .onDisappear{
-            audioManager.stopSound()
+            .onDisappear{
+                audioManager.stopSound()
+            }
         }
     }
 }
