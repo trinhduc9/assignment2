@@ -6,8 +6,17 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 15/08/2023
- Last modified: 23/08/2023
+ Last modified: 05/09/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 import SwiftUI
@@ -33,7 +42,7 @@ struct CardView: View {
     let width: Int
     
     var body: some View {
-        if card.isFaceUp{
+        if card.isFaceUp{ //Card is flipped
             Text(card.text)
                 .font(.system(size: CGFloat(width/2)))
                 .padding()
@@ -44,7 +53,7 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(.black), lineWidth: 3)
                 )
-        } else {
+        } else { //card is not flipped
             Image(systemName: "questionmark.diamond.fill")
                 .font(.system(size: CGFloat(width/2)))
                 .padding()
@@ -66,8 +75,8 @@ struct CardView: View {
         }
     }
     
-    func checkCard(card: Card){
-        if card.text == "💣"{
+    func checkCard(card: Card){ //Check card value
+        if card.text == "💣"{ //User lose
             gameEnded = true
             isLoss = true
             disableUserInteraction = true
@@ -75,14 +84,15 @@ struct CardView: View {
             if soundEffect {
                 audioManager.playSoundEffect(fileName: "bombExplode")
             }
-        }else{
+        }else{ //User continue
             count += 1
             multiplier = calculateMultiplier(mines: pickedNumber, diamonds: count)
             if soundEffect {
                 audioManager.playSoundEffect(fileName: "gemFound")
             }
-            if count == 16 - pickedNumber{
-                appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
+            if count == 16 - pickedNumber{ //User win, auto cashout
+                appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2)) //Append to highscore board
+                //Update user data
                 userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
                 userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
                 userData.updateProfitLoss(profitLoss: (Double(inputText)! * multiplier).rounded(to: 2))
@@ -101,6 +111,7 @@ struct CardView: View {
                 if userData.achievements[4] == false && pickedNumber == 15 {
                     userData.updateAchievement(index: 4)
                 }
+                //Update game state
                 gameEnded = true
                 disableUserInteraction = true
                 disableGameSetting = false
@@ -108,9 +119,10 @@ struct CardView: View {
                 inputText = ""
             }
         }
-        userData.updateCard(card: card)
+        userData.updateCard(card: card) //update the card state to app
     }
-    func rotating(){
+    //Card flip animation function
+    func rotating(){ 
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { _ in
             if self.animating {
                 withAnimation(Animation.linear(duration: 0.1)) {

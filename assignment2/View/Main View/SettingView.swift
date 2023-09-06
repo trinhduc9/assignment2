@@ -6,8 +6,17 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 11/08/2023
- Last modified: 23/08/2023
+ Last modified: 05/09/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 import SwiftUI
@@ -41,9 +50,10 @@ struct SettingView: View {
                     HStack{
                         Text("Background music:")
                             .foregroundColor(.black)
+                        //Btn to toggle background music
                         Button(action: {
                             soundEnable.toggle()
-                            UserDefaults.standard.set(soundEnable, forKey: "SoundEnableUD")
+                            UserDefaults.standard.set(soundEnable, forKey: "SoundEnableUD") //save value to userdefault
                             if soundEnable{
                                 audioManager.playBackgroundMusic(fileName: "backgroundMusic", loops: true)
                             }else{
@@ -61,9 +71,10 @@ struct SettingView: View {
                     HStack{
                         Text("Sound effect:")
                             .foregroundColor(.black)
+                        //Btn to toggle sound effect
                         Button(action: {
                             soundEffect.toggle()
-                            UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnableUD")
+                            UserDefaults.standard.set(soundEffect, forKey: "SoundEffectEnableUD") //save sound effect state to user default
                         }){
                             Image(soundEffect ? "note" : "noteSlash")
                                 .resizable()
@@ -76,6 +87,7 @@ struct SettingView: View {
                     HStack{
                         Text("Theme setting:")
                             .foregroundColor(.black)
+                        //Btn to toggle theme setting
                         Button(action: {
                             isDark.toggle()
                         }) {
@@ -93,6 +105,7 @@ struct SettingView: View {
                     HStack{
                         Text("Languages:")
                             .foregroundColor(.black)
+                        //Picker to select language
                         Picker("Select Language", selection: $lang) {
                             ForEach(availableLanguages.sorted(by: <), id: \.1) { key, value in
                                 Text(LocalizedStringKey(key)).tag(value)
@@ -105,6 +118,7 @@ struct SettingView: View {
                 Spacer()
                 HStack{
                     Spacer()
+                    //Exit button
                     Button(action: {
                         if disableUserInteraction{
                             userData.currentGame = []

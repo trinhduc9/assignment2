@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+
 extension Double {
     func rounded(to decimalPlaces: Int) -> Double {
         let divisor = pow(10.0, Double(decimalPlaces))
@@ -15,6 +16,7 @@ extension Double {
     }
 }
 
+//Extension to override the placeholder
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,

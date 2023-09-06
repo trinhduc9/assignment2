@@ -6,12 +6,22 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 11/08/2023
- Last modified: 15/08/2023
+ Last modified: 25/08/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 import SwiftUI
 
+//Struct for UserData
 class UserData: ObservableObject, Codable {
     static let shared = UserData()
     
@@ -100,6 +110,7 @@ class UserData: ObservableObject, Codable {
         try container.encode(currentGame, forKey: .currentGame)
     }
     
+    //Initializer
     init() {
         self.username = UserDefaults.standard.string(forKey: "Username") ?? ""
         self.gamePlayed = UserDefaults.standard.integer(forKey: "GamePlayed")
@@ -122,39 +133,47 @@ class UserData: ObservableObject, Codable {
         }
     }
     
+    //Update number of game played
     func updategamePlayed(){
         self.gamePlayed += 1
         UserDefaults.standard.set(self.gamePlayed, forKey: "GamePlayed")
     }
     
+    //Update userbalance
     func updateBalance(balance: Double){
         let formatted = String(format: "%.2f", balance)
         self.balance += Double(formatted)!
         UserDefaults.standard.set(self.balance, forKey: "Balance")
     }
 
+    //Update user total bet
     func updateTotalBet(bet: Double){
         let formatted = String(format: "%.2f", bet)
         self.totalBet += Double(formatted)!
         UserDefaults.standard.set(self.totalBet, forKey: "TotalBet")
     }
+
+    //Update user profit and loss
     func updateProfitLoss(profitLoss: Double){
         let formatted = String(format: "%.2f", profitLoss)
         self.profitLoss += Double(formatted)!
         UserDefaults.standard.set(self.profitLoss, forKey: "ProfitLoss")
     }
     
+    //update user total winning
     func updateTotalWinning(winning: Double){
         let formatted = String(format: "%.2f", winning)
         self.totalWinning += Double(formatted)!
         UserDefaults.standard.set(self.totalWinning, forKey: "TotalWinning")
     }
-                                  
+
+    //update user achievement                             
     func updateAchievement(index: Int){
         self.achievements[index] = true
         UserDefaults.standard.set(self.achievements, forKey: "Achievements")
     }
     
+    //update the if card face up
     func updateCard(card: Card) {
         if let index = self.currentGame.firstIndex(where: { $0.id == card.id }) {
             currentGame[index] = card
@@ -162,12 +181,15 @@ class UserData: ObservableObject, Codable {
         }
     }
     
+    //Save the current game state
     func saveCurrentGame(game: [Card]) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(game) {
             UserDefaults.standard.set(encoded, forKey: "CurrentGame")
         }
     }
+
+    //Clear current user data
     func clearUserData() {
         // Set properties to their initial or reset values
         self.username = ""

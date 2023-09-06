@@ -6,8 +6,17 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 15/08/2023
- Last modified: 23/08/2023
+ Last modified: 05/09/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 
@@ -56,6 +65,7 @@ struct GameSettingView: View {
                         .font(.headline)
                         .foregroundColor(.black)
                     ZStack(alignment: .trailing) {
+                        //Bet amount input
                         TextField("", text: $inputText)
                             .placeholder(when: inputText.isEmpty) {
                                 Text("Amount")
@@ -71,8 +81,8 @@ struct GameSettingView: View {
                                     .stroke(.black, lineWidth: 1)
                             )
                             .cornerRadius(8)
+                            //Ensure input only take in 2 decimal place
                             .onChange(of: inputText) { newValue in
-                                // Ensure that the input has at most two decimal places
                                 if let decimalIndex = newValue.firstIndex(of: ".") {
                                     let decimalCount = newValue.distance(from: decimalIndex, to: newValue.endIndex)
                                     if decimalCount > 3 {
@@ -94,6 +104,7 @@ struct GameSettingView: View {
                     Text("Mines")
                         .font(.headline)
                         .foregroundColor(.black)
+                    //Number of bomb selection
                     Menu {
                         ForEach(1..<16) { number in
                             Button(action: {
@@ -132,17 +143,20 @@ struct GameSettingView: View {
             .padding(.horizontal)
             .background(Color("lightgray"))
             .cornerRadius(15)
+            //Disable interaction if user is in a game
             .allowsHitTesting(!disableGameSetting)
             HStack{
                 Button(action: {
-                    if !inputText.isEmpty && Float(inputText) != nil{
+                    if !inputText.isEmpty && Float(inputText) != nil { //check if user input a valid amount of money
+                        //Update game state
                         gameEnded = false
                         isLoss = false
                         cards = createList(bombNo: pickedNumber)
-                        userData.currentGame = cards
-                        userData.saveCurrentGame(game: cards)
                         disableUserInteraction = false
                         disableGameSetting = true
+                        //Update user data
+                        userData.currentGame = cards
+                        userData.saveCurrentGame(game: cards)
                         userData.updateTotalBet(bet: Double(inputText)!)
                         userData.updateBalance(balance: -Double(inputText)!)
                         userData.updateProfitLoss(profitLoss: -Double(inputText)!)
@@ -162,13 +176,15 @@ struct GameSettingView: View {
                 .cornerRadius(10)
                 .opacity(disableGameSetting ? 0.3 : 1)
                 .allowsHitTesting(!disableGameSetting)
+                //Show the button only when user start a game
                 if disableGameSetting{
+                    //Btn to cash out
                     Button("Cash Out"){
-                        gameEnded = true
-                        appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
-                        cashOut()
+                        //Reset screen state for interaction after game ended
                         disableUserInteraction = true
                         disableGameSetting = false
+                        appendHighscoreLocal(name: userData.username, winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))
+                        cashOut()
                         if soundEffect {
                             audioManager.playSoundEffect(fileName: "cashout")
                         }
@@ -181,6 +197,7 @@ struct GameSettingView: View {
                 }
             }
         }
+        //Show alert
         .sheet(isPresented: $showAlert) {
             CustomAlertView(isPresented: $showAlert, title: "Error", message: "Invalid amount of money")
                 .environment(\.locale, .init(identifier: lang))
@@ -190,6 +207,7 @@ struct GameSettingView: View {
         .cornerRadius(15) // Add corner radius
     }
     
+    //Update user data func
     func cashOut(){
         userData.updateBalance(balance: (Double(inputText)! * multiplier).rounded(to: 2))
         userData.updateTotalWinning(winning: (Double(inputText)! * multiplier - Double(inputText)!).rounded(to: 2))

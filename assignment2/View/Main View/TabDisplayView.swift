@@ -6,14 +6,24 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 15/08/2023
- Last modified: 23/08/2023
+ Last modified: 05/09/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 
 import SwiftUI
 import UIKit
 
+//The main view to display all view
 struct TabDisplayView: View {
     
     @EnvironmentObject var userData: UserData
@@ -66,7 +76,7 @@ struct TabDisplayView: View {
         .accentColor(isDark ? .white : .black)
         .environmentObject(UserData.shared)
         .environmentObject(audioManager)
-        .environment(\.colorScheme, isDark ? .dark : .light)
+        .environment(\.colorScheme, isDark ? .dark : .light) //Pass colorscheme into environment
         .environment(\.locale, .init(identifier: lang))
     }
 }

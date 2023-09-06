@@ -6,15 +6,25 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 17/08/2023
- Last modified: 23/08/2023
+ Last modified: 29/08/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 import Foundation
 
-var achievements: [Achievement] = decodeAchievement(jsonFileName: "achievement.json")
-var highscores: [Highscore] = loadHighscores()
+var achievements: [Achievement] = decodeAchievement(jsonFileName: "achievement.json") //Load achievement
+var highscores: [Highscore] = loadHighscores() //Load highscore for leaderboard
     
+//Decode achievement JSON
 func decodeAchievement(jsonFileName: String) -> [Achievement] {
     if let file = Bundle.main.url(forResource: jsonFileName, withExtension: nil){
         if let data = try? Data(contentsOf: file) {
@@ -74,6 +84,7 @@ func loadSingleUserData(forUsername username: String) -> UserData? {
     return nil
 }
 
+//Load all userdata
 func loadUserData() -> [String: UserData] {
     let filePath = "/Users/s3915177/Documents/GitHub/assignment2/assignment2/Utilities/userDatas.json"
     let fileURL = URL(fileURLWithPath: filePath)

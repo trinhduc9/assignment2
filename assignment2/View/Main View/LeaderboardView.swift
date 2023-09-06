@@ -6,8 +6,17 @@
  Author: Trinh Van Minh Duc
  ID: s3915177
  Created  date: 11/08/2023
- Last modified:
+ Last modified: 29/08/2023
  Acknowledgement:
+-   https://www.youtube.com/watch?v=VYxxzrlS8q0
+-   https://www.youtube.com/watch?v=aJ9kKX6Ak3k
+-	https://kowei-chen.medium.com/swiftui-dynamic-localization-tricks-87c37a6db3e7
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-provide-relative-sizes-using-geometryreader
+-	https://stackoverflow.com/questions/62372188/how-to-use-userdata-observable-object-in-swiftui
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-disable-taps-for-a-view-using-allowshittesting
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-show-a-menu-when-a-button-is-pressed
+-	https://developer.apple.com/documentation/swiftui/picker
+-	https://www.hackingwithswift.com/quick-start/swiftui/how-to-position-views-in-a-grid-using-lazyvgrid-and-lazyhgrid
  */
 
 import SwiftUI
@@ -22,7 +31,7 @@ struct LeaderboardView: View {
             Text("Leaderboard")
                 .font(.largeTitle)
             Spacer()
-            if selectedUsername != nil {
+            if selectedUsername != nil { //Display a return button if a user is selected to display their highscore
                 Spacer()
                 Button(action:{
                     selectedUsername = nil
@@ -30,6 +39,7 @@ struct LeaderboardView: View {
                     Image(systemName: "arrowshape.backward.fill")
                 }
             }
+            //List of highscore
             List(filteredHighscores.prefix(10)) { highscore in
                 HStack{
                     Text("\(highscore.name)")
